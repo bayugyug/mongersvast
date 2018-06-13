@@ -320,6 +320,20 @@ func main() {
    //Load the XML file from directory
    vastf := mvast.VAST{}
    vastf.FromFile("./tsample.vast.xml")
+   //INJECT additional vast element (Pricing)
+   vastf.Ad[0].InLine.Pricing = &mvast.Pricing{
+            Model:    "CPM",
+            Currency: "USD",
+            Value:    "0.99",
+    }
+   //INJECT additional vast element (Extensions)
+   vastf.Ad[0].InLine.Extensions = &mvast.Extensions{
+            Extension: []*mvast.Extension{
+                    {Type: "iab-Count",
+                            TotalAvailable: &mvast.TotalAvailable{Value: "2"}},
+            },
+    }
+   //show
    xml, _ = vastf.ToString()
    fmt.Println(xml)
 
@@ -350,6 +364,12 @@ func main() {
                       </Linear>
                   </Creative>
               </Creatives>
+              <Extensions>
+                  <Extension type="iab-Count">
+                      <total_available><![CDATA[2]]></total_available>
+                  </Extension>
+              </Extensions>
+              <Pricing model="CPM" currency="USD">0.99</Pricing>
           </InLine>
       </Ad>
   </VAST>
