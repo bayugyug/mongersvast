@@ -6,3 +6,7 @@
     - initial push
 
 
+## Analyze library
+    golint > lint.txt
+    go tool vet -v . > vet.txt
+

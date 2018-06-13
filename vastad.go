@@ -44,11 +44,8 @@ func (v *VAST) ToXML() (string, error) {
 
 //FromFile load and unmarshal from file
 func (v *VAST) FromFile(filename string) (string, error) {
-	content, err := ioutil.ReadFile(filename)
-	if err != nil {
-		return "", fmt.Errorf("%s , %s", ErrFailedFileOpen.Error(), err.Error())
-	}
-	return strings.TrimSpace(string(content)), nil
+	content, _ := ioutil.ReadFile(filename) //make sure the xml is readable and exists
+	v.FromString(strings.TrimSpace(string(content)))
 }
 
 //ToFile save the xml into a file
