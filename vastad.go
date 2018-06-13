@@ -41,7 +41,7 @@ func (v *VAST) ToXML() (string, error) {
 }
 
 //InLineAd inline ad template
-func (v VAST) InLineAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Description, verr *VASTError, imps []*Impression, creatives *Creatives) (req *VAST) {
+func InLineAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Description, verr *VASTError, imps []*Impression, creatives *Creatives) (req *VAST) {
 	//minimal config
 	inline := &InLine{}
 	inline.AdSystem = adSystem
@@ -69,7 +69,7 @@ func (v VAST) InLineAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, d
 }
 
 //WrapperAd wrapper ad template
-func (v VAST) WrapperAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Description, verr *VASTError, imps []*Impression, creatives *Creatives, adURI *VASTAdTagURI) (req *VAST) {
+func WrapperAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Description, verr *VASTError, imps []*Impression, creatives *Creatives, adURI *VASTAdTagURI) (req *VAST) {
 	//minimal config
 	wrapper := &Wrapper{}
 	wrapper.AdSystem = adSystem
