@@ -53,7 +53,7 @@ func (v *VAST) FromFile(filename string) (string, error) {
 
 //ToFile save the xml into a file
 func (v *VAST) ToFile(filename, body string) (bool, error) {
-	var f *File
+	var f *os.File
 	var err error
 	f, err = os.OpenFile(filename, os.O_RDWR|os.O_CREATE, 0755)
 	if err != nil {
