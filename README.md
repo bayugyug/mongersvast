@@ -39,9 +39,10 @@ go get -u -v github.com/bayugyug/mongersvast
 ### Output
 
 ```xml
+
 <?xml version="1.0" encoding="UTF-8"?>
   <VAST version="2.0">
-      <Ad id="070407">
+      <Ad id="2007-07-04">
           <InLine>
               <AdSystem><![CDATA[Acudeo Compatible]]></AdSystem>
               <AdTitle><![CDATA[VAST 2.0 Instream Test 1]]></AdTitle>
@@ -90,7 +91,7 @@ go get -u -v github.com/bayugyug/mongersvast
   </VAST>
 ```
 
-### Create a Linear Ad
+### Create an InLine Linear Ad
 
 ```go
     package main
@@ -103,7 +104,7 @@ go get -u -v github.com/bayugyug/mongersvast
    var xml string
    //INLINE LINEAR AD
    inAd := mvast.InLineAd(
-            mvast.AdAttributes{"ID": "070407"},
+            mvast.AdAttributes{"ID": "2007-07-04"},
             &mvast.AdSystem{Value: "Ads for VAST"},
             &mvast.AdTitle{Value: "Ad title here"},
             &mvast.Description{Value: "Ad remarks here"},
@@ -155,9 +156,10 @@ go get -u -v github.com/bayugyug/mongersvast
 ### Output
 
 ```xml
+
 <?xml version="1.0" encoding="UTF-8"?>
   <VAST version="2.0">
-      <Ad id="070407">
+      <Ad id="2007-07-04">
           <InLine>
               <AdSystem><![CDATA[Ads for VAST]]></AdSystem>
               <AdTitle><![CDATA[Ad title here]]></AdTitle>
@@ -189,6 +191,102 @@ go get -u -v github.com/bayugyug/mongersvast
       </Ad>
   </VAST>
 ```
+
+
+
+### Create a Wrapper Linear Ad
+
+```go
+    package main
+
+    import (
+            "fmt"
+            mvast "github.com/bayugyug/mongersvast"
+    )
+
+   var xml string
+   //WRAPPER LINEAR AD
+   wrpAd := mvast.WrapperAd(
+            mvast.AdAttributes{"ID": "2007-07-04"},
+            &mvast.AdSystem{Value: "Ads for VAST"},
+            &mvast.AdTitle{Value: "Ad title here"},
+            &mvast.Description{Value: "Ad remarks here"},
+            &mvast.VASTError{Value: "http://mongers.vast.utils/error"},
+            []*mvast.Impression{
+                    {ID: "imp-01", Value: "http://mongers.vast.utils/impression1"},
+            },
+            &mvast.Creatives{
+                    Creative: []*mvast.Creative{
+                            {AdID: "ad01",
+                                    Linear: &mvast.Linear{
+                                            Duration: &mvast.Duration{Value: "00:00:30"},
+                                            TrackingEvents: &mvast.TrackingEvents{
+                                                    Tracking: []*mvast.Tracking{
+                                                            {Event: mvast.TrackingEventTypes["Start"], Value: "http://mongers.vast.utils/start"},
+                                                            {Event: mvast.TrackingEventTypes["FirstQuartile"], Value: "http://mongers.vast.utils/firstq"},
+                                                            {Event: mvast.TrackingEventTypes["Midpoint"], Value: "http://mongers.vast.utils/midpoint"},
+                                                            {Event: mvast.TrackingEventTypes["ThirdQuartile"], Value: "http://mongers.vast.utils/thirdq"},
+                                                            {Event: mvast.TrackingEventTypes["Complete"], Value: "http://mongers.vast.utils/complete"},
+                                                    },
+                                            },
+                                            VideoClicks: &mvast.VideoClicks{
+                                                    ClickThrough: &mvast.ClickThrough{
+                                                            Value: "http://mongers.vast.utils/clickthrough"},
+                                                    ClickTracking: &mvast.ClickTracking{
+                                                            Value: "http://mongers.vast.utils/clicktracking"},
+                                            },
+                                    }},
+                    },
+            },
+            &mvast.VASTAdTagURI{
+                    ID:    "adwrapper-01",
+                    Value: "http://mongers.vast.utils/2nd-vast-here.xml"},
+    )
+    xml, _ = wrpAd.ToString()
+    fmt.Println(xml)
+
+```
+
+
+### Output
+
+```xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+  <VAST version="2.0">
+      <Ad id="2007-07-04">
+          <Wrapper>
+              <AdSystem><![CDATA[Ads for VAST]]></AdSystem>
+              <AdTitle><![CDATA[Ad title here]]></AdTitle>
+              <Description><![CDATA[Ad remarks here]]></Description>
+              <VASTAdTagURI id="adwrapper-01"><![CDATA[http://mongers.vast.utils/2nd-vast-here.xml]]></VASTAdTagURI>
+              <Error><![CDATA[http://mongers.vast.utils/error]]></Error>
+              <Impression id="imp-01"><![CDATA[http://mongers.vast.utils/impression1]]></Impression>
+              <Creatives>
+                  <Creative AdID="ad01">
+                      <Linear>
+                          <Duration>00:00:30</Duration>
+                          <TrackingEvents>
+                              <Tracking event="start"><![CDATA[http://mongers.vast.utils/start]]></Tracking>
+                              <Tracking event="firstQuartile"><![CDATA[http://mongers.vast.utils/firstq]]></Tracking>
+                              <Tracking event="midpoint"><![CDATA[http://mongers.vast.utils/midpoint]]></Tracking>
+                              <Tracking event="thirdQuartile"><![CDATA[http://mongers.vast.utils/thirdq]]></Tracking>
+                              <Tracking event="complete"><![CDATA[http://mongers.vast.utils/complete]]></Tracking>
+                          </TrackingEvents>
+                          <VideoClicks>
+                              <ClickThrough><![CDATA[http://mongers.vast.utils/clickthrough]]></ClickThrough>
+                              <ClickTracking><![CDATA[http://mongers.vast.utils/clicktracking]]></ClickTracking>
+                          </VideoClicks>
+                      </Linear>
+                  </Creative>
+              </Creatives>
+          </Wrapper>
+      </Ad>
+  </VAST>
+
+  
+```
+
 
 
 
