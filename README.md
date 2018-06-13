@@ -25,14 +25,19 @@ go get -u -v github.com/bayugyug/mongersvast
             mvast "github.com/bayugyug/mongersvast"
     )
 
+
+func main() {
+
     var xml,body string
 
+    //LOAD from a sample xml string
     body = mvast.XMLInlineLinear
     vt := mvast.VAST{}
     vt.FromString(body)
     xml, _ = vt.ToString()
     fmt.Println(xml)
 
+}
 
 ```
 
@@ -89,6 +94,7 @@ go get -u -v github.com/bayugyug/mongersvast
           </InLine>
       </Ad>
   </VAST>
+
 ```
 
 ### Create an InLine Linear Ad
@@ -100,6 +106,8 @@ go get -u -v github.com/bayugyug/mongersvast
             "fmt"
             mvast "github.com/bayugyug/mongersvast"
     )
+
+func main() {
 
    var xml string
    //INLINE LINEAR AD
@@ -150,6 +158,8 @@ go get -u -v github.com/bayugyug/mongersvast
             })
         xml, _ = inAd.ToString()
         fmt.Println(xml)
+
+}
 ```
 
 
@@ -204,6 +214,9 @@ go get -u -v github.com/bayugyug/mongersvast
             mvast "github.com/bayugyug/mongersvast"
     )
 
+
+func main() {
+
    var xml string
    //WRAPPER LINEAR AD
    wrpAd := mvast.WrapperAd(
@@ -245,6 +258,7 @@ go get -u -v github.com/bayugyug/mongersvast
     xml, _ = wrpAd.ToString()
     fmt.Println(xml)
 
+}
 ```
 
 
@@ -286,6 +300,59 @@ go get -u -v github.com/bayugyug/mongersvast
 
   
 ```
+
+### Load from an XML file
+
+```go
+    package main
+
+    import (
+            "fmt"
+            mvast "github.com/bayugyug/mongersvast"
+    )
+
+func main() {
+
+   var xml string
+   //Load the XML file from directory
+   vastf := mvast.VAST{}
+   vastf.FromFile("./tsample.vast.xml")
+   xml, _ = vastf.ToString()
+   fmt.Println(xml)
+
+}
+```
+
+
+### Output
+
+```xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+  <VAST version="2.0">
+      <Ad id="pre-roll-0">
+          <InLine>
+              <AdSystem><![CDATA[2.0]]></AdSystem>
+              <AdTitle><![CDATA[Sample]]></AdTitle>
+              <Impression></Impression>
+              <Creatives>
+                  <Creative id="2" sequence="1">
+                      <Linear>
+                          <Duration>00:02:00</Duration>
+                          <MediaFiles>
+                              <MediaFile delivery="progressive" type="video/mp4" bitrate="400">
+                                <![CDATA[http://mongers.vast.utils/demo-sample.mp4]]>
+                              </MediaFile>
+                          </MediaFiles>
+                      </Linear>
+                  </Creative>
+              </Creatives>
+          </InLine>
+      </Ad>
+  </VAST>
+  
+```
+
 
 
 
