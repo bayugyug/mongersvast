@@ -4,7 +4,7 @@
 - [x] Supports VAST 1.0, 2.0, 3.0
 
 
-## Install
+### Install
 
 ```sh
 
@@ -12,18 +12,19 @@ go get -u -v github.com/bayugyug/mongersvast
 
 ```
 
-## How-To
+### Mini-How-To
 
 
 ### Load XML from string
 
 ```go
-    package main
 
-    import (
-            "fmt"
-            mvast "github.com/bayugyug/mongersvast"
-    )
+package main
+
+import (
+        "fmt"
+        mvast "github.com/bayugyug/mongersvast"
+       )
 
 
 func main() {
@@ -100,12 +101,13 @@ func main() {
 ### Create an InLine Linear Ad
 
 ```go
-    package main
 
-    import (
-            "fmt"
-            mvast "github.com/bayugyug/mongersvast"
-    )
+package main
+
+import (
+        "fmt"
+        mvast "github.com/bayugyug/mongersvast"
+       )
 
 func main() {
 
@@ -207,12 +209,13 @@ func main() {
 ### Create a Wrapper Linear Ad
 
 ```go
-    package main
 
-    import (
-            "fmt"
-            mvast "github.com/bayugyug/mongersvast"
-    )
+package main
+
+import (
+        "fmt"
+        mvast "github.com/bayugyug/mongersvast"
+       )
 
 
 func main() {
@@ -304,12 +307,12 @@ func main() {
 ### Load from an XML file
 
 ```go
-    package main
+package main
 
-    import (
-            "fmt"
-            mvast "github.com/bayugyug/mongersvast"
-    )
+import (
+        "fmt"
+        mvast "github.com/bayugyug/mongersvast"
+       )
 
 func main() {
 
