@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"encoding/xml"
 	"fmt"
+	"io/ioutil"
+	"os"
 	"strings"
 )
 
@@ -38,6 +40,31 @@ func (v *VAST) FromXML(body string) {
 //ToXML an alias to toString
 func (v *VAST) ToXML() (string, error) {
 	return v.ToString()
+}
+
+//FromFile load and unmarshal from file
+func (v *VAST) FromFile(filename string) (string, error) {
+	content, err := ioutil.ReadFile(filename)
+	if err != nil {
+		return "", fmt.Errorf("%s , %s", ErrFailedFileOpen.Error(), err.Error())
+	}
+	return strings.TrimSpace(string(content)), nil
+}
+
+//ToFile save the xml into a file
+func (v *VAST) ToFile(filename, body string) (bool, error) {
+	var f *File
+	var err error
+	f, err = os.OpenFile(filename, os.O_RDWR|os.O_CREATE, 0755)
+	if err != nil {
+		return false, fmt.Errorf("%s , %s", ErrFailedFileSave.Error(), err.Error())
+	}
+	defer f.Close()
+	_, err = f.Write([]byte(body))
+	if err != nil {
+		return false, fmt.Errorf("%s , %s", ErrFailedFileSave.Error(), err.Error())
+	}
+	return true, nil
 }
 
 //InLineAd inline ad template

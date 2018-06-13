@@ -8,6 +8,8 @@ import (
 var (
 	ErrFailedToString         = errors.New("String Format failed")
 	ErrFailedToStringNilValue = errors.New("String Format failed (nil value found)")
+	ErrFailedFileOpen         = errors.New("XML file open failed")
+	ErrFailedFileSave         = errors.New("XML file save failed")
 	VastXMLVer1               = "1.0"
 	VastXMLVer2               = "2.0"
 	VastXMLVer3               = "3.0"
