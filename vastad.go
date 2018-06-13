@@ -43,7 +43,7 @@ func (v *VAST) ToXML() (string, error) {
 }
 
 //FromFile load and unmarshal from file
-func (v *VAST) FromFile(filename string) (string, error) {
+func (v *VAST) FromFile(filename string) {
 	content, _ := ioutil.ReadFile(filename) //make sure the xml is readable and exists
 	v.FromString(strings.TrimSpace(string(content)))
 }
