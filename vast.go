@@ -239,6 +239,7 @@ type Pricing struct {
 	ID       string `xml:"id,attr,omitempty"`
 	Model    string `xml:"model,attr,omitempty"`
 	Currency string `xml:"currency,attr,omitempty"`
+	Value    string `xml:",chardata"`
 }
 
 //VASTAdTagURI URL of the wrapper
