@@ -116,19 +116,20 @@ type Wrapper struct {
 
 //InLineWrapperData common data for InLine/Wrapper
 type InLineWrapperData struct {
-	AdSystem        *AdSystem        `xml:",omitempty"`
-	AdTitle         *AdTitle         `xml:",omitempty"`
-	Description     *Description     `xml:",omitempty"`
-	Survey          *Survey          `xml:",omitempty"`
-	VASTAdTagURI    *VASTAdTagURI    `xml:",omitempty"`
-	Error           *VASTError       `xml:",omitempty"`
-	Impression      []*Impression    `xml:",omitempty"`
-	Creatives       *Creatives       `xml:",omitempty"`
-	Extensions      *Extensions      `xml:",omitempty"`
-	Pricing         *Pricing         `xml:",omitempty"`
-	AdVerifications *AdVerifications `xml:",omitempty"`
-	Advertiser      *Advertiser      `xml:",omitempty"`
-	Category        []*Category      `xml:",omitempty"`
+	AdSystem           *AdSystem             `xml:",omitempty"`
+	AdTitle            *AdTitle              `xml:",omitempty"`
+	Description        *Description          `xml:",omitempty"`
+	Survey             *Survey               `xml:",omitempty"`
+	VASTAdTagURI       *VASTAdTagURI         `xml:",omitempty"`
+	Error              *VASTError            `xml:",omitempty"`
+	Impression         []*Impression         `xml:",omitempty"`
+	Creatives          *Creatives            `xml:",omitempty"`
+	Extensions         *Extensions           `xml:",omitempty"`
+	Pricing            *Pricing              `xml:",omitempty"`
+	AdVerifications    *AdVerifications      `xml:",omitempty"`
+	Advertiser         *Advertiser           `xml:",omitempty"`
+	Category           []*Category           `xml:",omitempty"`
+	ViewableImpression []*ViewableImpression `xml:",omitempty"`
 }
 
 //Extensions is an element list
@@ -245,6 +246,8 @@ type Creatives struct {
 
 //NonLinear is an element of the VAST structure
 type NonLinear struct {
+	ID                     string                  `xml:"id,attr,omitempty"`
+	APIFramework           string                  `xml:"apiFramework,attr,omitempty"`
 	Height                 string                  `xml:"height,attr,omitempty"`
 	Width                  string                  `xml:"width,attr,omitempty"`
 	MinSuggestedDuration   string                  `xml:"minSuggestedDuration,attr,omitempty"`

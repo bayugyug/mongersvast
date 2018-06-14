@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/xml"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -170,4 +171,15 @@ func (v *VAST) SetXMLHeaders(w http.ResponseWriter) {
 	w.Header().Set("Access-Control-Allow-Headers", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "GET")
 	w.Header().Set("Access-Control-Max-Age", "10080")
+}
+
+//PushXML push content with proper xml hdrs
+func (v *VAST) PushXML(w http.ResponseWriter) {
+	//just in case ;-)
+	if v == nil {
+		return
+	}
+	xml, _ := v.Stringify()
+	v.SetXMLHeaders(w)
+	io.WriteString(w, xml)
 }
