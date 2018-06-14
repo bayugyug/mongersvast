@@ -131,7 +131,7 @@ func WrapperAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Des
 		case VastXMLVer4:
 			req.Version = VastXMLVer4
 			req.XMLNsXs = VastXMLNsXs
-			req.XMLns = VastXMLNs
+			req.XMLNs = VastXMLNs
 		default: //Ver2.0
 			req.Version = VastXMLVer2
 		}
