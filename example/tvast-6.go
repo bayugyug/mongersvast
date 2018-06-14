@@ -11,7 +11,7 @@ func main() {
 	var xml string
 	//INLINE SIMPLE
 	wrAd := mvast.WrapperAd(
-		mvast.AdAttributes{"ID": "2007-07-04", "Version": "4.0", "Sequence": "1", "ConditionalAd": "false"},
+		mvast.AdAttributes{"ID": "2007-07-04", "Version": "4.0", "FollowAdditionalWrappers": "0", "AllowMultipleAds": "1", "FallbackOnNoAd": "0"},
 		&mvast.AdSystem{Value: "VAST Wrapper Tag"},
 		&mvast.AdTitle{Value: "Ad title here"},
 		&mvast.Description{Value: "Ad remarks here"},
@@ -37,13 +37,13 @@ func main() {
 								PxRatio:        "1400",
 								ExpandedWidth:  "350",
 								ExpandedHeight: "250",
-								APIFramwork:    "VPAID",
-								CompanionClickThrough: &mvast.CompanionClickThrough{
-									Value: "https://iabtechlab.com",
-								},
+								APIFramework:   "VPAID",
 								StaticResource: &mvast.StaticResource{
 									CreativeType: "image/png",
 									Value:        "https://www.iab.com/wp-content/uploads/2014/09/iab-tech-lab-6-644x290.png",
+								},
+								CompanionClickThrough: &mvast.CompanionClickThrough{
+									Value: "https://iabtechlab.com",
 								},
 							},
 						},

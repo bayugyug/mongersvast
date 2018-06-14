@@ -143,6 +143,18 @@ func (v *VAST) FormatAdAttrs(attrs AdAttributes) {
 	if kk, _ := attrs["ConditionalAd"]; kk != "" {
 		v.Ad[0].ConditionalAd = kk
 	}
+	//Wrapper attrs
+	if kk, _ := attrs["FollowAdditionalWrappers"]; v.Ad[0].Wrapper != nil && kk != "" {
+		v.Ad[0].Wrapper.FollowAdditionalWrappers = kk
+	}
+	//Wrapper attrs
+	if kk, _ := attrs["AllowMultipleAds"]; v.Ad[0].Wrapper != nil && kk != "" {
+		v.Ad[0].Wrapper.AllowMultipleAds = kk
+	}
+	//Wrapper attrs
+	if kk, _ := attrs["FallbackOnNoAd"]; v.Ad[0].Wrapper != nil && kk != "" {
+		v.Ad[0].Wrapper.FallbackOnNoAd = kk
+	}
 	//VAST version
 	if kk, _ := attrs["Version"]; kk != "" {
 		switch kk {
