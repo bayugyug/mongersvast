@@ -42,6 +42,11 @@ func (v *VAST) ToXML() (string, error) {
 	return v.ToString()
 }
 
+//Stringify an alias to toString
+func (v *VAST) Stringify() (string, error) {
+	return v.ToString()
+}
+
 //FromFile load from file
 func (v *VAST) FromFile(filename string) {
 	content, _ := ioutil.ReadFile(filename) //make sure the xml is readable and exists
