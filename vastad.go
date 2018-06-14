@@ -162,12 +162,12 @@ func (v *VAST) FormatAdAttrs(attrs AdAttributes) {
 		switch kk {
 		case VastXMLVer3:
 			v.Version = VastXMLVer3
+			v.XMLNsXs = VastXMLNsXs
 		case VastXMLVer4:
 			v.Version = VastXMLVer4
 			v.XMLNsXs = VastXMLNsXs
 			v.XMLNs = VastXMLNs
 		default:
-			//Ver2.0
 			v.Version = VastXMLVer2
 		}
 	}
