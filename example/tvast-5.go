@@ -9,7 +9,7 @@ import (
 func main() {
 
 	var xml string
-	//INLINE SIMPLE
+	//SIMPLE
 	inAd := mvast.InLineAd(
 		mvast.AdAttributes{"ID": "2007-07-04", "Version": "4.0", "Sequence": "1", "ConditionalAd": "false"},
 		&mvast.AdSystem{Value: "VAST Inline Simple With Mezzanine and VPAID separation support"},

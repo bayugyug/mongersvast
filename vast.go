@@ -123,13 +123,13 @@ type InLineWrapperData struct {
 	VASTAdTagURI       *VASTAdTagURI         `xml:",omitempty"`
 	Error              *VASTError            `xml:",omitempty"`
 	Impression         []*Impression         `xml:",omitempty"`
+	ViewableImpression []*ViewableImpression `xml:",omitempty"`
 	Creatives          *Creatives            `xml:",omitempty"`
 	Extensions         *Extensions           `xml:",omitempty"`
 	Pricing            *Pricing              `xml:",omitempty"`
 	AdVerifications    *AdVerifications      `xml:",omitempty"`
 	Advertiser         *Advertiser           `xml:",omitempty"`
 	Category           []*Category           `xml:",omitempty"`
-	ViewableImpression []*ViewableImpression `xml:",omitempty"`
 }
 
 //Extensions is an element list
