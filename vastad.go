@@ -84,10 +84,10 @@ func InLineAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Desc
 	**/
 
 	//minimal config
-	req = &mvast.VAST{
-		Version: mvast.VastXMLVer2,
-		Ad: []*mvast.Ad{
-			{InLine: &mvast.InLine{
+	req = &VAST{
+		Version: VastXMLVer2,
+		Ad: []*Ad{
+			{InLine: &InLine{
 				ID: "1",
 				InLineWrapperData: InLineWrapperData{
 					AdSystem:    adSystem,
