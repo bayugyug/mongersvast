@@ -35,6 +35,7 @@ func main() {
     body = mvast.XMLInlineLinear
     vt := mvast.VAST{}
     vt.FromString(body)
+    //stringify VAST obj
     xml, _ = vt.ToString()
     fmt.Println(xml)
 
@@ -158,6 +159,7 @@ func main() {
                                     }},
                     },
             })
+        //stringify VAST obj
         xml, _ = inAd.ToString()
         fmt.Println(xml)
 
@@ -258,6 +260,7 @@ func main() {
                     ID:    "adwrapper-01",
                     Value: "http://mongers.vast.utils/2nd-vast-here.xml"},
     )
+    //stringify VAST obj
     xml, _ = wrpAd.ToString()
     fmt.Println(xml)
 
@@ -333,7 +336,7 @@ func main() {
                             TotalAvailable: &mvast.TotalAvailable{Value: "2"}},
             },
     }
-   //show
+   //stringify VAST obj
    xml, _ = vastf.ToString()
    fmt.Println(xml)
 
@@ -504,7 +507,7 @@ func main() {
                 IDValue:    "8465",
                 Value:      "8465",
         }
-        //convert & show
+        //stringify VAST obj
         xml, _ = inAd.ToString()
         fmt.Println(xml)
 
