@@ -42,7 +42,7 @@ func (v *VAST) ToXML() (string, error) {
 	return v.ToString()
 }
 
-//FromFile load and unmarshal from file
+//FromFile load from file
 func (v *VAST) FromFile(filename string) {
 	content, _ := ioutil.ReadFile(filename) //make sure the xml is readable and exists
 	v.FromString(strings.TrimSpace(string(content)))
@@ -84,7 +84,6 @@ func InLineAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Desc
 			},
 		},
 	}
-
 	//options
 	if kk, _ := attrs["ID"]; kk != "" {
 		req.Ad[0].ID = kk
@@ -93,28 +92,10 @@ func InLineAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Desc
 	} else if kk, _ := attrs["ConditionalAd"]; kk != "" {
 		req.Ad[0].ConditionalAd = kk
 	}
-	return req
 }
 
 //WrapperAd wrapper ad template
 func WrapperAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Description, verr *VASTError, imps []*Impression, creatives *Creatives, adURI *VASTAdTagURI) (req *VAST) {
-	/**
-	wrapper := &Wrapper{}
-	wrapper.AdSystem = adSystem
-	wrapper.AdTitle = title
-	wrapper.Description = desc
-	wrapper.Error = verr
-	wrapper.Impression = imps
-	wrapper.Creatives = creatives
-	wrapper.VASTAdTagURI = adURI
-	//give 1 instance
-	req = &VAST{
-		Version: VastXMLVer2,
-		Ad: []*Ad{
-			{Wrapper: wrapper},
-		},
-	}
-	**/
 	//minimal config
 	req = &VAST{
 		Version: VastXMLVer2,
@@ -134,7 +115,6 @@ func WrapperAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Des
 			},
 		},
 	}
-
 	//options
 	if kk, _ := attrs["ID"]; kk != "" {
 		req.Ad[0].ID = kk
@@ -143,5 +123,4 @@ func WrapperAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Des
 	} else if kk, _ := attrs["ConditionalAd"]; kk != "" {
 		req.Ad[0].ConditionalAd = kk
 	}
-	return req
 }
