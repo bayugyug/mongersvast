@@ -29,12 +29,11 @@ import (
 
 func main() {
 
-    var xml,body string
+    var xml string
 
     //LOAD from a sample xml string
-    body = mvast.XMLInlineLinear
     vt := mvast.VAST{}
-    vt.FromString(body)
+    vt.FromString(mvast.XMLInlineLinear)
     //stringify VAST obj
     xml, _ = vt.ToString()
     fmt.Println(xml)
