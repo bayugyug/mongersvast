@@ -238,7 +238,7 @@ type Creative struct {
 	Linear        *Linear        `xml:",omitempty"`
 	NonLinearAds  *NonLinearAds  `xml:",omitempty"`
 	CompanionAds  *CompanionAds  `xml:",omitempty"`
-	UniversalAdID *UniversalAdID `xml:",omitempty"`
+	UniversalAdID *UniversalAdID `xml:"UniversalAdId,omitempty"`
 }
 
 //Creatives is an element of the VAST structure
