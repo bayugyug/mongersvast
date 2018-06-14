@@ -89,7 +89,7 @@ func InLineAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Desc
 		Ad: []*mvast.Ad{
 			{InLine: &mvast.InLine{
 				ID: "1",
-				InLineWrapperData: mvast.InLineWrapperData{
+				InLineWrapperData: InLineWrapperData{
 					AdSystem:    adSystem,
 					AdTitle:     title,
 					Description: desc,
