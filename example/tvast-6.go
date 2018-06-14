@@ -37,6 +37,7 @@ func main() {
 								PxRatio:        "1400",
 								ExpandedWidth:  "350",
 								ExpandedHeight: "250",
+								APIFramwork:    "VPAID",
 								CompanionClickThrough: &mvast.CompanionClickThrough{
 									Value: "https://iabtechlab.com",
 								},
