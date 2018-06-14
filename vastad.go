@@ -6,9 +6,11 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"math"
 	"net/http"
 	"os"
 	"strings"
+	"time"
 )
 
 //FromString load and unmarshal from string
@@ -194,4 +196,14 @@ func (v *VAST) PushXML(w http.ResponseWriter) {
 	xml, _ := v.Stringify()
 	v.SetXMLHeaders(w)
 	io.WriteString(w, xml)
+}
+
+//VideoDuration convert duration seconds
+func (v *VAST) VideoDuration(secs int) string {
+	//just in case ;-)
+	if v == nil {
+		return
+	}
+	ts := time.Duration(secs) * time.Second
+	return strings.TrimSpace(fmt.Sprintf("%02d:%02d:%02d", int(math.Mod(ts.Hours(), 12)), int(math.Mod(ts.Minutes(), 60)), int(math.Mod(ts.Seconds(), 60))))
 }
