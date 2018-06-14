@@ -11,7 +11,7 @@ func main() {
 	var xml string
 	//SIMPLE
 	inAd := mvast.InLineAd(
-		mvast.VastOptions{
+		mvast.AdAttributes{
 			"ID":            "2007-07-04",
 			"Version":       "4.0",
 			"Sequence":      "1",
