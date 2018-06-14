@@ -211,11 +211,8 @@ func (v *VAST) VideoDuration(secs int) *Duration {
 
 //fmtTmfUUID make temp str
 func fmtTmfUUID(pfx string) string {
-	var uniqid string
-	if len(pfx) > 0 {
-		uniqid = fmt.Sprintf("%s%08X%08X%16X", pfx, rand.Intn(99999), rand.Intn(99999), time.Now().UTC().UnixNano())
-	} else {
-		uniqid = fmt.Sprintf("%s%08X%08X%16X", "aoc", rand.Intn(99999), rand.Intn(99999), time.Now().UTC().UnixNano())
+	if len(pfx) <= 0 {
+		pfx = "mvast-"
 	}
-	return strings.ToUpper(uniqid)
+	return fmt.Sprintf("%s%05x%10x", pfx, rand.Intn(99999), time.Now().UTC().UnixNano())
 }
