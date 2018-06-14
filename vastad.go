@@ -66,7 +66,7 @@ func (v *VAST) ToFile(filename, body string) (bool, error) {
 
 //InLineAd inline ad template
 func InLineAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Description, verr *VASTError, imps []*Impression, creatives *Creatives) (req *VAST) {
-	//minimal config
+	/**
 	inline := &InLine{}
 	inline.AdSystem = adSystem
 	inline.AdTitle = title
@@ -81,6 +81,27 @@ func InLineAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Desc
 			{InLine: inline},
 		},
 	}
+	**/
+
+	//minimal config
+	req = &mvast.VAST{
+		Version: mvast.VastXMLVer2,
+		Ad: []*mvast.Ad{
+			{InLine: &mvast.InLine{
+				ID: "1",
+				InLineWrapperData: mvast.InLineWrapperData{
+					AdSystem:    adSystem,
+					AdTitle:     title,
+					Description: desc,
+					Error:       verr,
+					Impression:  imps,
+					Creatives:   creatives,
+				},
+			},
+			},
+		},
+	}
+
 	//options
 	if kk, _ := attrs["ID"]; kk != "" {
 		req.Ad[0].ID = kk
