@@ -29,11 +29,16 @@ func main() {
 						Duration: &mvast.Duration{Value: "00:00:30"},
 						TrackingEvents: &mvast.TrackingEvents{
 							Tracking: []*mvast.Tracking{
-								{Event: mvast.TrkEventStart, Value: "http://mongers.vast.utils/start"},
-								{Event: mvast.TrkEventFirstQuartile, Value: "http://mongers.vast.utils/firstq"},
-								{Event: mvast.TrkEventMidpoint, Value: "http://mongers.vast.utils/midpoint"},
-								{Event: mvast.TrkEventThirdQuartile, Value: "http://mongers.vast.utils/thirdq"},
-								{Event: mvast.TrkEventComplete, Value: "http://mongers.vast.utils/complete"},
+								{Event: mvast.TrkEventStart,
+									Value: "http://mongers.vast.utils/start"},
+								{Event: mvast.TrkEventFirstQuartile,
+									Value: "http://mongers.vast.utils/firstq"},
+								{Event: mvast.TrkEventMidpoint,
+									Value: "http://mongers.vast.utils/midpoint"},
+								{Event: mvast.TrkEventThirdQuartile,
+									Value: "http://mongers.vast.utils/thirdq"},
+								{Event: mvast.TrkEventComplete,
+									Value: "http://mongers.vast.utils/complete"},
 							},
 						},
 						VideoClicks: &mvast.VideoClicks{

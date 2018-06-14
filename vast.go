@@ -166,6 +166,7 @@ type Companion struct {
 	AssetHeight           string                 `xml:"assetHeight,attr,omitempty"`
 	ExpandedWidth         string                 `xml:"expandedWidth,attr,omitempty"`
 	ExpandedHeight        string                 `xml:"expandedHeight,attr,omitempty"`
+	APIFramework          string                 `xml:"apiFramework,attr,omitempty"`
 	AdSlotID              string                 `xml:"adSlotID,attr,omitempty"`
 	PxRatio               string                 `xml:"pxratio,attr,omitempty"`
 	HTMLResource          *HTMLResource          `xml:",omitempty"`
