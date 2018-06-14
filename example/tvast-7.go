@@ -26,7 +26,6 @@ func main() {
 					ID:       "5480",
 					Sequence: "1",
 					Linear: &mvast.Linear{
-						Duration: &mvast.Duration{Value: "00:00:30"},
 						TrackingEvents: &mvast.TrackingEvents{
 							Tracking: []*mvast.Tracking{
 								{

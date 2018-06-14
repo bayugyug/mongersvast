@@ -121,11 +121,11 @@ type InLineWrapperData struct {
 	AdServingID        *AdServingID          `xml:"AdServingId,omitempty"`
 	Description        *Description          `xml:",omitempty"`
 	Survey             *Survey               `xml:",omitempty"`
-	VASTAdTagURI       *VASTAdTagURI         `xml:",omitempty"`
 	Error              *VASTError            `xml:",omitempty"`
 	Impression         []*Impression         `xml:",omitempty"`
 	ViewableImpression []*ViewableImpression `xml:",omitempty"`
 	Creatives          *Creatives            `xml:",omitempty"`
+	VASTAdTagURI       *VASTAdTagURI         `xml:",omitempty"`
 	Extensions         *Extensions           `xml:",omitempty"`
 	Pricing            *Pricing              `xml:",omitempty"`
 	AdVerifications    *AdVerifications      `xml:",omitempty"`
