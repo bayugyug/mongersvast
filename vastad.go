@@ -7,6 +7,7 @@ import (
 	"io"
 	"io/ioutil"
 	"math"
+	"math/rand"
 	"net/http"
 	"os"
 	"strings"
@@ -80,7 +81,7 @@ func InLineAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Desc
 		Version: VastXMLVer2,
 		Ad: []*Ad{
 			{InLine: &InLine{
-				ID: "1",
+				ID: fmtTmfUUID("1"),
 				InLineWrapperData: InLineWrapperData{
 					AdSystem:    adSystem,
 					AdTitle:     title,
@@ -105,7 +106,7 @@ func WrapperAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Des
 		Version: VastXMLVer2,
 		Ad: []*Ad{
 			{Wrapper: &Wrapper{
-				ID: "1",
+				ID: fmtTmfUUID("2"),
 				InLineWrapperData: InLineWrapperData{
 					AdSystem:     adSystem,
 					AdTitle:      title,
@@ -206,4 +207,15 @@ func (v *VAST) VideoDuration(secs int) *Duration {
 	ts := time.Duration(secs) * time.Second
 	tm := strings.TrimSpace(fmt.Sprintf("%02d:%02d:%02d", int(math.Mod(ts.Hours(), 12)), int(math.Mod(ts.Minutes(), 60)), int(math.Mod(ts.Seconds(), 60))))
 	return &Duration{Value: tm}
+}
+
+//fmtTmfUUID make temp str
+func fmtTmfUUID(pfx string) string {
+	var uniqid string
+	if len(pfx) > 0 {
+		uniqid = fmt.Sprintf("%s%08X%08X%16X", pfx, rand.Intn(99999), rand.Intn(99999), time.Now().UTC().UnixNano())
+	} else {
+		uniqid = fmt.Sprintf("%s%08X%08X%16X", "aoc", rand.Intn(99999), rand.Intn(99999), time.Now().UTC().UnixNano())
+	}
+	return strings.ToUpper(uniqid)
 }
