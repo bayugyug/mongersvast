@@ -147,7 +147,7 @@ func main() {
 				TotalAvailable: &mvast.TotalAvailable{Value: "2"}},
 		},
 	}
-	//convert & show
+	//stringify VAST obj
 	xml, _ = inAd.ToString()
 	fmt.Println(xml)
 

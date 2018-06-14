@@ -73,7 +73,7 @@ func main() {
 		IDValue:    "8465",
 		Value:      "8465",
 	}
-	//convert & show
+	//stringify VAST obj
 	xml, _ = wrAd.ToString()
 	fmt.Println(xml)
 

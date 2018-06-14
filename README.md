@@ -99,7 +99,7 @@ func main() {
 
 ```
 
-### Create an InLine Linear Ad
+### InLine Linear Ad
 
 ```go
 
@@ -208,7 +208,7 @@ func main() {
 
 
 
-### Create a Wrapper Linear Ad
+### Wrapper Linear Ad
 
 ```go
 
@@ -651,7 +651,7 @@ func main() {
 		Value:      "8465",
 	}
 
-	//convert & show
+    //stringify VAST obj
 	xml, _ = wrAd.ToString()
 	fmt.Println(xml)
 
