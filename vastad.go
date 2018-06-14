@@ -85,6 +85,8 @@ func InLineAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Desc
 		},
 	}
 	//options
+	req.FormatAdAttrs(attrs)
+	/**
 	if kk, _ := attrs["ID"]; kk != "" {
 		req.Ad[0].ID = kk
 	} else if kk, _ := attrs["Sequence"]; kk != "" {
@@ -103,7 +105,7 @@ func InLineAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Desc
 		default: //Ver2.0
 			req.Version = VastXMLVer2
 		}
-	}
+	}*/
 	return
 }
 
@@ -129,6 +131,8 @@ func WrapperAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Des
 		},
 	}
 	//options
+	req.FormatAdAttrs(attrs)
+	/**
 	if kk, _ := attrs["ID"]; kk != "" {
 		req.Ad[0].ID = kk
 	} else if kk, _ := attrs["Sequence"]; kk != "" {
@@ -147,6 +151,34 @@ func WrapperAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Des
 		default: //Ver2.0
 			req.Version = VastXMLVer2
 		}
-	}
+	}*/
 	return
+}
+
+//FormatAdAttrs sync all possible options/attrs
+func (v *VAST) FormatAdAttrs(attrs AdAttributes) {
+	//check all options
+	if kk, _ := attrs["ID"]; kk != "" {
+		//Ad attrs
+		v.Ad[0].ID = kk
+	} else if kk, _ := attrs["Sequence"]; kk != "" {
+		//Ad attrs
+		v.Ad[0].Sequence = kk
+	} else if kk, _ := attrs["ConditionalAd"]; kk != "" {
+		//Ad attrs
+		v.Ad[0].ConditionalAd = kk
+	} else if kk, _ := attrs["Version"]; kk != "" {
+		//VAST version
+		switch kk {
+		case VastXMLVer3:
+			v.Version = VastXMLVer3
+		case VastXMLVer4:
+			v.Version = VastXMLVer4
+			v.XMLNsXs = VastXMLNsXs
+			v.XMLNs = VastXMLNs
+		default:
+			//Ver2.0
+			v.Version = VastXMLVer2
+		}
+	}
 }
