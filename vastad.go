@@ -180,7 +180,6 @@ func (v *VAST) SetXMLHeaders(w http.ResponseWriter) {
 	w.Header().Set("Pragma", "no-cache")                                   // HTTP 1.0.
 	w.Header().Set("Expires", "0")
 	w.Header().Set("Access-Control-Allow-Origin", "*") //Google HTML5 SDK CORS Header
-	//add CORS as per rubiconproject
 	w.Header().Set("Access-Control-Allow-Credentials", "true")
 	w.Header().Set("Access-Control-Allow-Headers", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "GET")
