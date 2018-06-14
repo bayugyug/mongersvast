@@ -124,18 +124,20 @@ func (v *VAST) FormatAdAttrs(attrs AdAttributes) {
 	if len(v.Ad) <= 0 {
 		return
 	}
-	//check all options
+	//Ad attrs
 	if kk, _ := attrs["ID"]; kk != "" {
-		//Ad attrs
 		v.Ad[0].ID = kk
-	} else if kk, _ := attrs["Sequence"]; kk != "" {
-		//Ad attrs
+	}
+	//Ad attrs
+	if kk, _ := attrs["Sequence"]; kk != "" {
 		v.Ad[0].Sequence = kk
-	} else if kk, _ := attrs["ConditionalAd"]; kk != "" {
-		//Ad attrs
+	}
+	//Ad attrs
+	if kk, _ := attrs["ConditionalAd"]; kk != "" {
 		v.Ad[0].ConditionalAd = kk
-	} else if kk, _ := attrs["Version"]; kk != "" {
-		//VAST version
+	}
+	//VAST version
+	if kk, _ := attrs["Version"]; kk != "" {
 		switch kk {
 		case VastXMLVer3:
 			v.Version = VastXMLVer3
