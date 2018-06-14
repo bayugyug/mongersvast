@@ -21,7 +21,10 @@ func main() {
 		},
 		&mvast.Creatives{
 			Creative: []*mvast.Creative{
-				{AdID: "ad01",
+				{
+					AdID:     "2447226",
+					ID:       "5480",
+					Sequence: "1",
 					Linear: &mvast.Linear{
 						Duration: &mvast.Duration{Value: "00:00:30"},
 						TrackingEvents: &mvast.TrackingEvents{
@@ -42,15 +45,6 @@ func main() {
 						MediaFiles: &mvast.MediaFiles{
 							MediaFile: []*mvast.MediaFile{
 								{
-									ID:       "media-01",
-									Delivery: "progressive",
-									Type:     "video/mp4",
-									Width:    "640",
-									Height:   "360",
-									Bitrate:  "784",
-									Value:    "https://d1fudb3kxhcy38.cloudfront.net/5xjr/829/4eee446d1897557db60a9d7b3632d294_0001_640x360_700k.mp4",
-								},
-								{
 									ID:                  "media-02",
 									Delivery:            "progressive",
 									Type:                "video/mp4",
@@ -62,35 +56,7 @@ func main() {
 									Scalable:            "1",
 									MaintainAspectRatio: "1",
 									Codec:               "0",
-									Value:               "https://iabtechlab.com/wp-content/uploads/2016/07/VAST-4.0-Short-Intro.mp4",
-								},
-								{
-									ID:                  "media-03",
-									Delivery:            "progressive",
-									Type:                "video/mp4",
-									Width:               "854",
-									Height:              "480",
-									Bitrate:             "1000",
-									MinBitrate:          "700",
-									MaxBitrate:          "1500",
-									Scalable:            "1",
-									MaintainAspectRatio: "1",
-									Codec:               "0",
-									Value:               "https://iabtechlab.com/wp-content/uploads/2017/12/VAST-4.0-Short-Intro-mid-resolution.mp4",
-								},
-								{
-									ID:                  "media-04",
-									Delivery:            "progressive",
-									Type:                "video/mp4",
-									Width:               "640",
-									Height:              "360",
-									Bitrate:             "600",
-									MinBitrate:          "500",
-									MaxBitrate:          "700",
-									Scalable:            "1",
-									MaintainAspectRatio: "1",
-									Codec:               "0",
-									Value:               "https://iabtechlab.com/wp-content/uploads/2017/12/VAST-4.0-Short-Intro-low-resolution.mp4",
+									Value:               "http://cdn.iabcdn.com/website/engineering/vast_4_0_pilot/vast_4.0_pilot-iab-hd.mp4",
 								},
 							},
 							Mezzanine:               &mvast.Mezzanine{Value: "http://pilot.iabtechlab.com/beacon?type=complete&imprid=s5-ea2f7f298e28c0c98374491aec3dfeb1&ts=4235"},

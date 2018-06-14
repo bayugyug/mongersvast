@@ -21,7 +21,12 @@ func main() {
 		},
 		&mvast.Creatives{
 			Creative: []*mvast.Creative{
-				{AdID: "ad01",
+				{
+					AdID:         "ad01",
+					ID:           "5480",
+					Sequence:     "1",
+					APIFramework: "VPAID",
+
 					Linear: &mvast.Linear{
 						Duration: &mvast.Duration{Value: "00:00:30"},
 						TrackingEvents: &mvast.TrackingEvents{
