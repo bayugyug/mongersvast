@@ -171,8 +171,8 @@ type Companion struct {
 	PxRatio               string                 `xml:"pxratio,attr,omitempty"`
 	HTMLResource          *HTMLResource          `xml:",omitempty"`
 	IFrameResource        *IFrameResource        `xml:",omitempty"`
-	CompanionClickThrough *CompanionClickThrough `xml:",omitempty"`
 	StaticResource        *StaticResource        `xml:",omitempty"`
+	CompanionClickThrough *CompanionClickThrough `xml:",omitempty"`
 	TrackingEvents        *TrackingEvents        `xml:",omitempty"`
 }
 

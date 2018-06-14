@@ -12,7 +12,7 @@ func main() {
 	//INLINE SIMPLE
 	wrAd := mvast.WrapperAd(
 		mvast.AdAttributes{"ID": "2007-07-04", "Version": "4.0", "FollowAdditionalWrappers": "0", "AllowMultipleAds": "1", "FallbackOnNoAd": "0"},
-		&mvast.AdSystem{Value: "VAST Wrapper Tag"},
+		&mvast.AdSystem{Version: "4.0", Value: "VAST Wrapper Tag"},
 		&mvast.AdTitle{Value: "Ad title here"},
 		&mvast.Description{Value: "Ad remarks here"},
 		&mvast.VASTError{Value: "http://mongers.vast.utils/error"},
