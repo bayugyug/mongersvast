@@ -517,8 +517,8 @@ func main() {
 ```xml
 
 <?xml version="1.0" encoding="UTF-8"?>
-  <VAST version="2.0">
-      <Ad id="2007-07-04">
+  <VAST version="4.0" xmlns="http://www.iab.com/VAST" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <Ad id="2007-07-04" sequence="1" conditionalAd="false">
           <InLine id="1">
               <AdSystem><![CDATA[Ads for VAST Inline_Simple]]></AdSystem>
               <AdTitle><![CDATA[Ad title here]]></AdTitle>
