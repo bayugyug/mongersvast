@@ -26,7 +26,6 @@ func main() {
 					ID:       "5480",
 					Sequence: "1",
 					Linear: &mvast.Linear{
-						Duration: &mvast.Duration{Value: "00:00:30"},
 						TrackingEvents: &mvast.TrackingEvents{
 							Tracking: []*mvast.Tracking{
 								{Event: mvast.TrkEventStart,
@@ -132,12 +131,15 @@ func main() {
 			Authority: "http://www.iabtechlab.com/categoryauthority",
 		},
 	}
-	//INJECT additional vast element (UniversalAdId )
+	//INJECT additional vast element (UniversalAdId)
 	inAd.Ad[0].InLine.Creatives.Creative[0].UniversalAdID = &mvast.UniversalAdID{
 		IDRegistry: "Ad-ID",
 		IDValue:    "8465",
 		Value:      "8465",
 	}
+	//INJECT additional vast element (Duration)
+	inAd.Ad[0].InLine.Creatives.Creative[0].Linear.Duration = inAd.VideoDuration(30)
+
 	//INJECT additional vast element (Extensions)
 	inAd.Ad[0].InLine.Extensions = &mvast.Extensions{
 		Extension: []*mvast.Extension{
