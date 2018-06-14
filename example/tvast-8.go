@@ -9,10 +9,10 @@ import (
 func main() {
 
 	var xml string
-	//INLINE SIMPLE
-	wrAd := mvast.WrapperAd(
-		mvast.AdAttributes{"ID": "2007-07-04", "Version": "4.0", "FollowAdditionalWrappers": "0", "AllowMultipleAds": "1", "FallbackOnNoAd": "0"},
-		&mvast.AdSystem{Version: "4.0", Value: "VAST Wrapper Tag"},
+	//SIMPLE
+	inAd := mvast.InLineAd(
+		mvast.AdAttributes{"ID": "2007-07-04", "Version": "4.0", "Sequence": "1", "ConditionalAd": "false"},
+		&mvast.AdSystem{Value: "VAST Inline Simple With Video Clicks and ClickTracking"},
 		&mvast.AdTitle{Value: "Ad title here"},
 		&mvast.Description{Value: "Ad remarks here"},
 		&mvast.VASTError{Value: "http://mongers.vast.utils/error"},
@@ -25,56 +25,128 @@ func main() {
 					AdID:     "2447226",
 					ID:       "5480",
 					Sequence: "1",
-					CompanionAds: &mvast.CompanionAds{
-						Companion: []*mvast.Companion{
-							{
-								ID:             "01",
-								Width:          "100",
-								Height:         "150",
-								AssetWidth:     "250",
-								AssetHeight:    "200",
-								AdSlotID:       "3214",
-								PxRatio:        "1400",
-								ExpandedWidth:  "350",
-								ExpandedHeight: "250",
-								APIFramework:   "VPAID",
-								StaticResource: &mvast.StaticResource{
-									CreativeType: "image/png",
-									Value:        "https://www.iab.com/wp-content/uploads/2014/09/iab-tech-lab-6-644x290.png",
+					Linear: &mvast.Linear{
+						Duration: &mvast.Duration{Value: "00:00:30"},
+						TrackingEvents: &mvast.TrackingEvents{
+							Tracking: []*mvast.Tracking{
+								{Event: mvast.TrkEventStart,
+									Offset: "09:45:23",
+									Value:  "http://mongers.vast.utils/start"},
+								{Event: mvast.TrkEventFirstQuartile,
+									Value: "http://mongers.vast.utils/firstq"},
+								{Event: mvast.TrkEventMidpoint,
+									Value: "http://mongers.vast.utils/midpoint"},
+								{Event: mvast.TrkEventThirdQuartile,
+									Value: "http://mongers.vast.utils/thirdq"},
+								{Event: mvast.TrkEventComplete,
+									Value: "http://mongers.vast.utils/complete"},
+							},
+						},
+						VideoClicks: &mvast.VideoClicks{
+							ClickThrough: &mvast.ClickThrough{
+								Value: "http://mongers.vast.utils/clickthrough"},
+							ClickTracking: &mvast.ClickTracking{
+								Value: "http://mongers.vast.utils/clicktracking"},
+						},
+						MediaFiles: &mvast.MediaFiles{
+							MediaFile: []*mvast.MediaFile{
+								{
+									ID:                  "media-01",
+									Delivery:            "progressive",
+									Type:                "video/mp4",
+									Width:               "1280",
+									Height:              "720",
+									Bitrate:             "2000",
+									MinBitrate:          "1500",
+									MaxBitrate:          "2500",
+									Scalable:            "1",
+									MaintainAspectRatio: "1",
+									Codec:               "0",
+									Value:               "http://cdn.iabcdn.com/website/engineering/vast_4_0_pilot/vast_4.0_pilot-iab-hd.mp4",
 								},
-								CompanionClickThrough: &mvast.CompanionClickThrough{
-									Value: "https://iabtechlab.com",
+								{
+									ID:                  "media-02",
+									Delivery:            "progressive",
+									Type:                "video/mp4",
+									Width:               "1280",
+									Height:              "720",
+									Bitrate:             "2000",
+									MinBitrate:          "1500",
+									MaxBitrate:          "2500",
+									Scalable:            "1",
+									MaintainAspectRatio: "1",
+									Codec:               "0",
+									Value:               "https://iabtechlab.com/wp-content/uploads/2016/07/VAST-4.0-Short-Intro.mp4",
+								},
+								{
+									ID:                  "media-03",
+									Delivery:            "progressive",
+									Type:                "video/mp4",
+									Width:               "854",
+									Height:              "480",
+									Bitrate:             "1000",
+									MinBitrate:          "700",
+									MaxBitrate:          "1500",
+									Scalable:            "1",
+									MaintainAspectRatio: "1",
+									Codec:               "0",
+									Value:               "https://iabtechlab.com/wp-content/uploads/2017/12/VAST-4.0-Short-Intro-mid-resolution.mp4",
+								},
+								{
+									ID:                  "media-04",
+									Delivery:            "progressive",
+									Type:                "video/mp4",
+									Width:               "640",
+									Height:              "360",
+									Bitrate:             "600",
+									MinBitrate:          "500",
+									MaxBitrate:          "700",
+									Scalable:            "1",
+									MaintainAspectRatio: "1",
+									Codec:               "0",
+									Value:               "https://iabtechlab.com/wp-content/uploads/2017/12/VAST-4.0-Short-Intro-low-resolution.mp4",
 								},
 							},
 						},
-					},
-				},
+					}},
 			},
-		},
-		&mvast.VASTAdTagURI{Value: "https://raw.githubusercontent.com/InteractiveAdvertisingBureau/VAST_Samples/master/VAST%204.0%20Samples/Inline_Companion_Tag-test.xml"},
-	)
+		})
 	//INJECT additional vast element (Pricing)
-	wrAd.Ad[0].Wrapper.Pricing = &mvast.Pricing{
+	inAd.Ad[0].InLine.Pricing = &mvast.Pricing{
 		Model:    "cpm",
 		Currency: "USD",
 		Value:    "5.99",
 	}
 	//INJECT additional vast element (Advertiser)
-	wrAd.Ad[0].Wrapper.Advertiser = &mvast.Advertiser{
+	inAd.Ad[0].InLine.Advertiser = &mvast.Advertiser{
 		Value: "Mongers-Adverts",
 	}
+	//INJECT additional vast element (AdServingId)
+	inAd.Ad[0].InLine.AdServingID = &mvast.AdServingID{
+		Value: "ADID_VIDCLICKTEST_ABC123",
+	}
 	//INJECT additional vast element (Category)
-	wrAd.Ad[0].Wrapper.Category = []*mvast.Category{
-		{Value: "Mongers-Categ 1"},
+	inAd.Ad[0].InLine.Category = []*mvast.Category{
+		{
+			Value:     "Mongers-Categ 1",
+			Authority: "http://www.iabtechlab.com/categoryauthority",
+		},
 	}
 	//INJECT additional vast element (UniversalAdId )
-	wrAd.Ad[0].Wrapper.Creatives.Creative[0].UniversalAdID = &mvast.UniversalAdID{
+	inAd.Ad[0].InLine.Creatives.Creative[0].UniversalAdID = &mvast.UniversalAdID{
 		IDRegistry: "Ad-ID",
 		IDValue:    "8465",
 		Value:      "8465",
 	}
+	//INJECT additional vast element (Extensions)
+	inAd.Ad[0].InLine.Extensions = &mvast.Extensions{
+		Extension: []*mvast.Extension{
+			{Type: "iab-Count",
+				TotalAvailable: &mvast.TotalAvailable{Value: "2"}},
+		},
+	}
 	//convert & show
-	xml, _ = wrAd.ToString()
+	xml, _ = inAd.ToString()
 	fmt.Println(xml)
 
 }

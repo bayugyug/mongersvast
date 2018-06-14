@@ -118,6 +118,7 @@ type Wrapper struct {
 type InLineWrapperData struct {
 	AdSystem           *AdSystem             `xml:",omitempty"`
 	AdTitle            *AdTitle              `xml:",omitempty"`
+	AdServingID        *AdServingID          `xml:"AdServingId,omitempty"`
 	Description        *Description          `xml:",omitempty"`
 	Survey             *Survey               `xml:",omitempty"`
 	VASTAdTagURI       *VASTAdTagURI         `xml:",omitempty"`
@@ -311,6 +312,12 @@ type Survey struct {
 
 //AdTitle vast
 type AdTitle struct {
+	ID    string `xml:"id,attr,omitempty"`
+	Value string `xml:",cdata"`
+}
+
+//AdServingID vast
+type AdServingID struct {
 	ID    string `xml:"id,attr,omitempty"`
 	Value string `xml:",cdata"`
 }
