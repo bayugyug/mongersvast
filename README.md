@@ -566,6 +566,141 @@ func main() {
 
 
 
+### Simple Wrapper Tag with Viewable Impression
+
+```go
+
+package main
+
+import (
+	"fmt"
+
+	mvast "github.com/bayugyug/mongersvast"
+)
+
+func main() {
+
+	var xml string
+	//SIMPLE
+	wrAd := mvast.WrapperAd(
+		mvast.AdAttributes{
+			"ID":                       "2007-07-04", //Ad.id
+			"Version":                  "4.0",        //Ad.version
+			"Sequence":                 "1",          //Ad.sequence
+			"ConditionalAd":            "false",      //Ad.conditionalAd
+			"FollowAdditionalWrappers": "0",          //Wrapper.followAdditionalWrappers
+			"AllowMultipleAds":         "1",          //Wrapper.allowMultipleAds
+			"FallbackOnNoAd":           "0",          //Wrapper.fallbackOnNoAd
+		},
+		&mvast.AdSystem{Version: "4.0", Value: "VAST Wrapper Tag with Viewable Impression"},
+		&mvast.AdTitle{Value: "Ad title here"},
+		&mvast.Description{Value: "Ad remarks here"},
+		&mvast.VASTError{Value: "http://mongers.vast.utils/error"},
+		[]*mvast.Impression{
+			{ID: "imp-01", Value: "http://mongers.vast.utils/impression1"},
+		},
+		&mvast.Creatives{
+			Creative: []*mvast.Creative{
+				{
+					AdID:     "2447226",
+					ID:       "5480",
+					Sequence: "1",
+					Linear: &mvast.Linear{
+						TrackingEvents: &mvast.TrackingEvents{
+							Tracking: []*mvast.Tracking{
+								{
+									Event:  mvast.TrkEventStart,
+									Offset: "09:00:10",
+									Value:  "http://mongers.vast.utils/start",
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		&mvast.VASTAdTagURI{Value: "https://raw.githubusercontent.com/InteractiveAdvertisingBureau/VAST_Samples/master/VAST%204.0%20Samples/Inline_Companion_Tag-test.xml"},
+	)
+	//INJECT additional vast element (ViewableImpression)
+	wrAd.Ad[0].Wrapper.ViewableImpression = []*mvast.ViewableImpression{
+		{
+			ID:               "1",
+			Viewable:         &mvast.Viewable{Value: "http://search.iabtechlab.com/error?errcode=102&imprid=s5-ea2f7f298e28c0c98374491aec3dfeb1&ts=1243"},
+			NotViewable:      &mvast.NotViewable{Value: "http://search.iabtechlab.com/error?errcode=103&imprid=s5-ea2f7f298e28c0c98374491aec3dfeb1&ts=1243"},
+			ViewUndetermined: &mvast.ViewUndetermined{Value: "http://search.iabtechlab.com/error?errcode=104&imprid=s5-ea2f7f298e28c0c98374491aec3dfeb1&ts=1243"},
+		},
+	}
+	//INJECT additional vast element (Pricing)
+	wrAd.Ad[0].Wrapper.Pricing = &mvast.Pricing{
+		Model:    "cpm",
+		Currency: "USD",
+		Value:    "5.99",
+	}
+	//INJECT additional vast element (Advertiser)
+	wrAd.Ad[0].Wrapper.Advertiser = &mvast.Advertiser{
+		Value: "Mongers-Adverts",
+	}
+	//INJECT additional vast element (Category)
+	wrAd.Ad[0].Wrapper.Category = []*mvast.Category{
+		{Value: "Mongers-Categ 1"},
+	}
+	//INJECT additional vast element (UniversalAdId)
+	wrAd.Ad[0].Wrapper.Creatives.Creative[0].UniversalAdID = &mvast.UniversalAdID{
+		IDRegistry: "Ad-ID",
+		IDValue:    "8465",
+		Value:      "8465",
+	}
+
+	//convert & show
+	xml, _ = wrAd.ToString()
+	fmt.Println(xml)
+
+}
+
+```
+
+### Output
+
+```xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+  <VAST version="4.0" xmlns="http://www.iab.com/VAST" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <Ad id="2007-07-04" sequence="1" conditionalAd="false">
+          <Wrapper id="1" followAdditionalWrappers="0" allowMultipleAds="1" fallbackOnNoAd="0">
+              <AdSystem version="4.0"><![CDATA[VAST Wrapper Tag with Viewable Impression]]></AdSystem>
+              <AdTitle><![CDATA[Ad title here]]></AdTitle>
+              <Description><![CDATA[Ad remarks here]]></Description>
+              <Error><![CDATA[http://mongers.vast.utils/error]]></Error>
+              <Impression id="imp-01"><![CDATA[http://mongers.vast.utils/impression1]]></Impression>
+              <ViewableImpression id="1">
+                  <Viewable><![CDATA[http://search.iabtechlab.com/error?errcode=102&imprid=s5-ea2f7f298e28c0c98374491aec3dfeb1&ts=1243]]></Viewable>
+                  <NotViewable><![CDATA[http://search.iabtechlab.com/error?errcode=103&imprid=s5-ea2f7f298e28c0c98374491aec3dfeb1&ts=1243]]></NotViewable>
+                  <ViewUndetermined><![CDATA[http://search.iabtechlab.com/error?errcode=104&imprid=s5-ea2f7f298e28c0c98374491aec3dfeb1&ts=1243]]></ViewUndetermined>
+              </ViewableImpression>
+              <Creatives>
+                  <Creative id="5480" adID="2447226" sequence="1">
+                      <Linear>
+                          <TrackingEvents>
+                              <Tracking event="start" offset="09:00:10"><![CDATA[http://mongers.vast.utils/start]]></Tracking>
+                          </TrackingEvents>
+                      </Linear>
+                      <UniversalAdId idRegistry="Ad-ID" idValue="8465"><![CDATA[8465]]></UniversalAdId>
+                  </Creative>
+              </Creatives>
+              <VASTAdTagURI><![CDATA[https://raw.githubusercontent.com/InteractiveAdvertisingBureau/VAST_Samples/master/VAST%204.0%20Samples/Inline_Companion_Tag-test.xml]]></VASTAdTagURI>
+              <Pricing model="cpm" currency="USD"><![CDATA[5.99]]></Pricing>
+              <Advertiser><![CDATA[Mongers-Adverts]]></Advertiser>
+              <Category><![CDATA[Mongers-Categ 1]]></Category>
+          </Wrapper>
+      </Ad>
+  </VAST>
+  
+```
+
+
+
+
+
 
 
 

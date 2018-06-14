@@ -11,8 +11,16 @@ func main() {
 	var xml string
 	//SIMPLE
 	wrAd := mvast.WrapperAd(
-		mvast.AdAttributes{"ID": "2007-07-04", "Version": "4.0", "FollowAdditionalWrappers": "0", "AllowMultipleAds": "1", "FallbackOnNoAd": "0"},
-		&mvast.AdSystem{Version: "4.0", Value: "VAST Wrapper Tag Viewable Impression"},
+		mvast.AdAttributes{
+			"ID":                       "2007-07-04", //Ad.id
+			"Version":                  "4.0",        //Ad.version
+			"Sequence":                 "1",          //Ad.sequence
+			"ConditionalAd":            "false",      //Ad.conditionalAd
+			"FollowAdditionalWrappers": "0",          //Wrapper.followAdditionalWrappers
+			"AllowMultipleAds":         "1",          //Wrapper.allowMultipleAds
+			"FallbackOnNoAd":           "0",          //Wrapper.fallbackOnNoAd
+		},
+		&mvast.AdSystem{Version: "4.0", Value: "VAST Wrapper Tag with Viewable Impression"},
 		&mvast.AdTitle{Value: "Ad title here"},
 		&mvast.Description{Value: "Ad remarks here"},
 		&mvast.VASTError{Value: "http://mongers.vast.utils/error"},

@@ -232,7 +232,7 @@ type Linear struct {
 //Creative is an element of the VAST structure
 type Creative struct {
 	ID            string         `xml:"id,attr,omitempty"`
-	AdID          string         `xml:"adID,attr,omitempty"`
+	AdID          string         `xml:"adId,attr,omitempty"`
 	Sequence      string         `xml:"sequence,attr,omitempty"`
 	APIFramework  string         `xml:"apiFramework,attr,omitempty"`
 	Linear        *Linear        `xml:",omitempty"`
