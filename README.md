@@ -465,7 +465,7 @@ func main() {
                                                                         Value:               "https://iabtechlab.com/wp-content/uploads/2017/12/VAST-4.0-Short-Intro-mid-resolution.mp4",
                                                                 },
                                                                 {
-                                                                        ID:                  "media-03",
+                                                                        ID:                  "media-04",
                                                                         Delivery:            "progressive",
                                                                         Type:                "video/mp4",
                                                                         Width:               "640",
@@ -544,7 +544,7 @@ func main() {
                               <MediaFile id="media-01" delivery="progressive" type="video/mp4" width="640" height="360" bitrate="784"><![CDATA[https://d1fudb3kxhcy38.cloudfront.net/5xjr/829/4eee446d1897557db60a9d7b3632d294_0001_640x360_700k.mp4]]></MediaFile>
                               <MediaFile id="media-02" delivery="progressive" type="video/mp4" width="1280" height="720" bitrate="2000" minBitrate="1500" maxBitrate="2500" scalable="1" maintainAspectRatio="1" codec="0"><![CDATA[https://iabtechlab.com/wp-content/uploads/2016/07/VAST-4.0-Short-Intro.mp4]]></MediaFile>
                               <MediaFile id="media-03" delivery="progressive" type="video/mp4" width="854" height="480" bitrate="1000" minBitrate="700" maxBitrate="1500" scalable="1" maintainAspectRatio="1" codec="0"><![CDATA[https://iabtechlab.com/wp-content/uploads/2017/12/VAST-4.0-Short-Intro-mid-resolution.mp4]]></MediaFile>
-                              <MediaFile id="media-03" delivery="progressive" type="video/mp4" width="640" height="360" bitrate="600" minBitrate="500" maxBitrate="700" scalable="1" maintainAspectRatio="1" codec="0"><![CDATA[https://iabtechlab.com/wp-content/uploads/2017/12/VAST-4.0-Short-Intro-low-resolution.mp4]]></MediaFile>
+                              <MediaFile id="media-04" delivery="progressive" type="video/mp4" width="640" height="360" bitrate="600" minBitrate="500" maxBitrate="700" scalable="1" maintainAspectRatio="1" codec="0"><![CDATA[https://iabtechlab.com/wp-content/uploads/2017/12/VAST-4.0-Short-Intro-low-resolution.mp4]]></MediaFile>
                           </MediaFiles>
                       </Linear>
                       <UniversalAdID idRegistry="Ad-ID" idValue="8465"><![CDATA[8465]]></UniversalAdID>

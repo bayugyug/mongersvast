@@ -79,7 +79,7 @@ func main() {
 									Value:               "https://iabtechlab.com/wp-content/uploads/2017/12/VAST-4.0-Short-Intro-mid-resolution.mp4",
 								},
 								{
-									ID:                  "media-03",
+									ID:                  "media-04",
 									Delivery:            "progressive",
 									Type:                "video/mp4",
 									Width:               "640",
