@@ -549,7 +549,7 @@ func main() {
                               <MediaFile id="media-04" delivery="progressive" type="video/mp4" width="640" height="360" bitrate="600" minBitrate="500" maxBitrate="700" scalable="1" maintainAspectRatio="1" codec="0"><![CDATA[https://iabtechlab.com/wp-content/uploads/2017/12/VAST-4.0-Short-Intro-low-resolution.mp4]]></MediaFile>
                           </MediaFiles>
                       </Linear>
-                      <UniversalAdID idRegistry="Ad-ID" idValue="8465"><![CDATA[8465]]></UniversalAdID>
+                      <UniversalAdId idRegistry="Ad-ID" idValue="8465"><![CDATA[8465]]></UniversalAdId>
                   </Creative>
               </Creatives>
               <Pricing model="CPM" currency="USD"><![CDATA[2.99]]></Pricing>
