@@ -66,23 +66,6 @@ func (v *VAST) ToFile(filename, body string) (bool, error) {
 
 //InLineAd inline ad template
 func InLineAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Description, verr *VASTError, imps []*Impression, creatives *Creatives) (req *VAST) {
-	/**
-	inline := &InLine{}
-	inline.AdSystem = adSystem
-	inline.AdTitle = title
-	inline.Description = desc
-	inline.Error = verr
-	inline.Impression = imps
-	inline.Creatives = creatives
-	//give 1 instance
-	req = &VAST{
-		Version: VastXMLVer2,
-		Ad: []*Ad{
-			{InLine: inline},
-		},
-	}
-	**/
-
 	//minimal config
 	req = &VAST{
 		Version: VastXMLVer2,
@@ -115,7 +98,7 @@ func InLineAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Desc
 
 //WrapperAd wrapper ad template
 func WrapperAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Description, verr *VASTError, imps []*Impression, creatives *Creatives, adURI *VASTAdTagURI) (req *VAST) {
-	//minimal config
+	/**
 	wrapper := &Wrapper{}
 	wrapper.AdSystem = adSystem
 	wrapper.AdTitle = title
@@ -131,6 +114,27 @@ func WrapperAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Des
 			{Wrapper: wrapper},
 		},
 	}
+	**/
+	//minimal config
+	req = &VAST{
+		Version: VastXMLVer2,
+		Ad: []*Ad{
+			{Wrapper: &Wrapper{
+				ID: "1",
+				InLineWrapperData: InLineWrapperData{
+					AdSystem:     adSystem,
+					AdTitle:      title,
+					Description:  desc,
+					Error:        verr,
+					Impression:   imps,
+					Creatives:    creatives,
+					VASTAdTagURI: adURI,
+				},
+			},
+			},
+		},
+	}
+
 	//options
 	if kk, _ := attrs["ID"]; kk != "" {
 		req.Ad[0].ID = kk
