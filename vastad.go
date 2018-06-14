@@ -92,6 +92,7 @@ func InLineAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Desc
 	} else if kk, _ := attrs["ConditionalAd"]; kk != "" {
 		req.Ad[0].ConditionalAd = kk
 	}
+	return
 }
 
 //WrapperAd wrapper ad template
@@ -123,4 +124,5 @@ func WrapperAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Des
 	} else if kk, _ := attrs["ConditionalAd"]; kk != "" {
 		req.Ad[0].ConditionalAd = kk
 	}
+	return
 }
