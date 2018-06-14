@@ -70,6 +70,9 @@ var TrackingEventTypes = map[string]string{
 //AdAttributes attrs for Ad object
 type AdAttributes map[string]string
 
+//VastOptions attrs generic
+type VastOptions AdAttributes
+
 //VAST the root element of the XML
 type VAST struct {
 	Version string `xml:"version,attr,omitempty"`
