@@ -27,23 +27,42 @@ const (
 	VastWrapperNonlinear2
 )
 
+//const more
+const (
+	TrkEventCreativeView     = "creativeView"
+	TrkEventExpand           = "expand"
+	TrkEventCollapse         = "collapse"
+	TrkEventAcceptInvitation = "acceptInvitation"
+	TrkEventClose            = "close"
+	TrkEventStart            = "start"
+	TrkEventFirstQuartile    = "firstQuartile"
+	TrkEventMidpoint         = "midpoint"
+	TrkEventThirdQuartile    = "thirdQuartile"
+	TrkEventComplete         = "complete"
+	TrkEventPause            = "pause"
+	TrkEventResume           = "resume"
+	TrkEventMute             = "mute"
+	TrkEventUnMute           = "unmute"
+	TrkEventFullscreen       = "fullscreen"
+)
+
 //TrackingEventTypes list of known event types of Tracking
 var TrackingEventTypes = map[string]string{
-	"CreativeView":     "creativeView",
-	"Expand":           "expand",
-	"Collapse":         "collapse",
-	"AcceptInvitation": "acceptInvitation",
-	"Close":            "close",
-	"Start":            "start",
-	"FirstQuartile":    "firstQuartile",
-	"Midpoint":         "midpoint",
-	"ThirdQuartile":    "thirdQuartile",
-	"Complete":         "complete",
-	"Pause":            "pause",
-	"Resume":           "resume",
-	"Mute":             "mute",
-	"UnMute":           "unmute",
-	"Fullscreen":       "fullscreen",
+	"CreativeView":     TrkEventCreativeView,
+	"Expand":           TrkEventExpand,
+	"Collapse":         TrkEventCollapse,
+	"AcceptInvitation": TrkEventAcceptInvitation,
+	"Close":            TrkEventClose,
+	"Start":            TrkEventStart,
+	"FirstQuartile":    TrkEventFirstQuartile,
+	"Midpoint":         TrkEventMidpoint,
+	"ThirdQuartile":    TrkEventThirdQuartile,
+	"Complete":         TrkEventComplete,
+	"Pause":            TrkEventPause,
+	"Resume":           TrkEventResume,
+	"Mute":             TrkEventMute,
+	"UnMute":           TrkEventUnMute,
+	"Fullscreen":       TrkEventFullscreen,
 }
 
 //AdAttributes attrs for Ad object
@@ -51,6 +70,12 @@ type AdAttributes map[string]string
 
 //VAST the root element of the XML
 type VAST struct {
+	Version string `xml:"version,attr,omitempty"`
+	Ad      []*Ad  `xml:",omitempty"`
+}
+
+//VideoAdServingTemplate compat for ver1.0
+type VideoAdServingTemplate struct {
 	Version string `xml:"version,attr,omitempty"`
 	Ad      []*Ad  `xml:",omitempty"`
 }
@@ -109,9 +134,10 @@ type Extensions struct {
 
 //Extension is an element of the VAST structure
 type Extension struct {
-	Type           string          `xml:"type,attr,omitempty"`
-	TotalAvailable *TotalAvailable `xml:"total_available,omitempty"`
-	Value          string          `xml:",cdata"`
+	Type            string           `xml:"type,attr,omitempty"`
+	TotalAvailable  *TotalAvailable  `xml:"total_available,omitempty"`
+	Value           string           `xml:",cdata"`
+	AdVerifications *AdVerifications `xml:",omitempty"`
 }
 
 //StaticResource is an element of the VAST structure
@@ -199,8 +225,9 @@ type Linear struct {
 //Creative is an element of the VAST structure
 type Creative struct {
 	ID            string         `xml:"id,attr,omitempty"`
-	AdID          string         `xml:"AdID,attr,omitempty"`
+	AdID          string         `xml:"adID,attr,omitempty"`
 	Sequence      string         `xml:"sequence,attr,omitempty"`
+	APIFramework  string         `xml:"apiFramework,attr,omitempty"`
 	Linear        *Linear        `xml:",omitempty"`
 	NonLinearAds  *NonLinearAds  `xml:",omitempty"`
 	CompanionAds  *CompanionAds  `xml:",omitempty"`
@@ -214,12 +241,13 @@ type Creatives struct {
 
 //NonLinear is an element of the VAST structure
 type NonLinear struct {
-	Height                string                 `xml:"height,attr,omitempty"`
-	Width                 string                 `xml:"width,attr,omitempty"`
-	MinSuggestedDuration  string                 `xml:"minSuggestedDuration,attr,omitempty"`
-	StaticResource        *StaticResource        `xml:",omitempty"`
-	NonLinearClickThrough *NonLinearClickThrough `xml:",omitempty"`
-	URL                   []*URL                 `xml:",omitempty"`
+	Height                 string                  `xml:"height,attr,omitempty"`
+	Width                  string                  `xml:"width,attr,omitempty"`
+	MinSuggestedDuration   string                  `xml:"minSuggestedDuration,attr,omitempty"`
+	StaticResource         *StaticResource         `xml:",omitempty"`
+	NonLinearClickThrough  *NonLinearClickThrough  `xml:",omitempty"`
+	NonLinearClickTracking *NonLinearClickTracking `xml:",omitempty"`
+	URL                    []*URL                  `xml:",omitempty"`
 }
 
 //NonLinearAds is an element of the VAST structure
@@ -337,6 +365,13 @@ type NonLinearClickThrough struct {
 	URL   []*URL `xml:",omitempty"`
 }
 
+//NonLinearClickTracking vast url
+type NonLinearClickTracking struct {
+	ID    string `xml:"id,attr,omitempty"`
+	Value string `xml:",cdata"`
+	URL   []*URL `xml:",omitempty"`
+}
+
 //UniversalAdID ad id
 type UniversalAdID struct {
 	ID         string `xml:"id,attr,omitempty"`
@@ -366,12 +401,20 @@ type JavaScriptResource struct {
 
 //Verification is a JavaScriptResource
 type Verification struct {
-	JavaScriptResource *JavaScriptResource `xml:",omitempty"`
+	JavaScriptResource     *JavaScriptResource     `xml:",omitempty"`
+	VerificationParameters *VerificationParameters `xml:",omitempty"`
+	TrackingEvents         *TrackingEvents         `xml:",omitempty"`
 }
 
 //AdVerifications list of Verification
 type AdVerifications struct {
 	Verification []*Verification `xml:",omitempty"`
+}
+
+//VerificationParameters vast element
+type VerificationParameters struct {
+	ID    string `xml:"id,attr,omitempty"`
+	Value string `xml:",cdata"`
 }
 
 //Mezzanine vast url
@@ -410,6 +453,12 @@ type ViewableImpression struct {
 	Viewable         *Viewable         `xml:",omitempty"`
 	NotViewable      *NotViewable      `xml:",omitempty"`
 	ViewUndetermined *ViewUndetermined `xml:",omitempty"`
+}
+
+//Code vast element
+type Code struct {
+	ID    string `xml:"id,attr,omitempty"`
+	Value string `xml:",cdata"`
 }
 
 // xml members that are for CDATA
