@@ -5,6 +5,7 @@ import (
 	"encoding/xml"
 	"fmt"
 	"io/ioutil"
+	"net/http"
 	"os"
 	"strings"
 )
@@ -155,4 +156,18 @@ func (v *VAST) FormatAdAttrs(attrs AdAttributes) {
 			v.Version = VastXMLVer2
 		}
 	}
+}
+
+//SetXMLHeaders set the xml headers simply
+func (v *VAST) SetXMLHeaders(w http.ResponseWriter) {
+	w.Header().Set("Content-Type", "text/xml")
+	w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate") // HTTP 1.1.
+	w.Header().Set("Pragma", "no-cache")                                   // HTTP 1.0.
+	w.Header().Set("Expires", "0")
+	w.Header().Set("Access-Control-Allow-Origin", "*") //Google HTML5 SDK CORS Header
+	//add CORS as per rubiconproject
+	w.Header().Set("Access-Control-Allow-Credentials", "true")
+	w.Header().Set("Access-Control-Allow-Headers", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "GET")
+	w.Header().Set("Access-Control-Max-Age", "10080")
 }
