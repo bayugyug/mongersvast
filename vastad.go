@@ -199,11 +199,12 @@ func (v *VAST) PushXML(w http.ResponseWriter) {
 }
 
 //VideoDuration convert duration seconds
-func (v *VAST) VideoDuration(secs int) string {
+func (v *VAST) VideoDuration(secs int) *Duration {
 	//just in case ;-)
 	if v == nil {
-		return ""
+		return nil
 	}
 	ts := time.Duration(secs) * time.Second
-	return strings.TrimSpace(fmt.Sprintf("%02d:%02d:%02d", int(math.Mod(ts.Hours(), 12)), int(math.Mod(ts.Minutes(), 60)), int(math.Mod(ts.Seconds(), 60))))
+	tm := strings.TrimSpace(fmt.Sprintf("%02d:%02d:%02d", int(math.Mod(ts.Hours(), 12)), int(math.Mod(ts.Minutes(), 60)), int(math.Mod(ts.Seconds(), 60))))
+	return &Duration{Value: tm}
 }
