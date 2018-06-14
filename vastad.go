@@ -123,6 +123,18 @@ func WrapperAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Des
 		req.Ad[0].Sequence = kk
 	} else if kk, _ := attrs["ConditionalAd"]; kk != "" {
 		req.Ad[0].ConditionalAd = kk
+	} else if kk, _ := attrs["Version"]; kk != "" {
+		//vast version
+		switch kk {
+		case VastXMLVer3:
+			req.Version = VastXMLVer3
+		case VastXMLVer4:
+			req.Version = VastXMLVer4
+			req.XMLNsXs = VastXMLNsXs
+			req.XMLns = VastXMLNs
+		default: //Ver2.0
+			req.Version = VastXMLVer2
+		}
 	}
 	return
 }

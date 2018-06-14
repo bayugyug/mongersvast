@@ -44,6 +44,8 @@ const (
 	TrkEventMute             = "mute"
 	TrkEventUnMute           = "unmute"
 	TrkEventFullscreen       = "fullscreen"
+	VastXMLNs                = "http://www.iab.com/VAST"
+	VastXMLNsXs              = "http://www.w3.org/2001/XMLSchema"
 )
 
 //TrackingEventTypes list of known event types of Tracking
@@ -71,6 +73,8 @@ type AdAttributes map[string]string
 //VAST the root element of the XML
 type VAST struct {
 	Version string `xml:"version,attr,omitempty"`
+	XMLNs   string `xml:"xmlns,attr,omitempty"`
+	XMLNsXs string `xml:"xmlns:xs,attr,omitempty"`
 	Ad      []*Ad  `xml:",omitempty"`
 }
 
