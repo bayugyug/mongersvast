@@ -1,6 +1,6 @@
 ## mongersvast
 
-- [x] This is a simple golang utility library on formatting/creating of VAST XML
+- [x] Simple golang utility library on formatting/manipulating of VAST XML
 - [x] Supports VAST 1.0, 2.0, 3.0
 
 
@@ -15,7 +15,7 @@ go get -u -v github.com/bayugyug/mongersvast
 ### Mini-How-To
 
 
-### Load XML from string
+### > Load XML from string
 
 ```go
 
