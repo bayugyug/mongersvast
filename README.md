@@ -42,7 +42,7 @@ func main() {
 
 ```
 
-### Output
+### -- Output
 
 ```xml
 
@@ -98,7 +98,7 @@ func main() {
 
 ```
 
-### InLine Linear Ad
+### > InLine Linear Ad
 
 ```go
 
@@ -166,7 +166,7 @@ func main() {
 ```
 
 
-### Output
+### -- Output
 
 ```xml
 
@@ -207,7 +207,7 @@ func main() {
 
 
 
-### Wrapper Linear Ad
+### > Wrapper Linear Ad
 
 ```go
 
@@ -267,7 +267,7 @@ func main() {
 ```
 
 
-### Output
+### -- Output
 
 ```xml
 
@@ -306,7 +306,7 @@ func main() {
   
 ```
 
-### Load from an XML file
+### > Load from an XML file
 
 ```go
 package main
@@ -345,7 +345,7 @@ func main() {
 [Download Sample XML](https://github.com/bayugyug/mongersvast/blob/master/example/tsample.vast.xml)
 
 
-### Output
+### -- Output
 
 ```xml
 
@@ -382,7 +382,7 @@ func main() {
 
 
 
-### Simple InLine Linear Ad
+### > Simple InLine Linear Ad
 
 ```go
 
@@ -513,7 +513,7 @@ func main() {
 
 ```
 
-### Output
+### -- Output
 
 ```xml
 
@@ -564,7 +564,7 @@ func main() {
 
 
 
-### Simple Wrapper Tag with Viewable Impression
+### > Simple Wrapper Tag with Viewable Impression
 
 ```go
 
@@ -656,7 +656,7 @@ func main() {
 
 ```
 
-### Output
+### -- Output
 
 ```xml
 
@@ -695,7 +695,7 @@ func main() {
 ```
 
 
-### Simple Inline Tag With Non-Linear
+### > Simple Inline Tag With Non-Linear
 
 ```go
 
@@ -805,7 +805,7 @@ func main() {
 
 ```
 
-### Output
+### -- Output
 
 ```xml
 
