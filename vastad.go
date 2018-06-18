@@ -160,8 +160,10 @@ func (v *VAST) VideoDuration(secs int) *Duration {
 //SetAd set the minimum Ad
 func (v *VAST) SetAd(adVersion, adID, adSequence, adConditional string) *VAST {
 	//minimal config
-	v = &VAST{
-		Version: adVersion,
+	if v == nil {
+		v = &VAST{
+			Version: adVersion,
+		}
 	}
 	//add 1
 	v.Ad = append(v.Ad, &Ad{})
