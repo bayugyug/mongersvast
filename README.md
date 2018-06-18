@@ -119,43 +119,8 @@ func main() {
 
 ### -- Output
 
-```xml
 
-<?xml version="1.0" encoding="UTF-8"?>
-  <VAST version="2.0">
-      <Ad id="2007-07-04">
-          <InLine>
-              <AdSystem><![CDATA[Ads for VAST]]></AdSystem>
-              <AdTitle><![CDATA[Ad title here]]></AdTitle>
-              <Description><![CDATA[Ad remarks here]]></Description>
-              <Error><![CDATA[http://mongers.vast.utils/error]]></Error>
-              <Impression id="imp-01"><![CDATA[http://mongers.vast.utils/impression1]]></Impression>
-              <Creatives>
-                  <Creative adID="ad01">
-                      <Linear>
-                          <Duration>00:00:30</Duration>
-                          <TrackingEvents>
-                              <Tracking event="start"><![CDATA[http://mongers.vast.utils/start]]></Tracking>
-                              <Tracking event="firstQuartile"><![CDATA[http://mongers.vast.utils/firstq]]></Tracking>
-                              <Tracking event="midpoint"><![CDATA[http://mongers.vast.utils/midpoint]]></Tracking>
-                              <Tracking event="thirdQuartile"><![CDATA[http://mongers.vast.utils/thirdq]]></Tracking>
-                              <Tracking event="complete"><![CDATA[http://mongers.vast.utils/complete]]></Tracking>
-                          </TrackingEvents>
-                          <VideoClicks>
-                              <ClickThrough><![CDATA[http://mongers.vast.utils/clickthrough]]></ClickThrough>
-                              <ClickTracking><![CDATA[http://mongers.vast.utils/clicktracking]]></ClickTracking>
-                          </VideoClicks>
-                          <MediaFiles>
-                              <MediaFile id="media-01" delivery="progressive" type="video/mp4" width="640" height="360" bitrate="784"><![CDATA[https://d1fudb3kxhcy38.cloudfront.net/5xjr/829/4eee446d1897557db60a9d7b3632d294_0001_640x360_700k.mp4]]></MediaFile>
-                          </MediaFiles>
-                      </Linear>
-                  </Creative>
-              </Creatives>
-          </InLine>
-      </Ad>
-  </VAST>
-```
-
+[Download XML](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample02-inline-linear-ad.xml)
 
 
 ### > Wrapper Linear Ad
@@ -220,42 +185,8 @@ func main() {
 
 ### -- Output
 
-```xml
+[Download XML](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample03-wrapper-linear-ad.xml)
 
-<?xml version="1.0" encoding="UTF-8"?>
-  <VAST version="2.0">
-      <Ad id="2007-07-04">
-          <Wrapper>
-              <AdSystem><![CDATA[Ads for VAST]]></AdSystem>
-              <AdTitle><![CDATA[Ad title here]]></AdTitle>
-              <Description><![CDATA[Ad remarks here]]></Description>
-              <VASTAdTagURI id="adwrapper-01"><![CDATA[http://mongers.vast.utils/2nd-vast-here.xml]]></VASTAdTagURI>
-              <Error><![CDATA[http://mongers.vast.utils/error]]></Error>
-              <Impression id="imp-01"><![CDATA[http://mongers.vast.utils/impression1]]></Impression>
-              <Creatives>
-                  <Creative adID="ad01">
-                      <Linear>
-                          <Duration>00:00:30</Duration>
-                          <TrackingEvents>
-                              <Tracking event="start"><![CDATA[http://mongers.vast.utils/start]]></Tracking>
-                              <Tracking event="firstQuartile"><![CDATA[http://mongers.vast.utils/firstq]]></Tracking>
-                              <Tracking event="midpoint"><![CDATA[http://mongers.vast.utils/midpoint]]></Tracking>
-                              <Tracking event="thirdQuartile"><![CDATA[http://mongers.vast.utils/thirdq]]></Tracking>
-                              <Tracking event="complete"><![CDATA[http://mongers.vast.utils/complete]]></Tracking>
-                          </TrackingEvents>
-                          <VideoClicks>
-                              <ClickThrough><![CDATA[http://mongers.vast.utils/clickthrough]]></ClickThrough>
-                              <ClickTracking><![CDATA[http://mongers.vast.utils/clicktracking]]></ClickTracking>
-                          </VideoClicks>
-                      </Linear>
-                  </Creative>
-              </Creatives>
-          </Wrapper>
-      </Ad>
-  </VAST>
-
-  
-```
 
 ### > Load from an XML file
 
@@ -293,43 +224,12 @@ func main() {
 }
 ```
 
-[Download Input XML](https://github.com/bayugyug/mongersvast/blob/master/example/tsample.vast.xml)
+[Input XML](https://github.com/bayugyug/mongersvast/blob/master/example/tsample.vast.xml)
 
 
 ### -- Output
 
-```xml
-
-<?xml version="1.0" encoding="UTF-8"?>
-  <VAST version="2.0">
-      <Ad id="pre-roll-0">
-          <InLine>
-              <AdSystem><![CDATA[2.0]]></AdSystem>
-              <AdTitle><![CDATA[Sample]]></AdTitle>
-              <Impression></Impression>
-              <Creatives>
-                  <Creative id="2" sequence="1">
-                      <Linear>
-                          <Duration>00:02:00</Duration>
-                          <MediaFiles>
-                              <MediaFile delivery="progressive" type="video/mp4" bitrate="400">
-                                <![CDATA[http://mongers.vast.utils/demo-sample.mp4]]>
-                              </MediaFile>
-                          </MediaFiles>
-                      </Linear>
-                  </Creative>
-              </Creatives>
-              <Extensions>
-                  <Extension type="iab-Count">
-                      <total_available><![CDATA[2]]></total_available>
-                  </Extension>
-              </Extensions>
-              <Pricing model="CPM" currency="USD">0.99</Pricing>
-          </InLine>
-      </Ad>
-  </VAST>
-  
-```
+[Download XML](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample04-load-from-an-xml-file.xml)
 
 
 
@@ -466,52 +366,8 @@ func main() {
 
 ### -- Output
 
-```xml
+[Download XML](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample05-simple-inline-linear-ad.xml)
 
-<?xml version="1.0" encoding="UTF-8"?>
-  <VAST version="4.0" xmlns="http://www.iab.com/VAST" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-      <Ad id="2007-07-04" sequence="1" conditionalAd="false">
-          <InLine id="1">
-              <AdSystem><![CDATA[Ads for VAST Inline_Simple]]></AdSystem>
-              <AdTitle><![CDATA[Ad title here]]></AdTitle>
-              <Description><![CDATA[Ad remarks here]]></Description>
-              <Error><![CDATA[http://mongers.vast.utils/error]]></Error>
-              <Impression id="imp-01"><![CDATA[http://mongers.vast.utils/impression1]]></Impression>
-              <Creatives>
-                  <Creative adID="ad01">
-                      <Linear>
-                          <Duration>00:00:30</Duration>
-                          <TrackingEvents>
-                              <Tracking event="start"><![CDATA[http://mongers.vast.utils/start]]></Tracking>
-                              <Tracking event="firstQuartile"><![CDATA[http://mongers.vast.utils/firstq]]></Tracking>
-                              <Tracking event="midpoint"><![CDATA[http://mongers.vast.utils/midpoint]]></Tracking>
-                              <Tracking event="thirdQuartile"><![CDATA[http://mongers.vast.utils/thirdq]]></Tracking>
-                              <Tracking event="complete"><![CDATA[http://mongers.vast.utils/complete]]></Tracking>
-                          </TrackingEvents>
-                          <VideoClicks>
-                              <ClickThrough><![CDATA[http://mongers.vast.utils/clickthrough]]></ClickThrough>
-                              <ClickTracking><![CDATA[http://mongers.vast.utils/clicktracking]]></ClickTracking>
-                          </VideoClicks>
-                          <MediaFiles>
-                              <MediaFile id="media-01" delivery="progressive" type="video/mp4" width="640" height="360" bitrate="784"><![CDATA[https://d1fudb3kxhcy38.cloudfront.net/5xjr/829/4eee446d1897557db60a9d7b3632d294_0001_640x360_700k.mp4]]></MediaFile>
-                              <MediaFile id="media-02" delivery="progressive" type="video/mp4" width="1280" height="720" bitrate="2000" minBitrate="1500" maxBitrate="2500" scalable="1" maintainAspectRatio="1" codec="0"><![CDATA[https://iabtechlab.com/wp-content/uploads/2016/07/VAST-4.0-Short-Intro.mp4]]></MediaFile>
-                              <MediaFile id="media-03" delivery="progressive" type="video/mp4" width="854" height="480" bitrate="1000" minBitrate="700" maxBitrate="1500" scalable="1" maintainAspectRatio="1" codec="0"><![CDATA[https://iabtechlab.com/wp-content/uploads/2017/12/VAST-4.0-Short-Intro-mid-resolution.mp4]]></MediaFile>
-                              <MediaFile id="media-04" delivery="progressive" type="video/mp4" width="640" height="360" bitrate="600" minBitrate="500" maxBitrate="700" scalable="1" maintainAspectRatio="1" codec="0"><![CDATA[https://iabtechlab.com/wp-content/uploads/2017/12/VAST-4.0-Short-Intro-low-resolution.mp4]]></MediaFile>
-                          </MediaFiles>
-                      </Linear>
-                      <UniversalAdId idRegistry="Ad-ID" idValue="8465"><![CDATA[8465]]></UniversalAdId>
-                  </Creative>
-              </Creatives>
-              <Pricing model="CPM" currency="USD"><![CDATA[2.99]]></Pricing>
-              <Advertiser><![CDATA[Mongers-Adverts]]></Advertiser>
-              <Category><![CDATA[Mongers-Categ 1]]></Category>
-              <Category><![CDATA[Mongers-Categ 2]]></Category>
-          </InLine>
-      </Ad>
-  </VAST>
-
-  
-```
 
 
 
@@ -609,41 +465,7 @@ func main() {
 
 ### -- Output
 
-```xml
-
-<?xml version="1.0" encoding="UTF-8"?>
-  <VAST version="4.0" xmlns="http://www.iab.com/VAST" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-      <Ad id="2007-07-04" sequence="1" conditionalAd="false">
-          <Wrapper id="1" followAdditionalWrappers="0" allowMultipleAds="1" fallbackOnNoAd="0">
-              <AdSystem version="4.0"><![CDATA[VAST Wrapper Tag with Viewable Impression]]></AdSystem>
-              <AdTitle><![CDATA[Ad title here]]></AdTitle>
-              <Description><![CDATA[Ad remarks here]]></Description>
-              <Error><![CDATA[http://mongers.vast.utils/error]]></Error>
-              <Impression id="imp-01"><![CDATA[http://mongers.vast.utils/impression1]]></Impression>
-              <ViewableImpression id="1">
-                  <Viewable><![CDATA[http://search.iabtechlab.com/error?errcode=102&imprid=s5-ea2f7f298e28c0c98374491aec3dfeb1&ts=1243]]></Viewable>
-                  <NotViewable><![CDATA[http://search.iabtechlab.com/error?errcode=103&imprid=s5-ea2f7f298e28c0c98374491aec3dfeb1&ts=1243]]></NotViewable>
-                  <ViewUndetermined><![CDATA[http://search.iabtechlab.com/error?errcode=104&imprid=s5-ea2f7f298e28c0c98374491aec3dfeb1&ts=1243]]></ViewUndetermined>
-              </ViewableImpression>
-              <Creatives>
-                  <Creative id="5480" adID="2447226" sequence="1">
-                      <Linear>
-                          <TrackingEvents>
-                              <Tracking event="start" offset="09:00:10"><![CDATA[http://mongers.vast.utils/start]]></Tracking>
-                          </TrackingEvents>
-                      </Linear>
-                      <UniversalAdId idRegistry="Ad-ID" idValue="8465"><![CDATA[8465]]></UniversalAdId>
-                  </Creative>
-              </Creatives>
-              <VASTAdTagURI><![CDATA[https://raw.githubusercontent.com/InteractiveAdvertisingBureau/VAST_Samples/master/VAST%204.0%20Samples/Inline_Companion_Tag-test.xml]]></VASTAdTagURI>
-              <Pricing model="cpm" currency="USD"><![CDATA[5.99]]></Pricing>
-              <Advertiser><![CDATA[Mongers-Adverts]]></Advertiser>
-              <Category><![CDATA[Mongers-Categ 1]]></Category>
-          </Wrapper>
-      </Ad>
-  </VAST>
-  
-```
+[Download XML](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample06-simple-wrapper-tag-with-viewable-impression.xml)
 
 
 ### > Simple Inline Tag With Non-Linear
@@ -758,47 +580,7 @@ func main() {
 
 ### -- Output
 
-```xml
-
-<?xml version="1.0" encoding="UTF-8"?>
-  <VAST version="4.0" xmlns="http://www.iab.com/VAST" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-      <Ad id="2007-07-04" sequence="1" conditionalAd="false">
-          <InLine id="1">
-              <AdSystem><![CDATA[VAST Inline Simple With Non-Linear]]></AdSystem>
-              <AdTitle><![CDATA[Ad title here]]></AdTitle>
-              <AdServingId><![CDATA[ADID_INnonLINEARTEST_ABC123]]></AdServingId>
-              <Description><![CDATA[VAST 4.0 sample tag for Non Linear ad (i.e Overlay ad). Change the StaticResources to have a tag with your own content. Change NonLinear tag's parameters accordingly to view desired results.]]></Description>
-              <Error><![CDATA[http://mongers.vast.utils/error]]></Error>
-              <Impression id="imp-01"><![CDATA[http://mongers.vast.utils/impression1]]></Impression>
-              <Creatives>
-                  <Creative id="5480" adId="2447226" sequence="1">
-                      <NonLinearAds>
-                          <NonLinear id="1">
-                              <StaticResource creativeType="image/png"><![CDATA[http://mms.businesswire.com/media/20150623005446/en/473787/21/iab_tech_lab.jpg]]></StaticResource>
-                              <NonLinearClickThrough><![CDATA[http://iabtechlab.com]]></NonLinearClickThrough>
-                              <NonLinearClickTracking><![CDATA[http://example.com/trackingurl/clickTracking]]></NonLinearClickTracking>
-                          </NonLinear>
-                      </NonLinearAds>
-                      <UniversalAdId idRegistry="Ad-ID" idValue="8465"><![CDATA[8465]]></UniversalAdId>
-                  </Creative>
-              </Creatives>
-              <Extensions>
-                  <Extension type="iab-Count">
-                      <total_available><![CDATA[2]]></total_available>
-                  </Extension>
-              </Extensions>
-              <Pricing model="cpm" currency="USD"><![CDATA[5.88]]></Pricing>
-              <Advertiser><![CDATA[Mongers-Adverts]]></Advertiser>
-              <Category authority="http://www.iabtechlab.com/categoryauthority"><![CDATA[Mongers-Categ 1]]></Category>
-          </InLine>
-      </Ad>
-  </VAST>
-  
-```
-
-
-
-
+[Download XML](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample07-simple-inline-tag-with-nonlinear.xml)
 
 
 

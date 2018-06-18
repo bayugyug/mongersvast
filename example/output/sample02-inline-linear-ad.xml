@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <VAST version="2.0">
+      <Ad id="2007-07-04">
+          <InLine>
+              <AdSystem><![CDATA[Ads for VAST]]></AdSystem>
+              <AdTitle><![CDATA[Ad title here]]></AdTitle>
+              <Description><![CDATA[Ad remarks here]]></Description>
+              <Error><![CDATA[http://mongers.vast.utils/error]]></Error>
+              <Impression id="imp-01"><![CDATA[http://mongers.vast.utils/impression1]]></Impression>
+              <Creatives>
+                  <Creative adID="ad01">
+                      <Linear>
+                          <Duration>00:00:30</Duration>
+                          <TrackingEvents>
+                              <Tracking event="start"><![CDATA[http://mongers.vast.utils/start]]></Tracking>
+                              <Tracking event="firstQuartile"><![CDATA[http://mongers.vast.utils/firstq]]></Tracking>
+                              <Tracking event="midpoint"><![CDATA[http://mongers.vast.utils/midpoint]]></Tracking>
+                              <Tracking event="thirdQuartile"><![CDATA[http://mongers.vast.utils/thirdq]]></Tracking>
+                              <Tracking event="complete"><![CDATA[http://mongers.vast.utils/complete]]></Tracking>
+                          </TrackingEvents>
+                          <VideoClicks>
+                              <ClickThrough><![CDATA[http://mongers.vast.utils/clickthrough]]></ClickThrough>
+                              <ClickTracking><![CDATA[http://mongers.vast.utils/clicktracking]]></ClickTracking>
+                          </VideoClicks>
+                          <MediaFiles>
+                              <MediaFile id="media-01" delivery="progressive" type="video/mp4" width="640" height="360" bitrate="784"><![CDATA[https://d1fudb3kxhcy38.cloudfront.net/5xjr/829/4eee446d1897557db60a9d7b3632d294_0001_640x360_700k.mp4]]></MediaFile>
+                          </MediaFiles>
+                      </Linear>
+                  </Creative>
+              </Creatives>
+          </InLine>
+      </Ad>
+  </VAST>

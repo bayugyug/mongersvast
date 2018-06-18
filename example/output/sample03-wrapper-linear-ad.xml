@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <VAST version="2.0">
+      <Ad id="2007-07-04">
+          <Wrapper>
+              <AdSystem><![CDATA[Ads for VAST]]></AdSystem>
+              <AdTitle><![CDATA[Ad title here]]></AdTitle>
+              <Description><![CDATA[Ad remarks here]]></Description>
+              <VASTAdTagURI id="adwrapper-01"><![CDATA[http://mongers.vast.utils/2nd-vast-here.xml]]></VASTAdTagURI>
+              <Error><![CDATA[http://mongers.vast.utils/error]]></Error>
+              <Impression id="imp-01"><![CDATA[http://mongers.vast.utils/impression1]]></Impression>
+              <Creatives>
+                  <Creative adID="ad01">
+                      <Linear>
+                          <Duration>00:00:30</Duration>
+                          <TrackingEvents>
+                              <Tracking event="start"><![CDATA[http://mongers.vast.utils/start]]></Tracking>
+                              <Tracking event="firstQuartile"><![CDATA[http://mongers.vast.utils/firstq]]></Tracking>
+                              <Tracking event="midpoint"><![CDATA[http://mongers.vast.utils/midpoint]]></Tracking>
+                              <Tracking event="thirdQuartile"><![CDATA[http://mongers.vast.utils/thirdq]]></Tracking>
+                              <Tracking event="complete"><![CDATA[http://mongers.vast.utils/complete]]></Tracking>
+                          </TrackingEvents>
+                          <VideoClicks>
+                              <ClickThrough><![CDATA[http://mongers.vast.utils/clickthrough]]></ClickThrough>
+                              <ClickTracking><![CDATA[http://mongers.vast.utils/clicktracking]]></ClickTracking>
+                          </VideoClicks>
+                      </Linear>
+                  </Creative>
+              </Creatives>
+          </Wrapper>
+      </Ad>
+  </VAST>
+
