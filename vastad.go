@@ -162,8 +162,9 @@ func (v *VAST) SetAd(adVersion, adID, adSequence, adConditional string) (req *VA
 	//minimal config
 	req = &VAST{
 		Version: adVersion,
-		Ad:      []*Ad{},
 	}
+	//add 1
+	req.Ad = append(req.Ad, &Ad{})
 	//optional maybe ;-)
 	if adID != "" {
 		req.Ad[0].ID = adID
