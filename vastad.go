@@ -184,36 +184,34 @@ func (v *VAST) SetAd(adVersion, adID, adSequence, adConditional string) *VAST {
 }
 
 //SetInLineAd set the minimum InLineAd
-func (v *VAST) SetInLineAd(inlineID string) (req *VAST) {
-	//minimal config
+func (v *VAST) SetInLineAd(inlineID string) *VAST {
+	//min config
 	if v == nil {
-		req = v.SetAd(VastXMLVer2, "", "", "")
-	}
-	//check flag
-	if req == nil || len(req.Ad) <= 0 {
-		req = v.SetAd(VastXMLVer2, "", "", "")
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//add the inline
-	req.Ad[0].InLine = &InLine{
+	v.Ad[0].InLine = &InLine{
 		ID:                inlineID,
 		InLineWrapperData: InLineWrapperData{},
 	}
 	//good ;-)
-	return
+	return v
 }
 
 //SetWrapperAd set the minimum WrapperAd
-func (v *VAST) SetWrapperAd(wrapperID, followAdditionalWrappers, allowMultipleAds, fallbackOnNoAd string) (req *VAST) {
-	//minimal config
+func (v *VAST) SetWrapperAd(wrapperID, followAdditionalWrappers, allowMultipleAds, fallbackOnNoAd string) *VAST {
+	//min config
 	if v == nil {
-		req = v.SetAd(VastXMLVer2, "", "", "")
-	}
-	//check flag
-	if req == nil || len(req.Ad) <= 0 {
-		req = v.SetAd(VastXMLVer2, "", "", "")
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//add the wrapper
-	req.Ad[0].Wrapper = &Wrapper{
+	v.Ad[0].Wrapper = &Wrapper{
 		ID: wrapperID,
 		FollowAdditionalWrappers: followAdditionalWrappers,
 		AllowMultipleAds:         allowMultipleAds,
@@ -221,114 +219,109 @@ func (v *VAST) SetWrapperAd(wrapperID, followAdditionalWrappers, allowMultipleAd
 		InLineWrapperData:        InLineWrapperData{},
 	}
 	//good ;-)
-	return
+	return v
 }
 
 //SetAdSystem set the AdSystem
-func (v *VAST) SetAdSystem(s string) (req *VAST) {
-	//minimal config
+func (v *VAST) SetAdSystem(s string) *VAST {
+	//min config
 	if v == nil {
-		req = v.SetAd(VastXMLVer2, "", "", "")
-	}
-	//check flag
-	if req == nil || len(req.Ad) <= 0 {
-		req = v.SetAd(VastXMLVer2, "", "", "")
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
 	data := &AdSystem{
 		Value: s,
 	}
 	//check which type
-	if req.Ad[0].Wrapper != nil {
-		req.Ad[0].Wrapper.InLineWrapperData.AdSystem = data
-	} else if req.Ad[0].InLine != nil {
-		req.Ad[0].InLine.InLineWrapperData.AdSystem = data
+	if v.Ad[0].Wrapper != nil {
+		v.Ad[0].Wrapper.InLineWrapperData.AdSystem = data
+	} else if v.Ad[0].InLine != nil {
+		v.Ad[0].InLine.InLineWrapperData.AdSystem = data
 	}
 	//good ;-)
-	return
+	return v
 }
 
 //SetAdTitle set the AdTitle
-func (v *VAST) SetAdTitle(s string) (req *VAST) {
-	//minimal config
+func (v *VAST) SetAdTitle(s string) *VAST {
+	//min config
 	if v == nil {
-		req = v.SetAd(VastXMLVer2, "", "", "")
-	}
-	//check flag
-	if req == nil || len(req.Ad) <= 0 {
-		req = v.SetAd(VastXMLVer2, "", "", "")
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
 	data := &AdTitle{
 		Value: s,
 	}
 	//check which type
-	if req.Ad[0].Wrapper != nil {
-		req.Ad[0].Wrapper.InLineWrapperData.AdTitle = data
-	} else if req.Ad[0].InLine != nil {
-		req.Ad[0].InLine.InLineWrapperData.AdTitle = data
+	if v.Ad[0].Wrapper != nil {
+		v.Ad[0].Wrapper.InLineWrapperData.AdTitle = data
+	} else if v.Ad[0].InLine != nil {
+		v.Ad[0].InLine.InLineWrapperData.AdTitle = data
 	}
 	//good ;-)
-	return
+	return v
 }
 
 //SetDescription set the Description
-func (v *VAST) SetDescription(s string) (req *VAST) {
-	//minimal config
+func (v *VAST) SetDescription(s string) *VAST {
+	//min config
 	if v == nil {
-		req = v.SetAd(VastXMLVer2, "", "", "")
-	}
-	//check flag
-	if req == nil || len(req.Ad) <= 0 {
-		req = v.SetAd(VastXMLVer2, "", "", "")
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
 	data := &Description{
 		Value: s,
 	}
 	//check which type
-	if req.Ad[0].Wrapper != nil {
-		req.Ad[0].Wrapper.InLineWrapperData.Description = data
-	} else if req.Ad[0].InLine != nil {
-		req.Ad[0].InLine.InLineWrapperData.Description = data
+	if v.Ad[0].Wrapper != nil {
+		v.Ad[0].Wrapper.InLineWrapperData.Description = data
+	} else if v.Ad[0].InLine != nil {
+		v.Ad[0].InLine.InLineWrapperData.Description = data
 	}
 	//good ;-)
-	return
+	return v
 }
 
 //SetErrorURL set the Error URL
-func (v *VAST) SetErrorURL(s string) (req *VAST) {
-	//minimal config
+func (v *VAST) SetErrorURL(s string) *VAST {
+	//min config
 	if v == nil {
-		req = v.SetAd(VastXMLVer2, "", "", "")
-	}
-	//check flag
-	if req == nil || len(req.Ad) <= 0 {
-		req = v.SetAd(VastXMLVer2, "", "", "")
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
 	data := &VASTError{
 		Value: s,
 	}
 	//check which type
-	if req.Ad[0].Wrapper != nil {
-		req.Ad[0].Wrapper.InLineWrapperData.Error = data
-	} else if req.Ad[0].InLine != nil {
-		req.Ad[0].InLine.InLineWrapperData.Error = data
+	if v.Ad[0].Wrapper != nil {
+		v.Ad[0].Wrapper.InLineWrapperData.Error = data
+	} else if v.Ad[0].InLine != nil {
+		v.Ad[0].InLine.InLineWrapperData.Error = data
 	}
 	//good ;-)
-	return
+	return v
 }
 
 //SetImpressionURL set the Impression URL
-func (v *VAST) SetImpressionURL(impID, impURL string) (req *VAST) {
-	//minimal config
+func (v *VAST) SetImpressionURL(impID, impURL string) *VAST {
+	//min config
 	if v == nil {
-		req = v.SetAd(VastXMLVer2, "", "", "")
-	}
-	//check flag
-	if req == nil || len(req.Ad) <= 0 {
-		req = v.SetAd(VastXMLVer2, "", "", "")
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
 	data := &Impression{
@@ -339,24 +332,23 @@ func (v *VAST) SetImpressionURL(impID, impURL string) (req *VAST) {
 		data.ID = impID
 	}
 	//check which type
-	if req.Ad[0].Wrapper != nil {
-		req.Ad[0].Wrapper.InLineWrapperData.Impression = append(req.Ad[0].Wrapper.InLineWrapperData.Impression, data)
-	} else if req.Ad[0].InLine != nil {
-		req.Ad[0].InLine.InLineWrapperData.Impression = append(req.Ad[0].InLine.InLineWrapperData.Impression, data)
+	if v.Ad[0].Wrapper != nil {
+		v.Ad[0].Wrapper.InLineWrapperData.Impression = append(v.Ad[0].Wrapper.InLineWrapperData.Impression, data)
+	} else if v.Ad[0].InLine != nil {
+		v.Ad[0].InLine.InLineWrapperData.Impression = append(v.Ad[0].InLine.InLineWrapperData.Impression, data)
 	}
 	//good ;-)
-	return
+	return v
 }
 
 //SetAdServingID set the AdServingID
-func (v *VAST) SetAdServingID(adID, adValue string) (req *VAST) {
-	//minimal config
+func (v *VAST) SetAdServingID(adID, adValue string) *VAST {
+	//min config
 	if v == nil {
-		req = v.SetAd(VastXMLVer2, "", "", "")
-	}
-	//check flag
-	if req == nil || len(req.Ad) <= 0 {
-		req = v.SetAd(VastXMLVer2, "", "", "")
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
 	data := &AdServingID{
@@ -368,48 +360,46 @@ func (v *VAST) SetAdServingID(adID, adValue string) (req *VAST) {
 	}
 
 	//check which type
-	if req.Ad[0].Wrapper != nil {
-		req.Ad[0].Wrapper.InLineWrapperData.AdServingID = data
-	} else if req.Ad[0].InLine != nil {
-		req.Ad[0].InLine.InLineWrapperData.AdServingID = data
+	if v.Ad[0].Wrapper != nil {
+		v.Ad[0].Wrapper.InLineWrapperData.AdServingID = data
+	} else if v.Ad[0].InLine != nil {
+		v.Ad[0].InLine.InLineWrapperData.AdServingID = data
 	}
 	//good ;-)
-	return
+	return v
 }
 
 //SetSurvey set the Survey
-func (v *VAST) SetSurvey(s string) (req *VAST) {
-	//minimal config
+func (v *VAST) SetSurvey(s string) *VAST {
+	//min config
 	if v == nil {
-		req = v.SetAd(VastXMLVer2, "", "", "")
-	}
-	//check flag
-	if req == nil || len(req.Ad) <= 0 {
-		req = v.SetAd(VastXMLVer2, "", "", "")
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
 	data := &Survey{
 		Value: s,
 	}
 	//check which type
-	if req.Ad[0].Wrapper != nil {
-		req.Ad[0].Wrapper.InLineWrapperData.Survey = data
-	} else if req.Ad[0].InLine != nil {
-		req.Ad[0].InLine.InLineWrapperData.Survey = data
+	if v.Ad[0].Wrapper != nil {
+		v.Ad[0].Wrapper.InLineWrapperData.Survey = data
+	} else if v.Ad[0].InLine != nil {
+		v.Ad[0].InLine.InLineWrapperData.Survey = data
 	}
 	//good ;-)
-	return
+	return v
 }
 
 //SetViewableImpression add into the list of ViewableImpression
-func (v *VAST) SetViewableImpression(sID string, viewable *Viewable, notviewable *NotViewable, undetermined *ViewUndetermined) (req *VAST) {
-	//minimal config
+func (v *VAST) SetViewableImpression(sID string, viewable *Viewable, notviewable *NotViewable, undetermined *ViewUndetermined) *VAST {
+	//min config
 	if v == nil {
-		req = v.SetAd(VastXMLVer2, "", "", "")
-	}
-	//check flag
-	if req == nil || len(req.Ad) <= 0 {
-		req = v.SetAd(VastXMLVer2, "", "", "")
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
 	data := &ViewableImpression{
@@ -428,24 +418,23 @@ func (v *VAST) SetViewableImpression(sID string, viewable *Viewable, notviewable
 		data.ViewUndetermined = undetermined
 	}
 	//check which type
-	if req.Ad[0].Wrapper != nil {
-		req.Ad[0].Wrapper.InLineWrapperData.ViewableImpression = append(req.Ad[0].Wrapper.InLineWrapperData.ViewableImpression, data)
-	} else if req.Ad[0].InLine != nil {
-		req.Ad[0].InLine.InLineWrapperData.ViewableImpression = append(req.Ad[0].InLine.InLineWrapperData.ViewableImpression, data)
+	if v.Ad[0].Wrapper != nil {
+		v.Ad[0].Wrapper.InLineWrapperData.ViewableImpression = append(v.Ad[0].Wrapper.InLineWrapperData.ViewableImpression, data)
+	} else if v.Ad[0].InLine != nil {
+		v.Ad[0].InLine.InLineWrapperData.ViewableImpression = append(v.Ad[0].InLine.InLineWrapperData.ViewableImpression, data)
 	}
 	//good ;-)
-	return
+	return v
 }
 
 //SetVASTAdTagURI set the VASTAdTagURI
-func (v *VAST) SetVASTAdTagURI(adID, adValue string) (req *VAST) {
-	//minimal config
+func (v *VAST) SetVASTAdTagURI(adID, adValue string) *VAST {
+	//min config
 	if v == nil {
-		req = v.SetAd(VastXMLVer2, "", "", "")
-	}
-	//check flag
-	if req == nil || len(req.Ad) <= 0 {
-		req = v.SetAd(VastXMLVer2, "", "", "")
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
 	data := &VASTAdTagURI{
@@ -456,24 +445,23 @@ func (v *VAST) SetVASTAdTagURI(adID, adValue string) (req *VAST) {
 		data.ID = adID
 	}
 	//check which type
-	if req.Ad[0].Wrapper != nil {
-		req.Ad[0].Wrapper.InLineWrapperData.VASTAdTagURI = data
-	} else if req.Ad[0].InLine != nil {
-		req.Ad[0].InLine.InLineWrapperData.VASTAdTagURI = data
+	if v.Ad[0].Wrapper != nil {
+		v.Ad[0].Wrapper.InLineWrapperData.VASTAdTagURI = data
+	} else if v.Ad[0].InLine != nil {
+		v.Ad[0].InLine.InLineWrapperData.VASTAdTagURI = data
 	}
 	//good ;-)
-	return
+	return v
 }
 
 //SetPricing set the Pricing
-func (v *VAST) SetPricing(adID, adModel, adCurr, adValue string) (req *VAST) {
-	//minimal config
+func (v *VAST) SetPricing(adID, adModel, adCurr, adValue string) *VAST {
+	//min config
 	if v == nil {
-		req = v.SetAd(VastXMLVer2, "", "", "")
-	}
-	//check flag
-	if req == nil || len(req.Ad) <= 0 {
-		req = v.SetAd(VastXMLVer2, "", "", "")
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
 	data := &Pricing{
@@ -483,48 +471,46 @@ func (v *VAST) SetPricing(adID, adModel, adCurr, adValue string) (req *VAST) {
 		Value:    adValue,
 	}
 	//check which type
-	if req.Ad[0].Wrapper != nil {
-		req.Ad[0].Wrapper.InLineWrapperData.Pricing = data
-	} else if req.Ad[0].InLine != nil {
-		req.Ad[0].InLine.InLineWrapperData.Pricing = data
+	if v.Ad[0].Wrapper != nil {
+		v.Ad[0].Wrapper.InLineWrapperData.Pricing = data
+	} else if v.Ad[0].InLine != nil {
+		v.Ad[0].InLine.InLineWrapperData.Pricing = data
 	}
 	//good ;-)
-	return
+	return v
 }
 
 //SetAdvertiser set the Advertiser
-func (v *VAST) SetAdvertiser(s string) (req *VAST) {
-	//minimal config
+func (v *VAST) SetAdvertiser(s string) *VAST {
+	//min config
 	if v == nil {
-		req = v.SetAd(VastXMLVer2, "", "", "")
-	}
-	//check flag
-	if req == nil || len(req.Ad) <= 0 {
-		req = v.SetAd(VastXMLVer2, "", "", "")
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
 	data := &Advertiser{
 		Value: s,
 	}
 	//check which type
-	if req.Ad[0].Wrapper != nil {
-		req.Ad[0].Wrapper.InLineWrapperData.Advertiser = data
-	} else if req.Ad[0].InLine != nil {
-		req.Ad[0].InLine.InLineWrapperData.Advertiser = data
+	if v.Ad[0].Wrapper != nil {
+		v.Ad[0].Wrapper.InLineWrapperData.Advertiser = data
+	} else if v.Ad[0].InLine != nil {
+		v.Ad[0].InLine.InLineWrapperData.Advertiser = data
 	}
 	//good ;-)
-	return
+	return v
 }
 
 //SetCategory add into the list of Category
-func (v *VAST) SetCategory(sID, sAuth, sValue string) (req *VAST) {
-	//minimal config
+func (v *VAST) SetCategory(sID, sAuth, sValue string) *VAST {
+	//min config
 	if v == nil {
-		req = v.SetAd(VastXMLVer2, "", "", "")
-	}
-	//check flag
-	if req == nil || len(req.Ad) <= 0 {
-		req = v.SetAd(VastXMLVer2, "", "", "")
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
 	data := &Category{
@@ -539,24 +525,23 @@ func (v *VAST) SetCategory(sID, sAuth, sValue string) (req *VAST) {
 		data.Authority = sAuth
 	}
 	//check which type
-	if req.Ad[0].Wrapper != nil {
-		req.Ad[0].Wrapper.InLineWrapperData.Category = append(req.Ad[0].Wrapper.InLineWrapperData.Category, data)
-	} else if req.Ad[0].InLine != nil {
-		req.Ad[0].InLine.InLineWrapperData.Category = append(req.Ad[0].InLine.InLineWrapperData.Category, data)
+	if v.Ad[0].Wrapper != nil {
+		v.Ad[0].Wrapper.InLineWrapperData.Category = append(v.Ad[0].Wrapper.InLineWrapperData.Category, data)
+	} else if v.Ad[0].InLine != nil {
+		v.Ad[0].InLine.InLineWrapperData.Category = append(v.Ad[0].InLine.InLineWrapperData.Category, data)
 	}
 	//good ;-)
-	return
+	return v
 }
 
 //SetVerification add into the list of Verification
-func (v *VAST) SetVerification(jscript *JavaScriptResource, verificationp *VerificationParameters, trkevents *TrackingEvents) (req *VAST) {
-	//minimal config
+func (v *VAST) SetVerification(jscript *JavaScriptResource, verificationp *VerificationParameters, trkevents *TrackingEvents) *VAST {
+	//min config
 	if v == nil {
-		req = v.SetAd(VastXMLVer2, "", "", "")
-	}
-	//check flag
-	if req == nil || len(req.Ad) <= 0 {
-		req = v.SetAd(VastXMLVer2, "", "", "")
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
 	data := &Verification{}
@@ -573,30 +558,29 @@ func (v *VAST) SetVerification(jscript *JavaScriptResource, verificationp *Verif
 		data.TrackingEvents = trkevents
 	}
 	//check which type
-	if req.Ad[0].Wrapper != nil {
-		if req.Ad[0].Wrapper.InLineWrapperData.AdVerifications == nil {
-			req.Ad[0].Wrapper.InLineWrapperData.AdVerifications = &AdVerifications{}
+	if v.Ad[0].Wrapper != nil {
+		if v.Ad[0].Wrapper.InLineWrapperData.AdVerifications == nil {
+			v.Ad[0].Wrapper.InLineWrapperData.AdVerifications = &AdVerifications{}
 		}
-		req.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification = append(req.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification, data)
-	} else if req.Ad[0].InLine != nil {
-		if req.Ad[0].InLine.InLineWrapperData.AdVerifications == nil {
-			req.Ad[0].InLine.InLineWrapperData.AdVerifications = &AdVerifications{}
+		v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification = append(v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification, data)
+	} else if v.Ad[0].InLine != nil {
+		if v.Ad[0].InLine.InLineWrapperData.AdVerifications == nil {
+			v.Ad[0].InLine.InLineWrapperData.AdVerifications = &AdVerifications{}
 		}
-		req.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification = append(req.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification, data)
+		v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification = append(v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification, data)
 	}
 	//good ;-)
-	return
+	return v
 }
 
 //SetExtension add into the list of Extension
-func (v *VAST) SetExtension(sType, sValue string, total *TotalAvailable, adverifications *AdVerifications) (req *VAST) {
-	//minimal config
+func (v *VAST) SetExtension(sType, sValue string, total *TotalAvailable, adverifications *AdVerifications) *VAST {
+	//min config
 	if v == nil {
-		req = v.SetAd(VastXMLVer2, "", "", "")
-	}
-	//check flag
-	if req == nil || len(req.Ad) <= 0 {
-		req = v.SetAd(VastXMLVer2, "", "", "")
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
 	data := &Extension{}
@@ -617,30 +601,29 @@ func (v *VAST) SetExtension(sType, sValue string, total *TotalAvailable, adverif
 		data.AdVerifications = adverifications
 	}
 	//check which type
-	if req.Ad[0].Wrapper != nil {
-		if req.Ad[0].Wrapper.InLineWrapperData.Extensions == nil {
-			req.Ad[0].Wrapper.InLineWrapperData.Extensions = &Extensions{}
+	if v.Ad[0].Wrapper != nil {
+		if v.Ad[0].Wrapper.InLineWrapperData.Extensions == nil {
+			v.Ad[0].Wrapper.InLineWrapperData.Extensions = &Extensions{}
 		}
-		req.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension = append(req.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension, data)
-	} else if req.Ad[0].InLine != nil {
-		if req.Ad[0].InLine.InLineWrapperData.Extensions == nil {
-			req.Ad[0].InLine.InLineWrapperData.Extensions = &Extensions{}
+		v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension = append(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension, data)
+	} else if v.Ad[0].InLine != nil {
+		if v.Ad[0].InLine.InLineWrapperData.Extensions == nil {
+			v.Ad[0].InLine.InLineWrapperData.Extensions = &Extensions{}
 		}
-		req.Ad[0].InLine.InLineWrapperData.Extensions.Extension = append(req.Ad[0].InLine.InLineWrapperData.Extensions.Extension, data)
+		v.Ad[0].InLine.InLineWrapperData.Extensions.Extension = append(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension, data)
 	}
 	//good ;-)
-	return
+	return v
 }
 
 //SetCreativeRow add into the list of Creative
-func (v *VAST) SetCreativeRow(sID, sAdID, sSequence, sFramework string, linear *Linear, nonLinear *NonLinearAds, companion *CompanionAds, universal *UniversalAdID) (req *VAST) {
-	//minimal config
+func (v *VAST) SetCreativeRow(sID, sAdID, sSequence, sFramework string, linear *Linear, nonLinear *NonLinearAds, companion *CompanionAds, universal *UniversalAdID) *VAST {
+	//min config
 	if v == nil {
-		req = v.SetAd(VastXMLVer2, "", "", "")
-	}
-	//check flag
-	if req == nil || len(req.Ad) <= 0 {
-		req = v.SetAd(VastXMLVer2, "", "", "")
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
 	data := &Creative{}
@@ -677,44 +660,44 @@ func (v *VAST) SetCreativeRow(sID, sAdID, sSequence, sFramework string, linear *
 		data.UniversalAdID = universal
 	}
 	//check which type
-	if req.Ad[0].Wrapper != nil {
-		if req.Ad[0].Wrapper.InLineWrapperData.Creatives == nil {
-			req.Ad[0].Wrapper.InLineWrapperData.Creatives = &Creatives{}
+	if v.Ad[0].Wrapper != nil {
+		if v.Ad[0].Wrapper.InLineWrapperData.Creatives == nil {
+			v.Ad[0].Wrapper.InLineWrapperData.Creatives = &Creatives{}
 		}
-		req.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative = append(req.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative, data)
-	} else if req.Ad[0].InLine != nil {
-		if req.Ad[0].InLine.InLineWrapperData.Creatives == nil {
-			req.Ad[0].InLine.InLineWrapperData.Creatives = &Creatives{}
+		v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative = append(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative, data)
+	} else if v.Ad[0].InLine != nil {
+		if v.Ad[0].InLine.InLineWrapperData.Creatives == nil {
+			v.Ad[0].InLine.InLineWrapperData.Creatives = &Creatives{}
 		}
-		req.Ad[0].InLine.InLineWrapperData.Creatives.Creative = append(req.Ad[0].InLine.InLineWrapperData.Creatives.Creative, data)
+		v.Ad[0].InLine.InLineWrapperData.Creatives.Creative = append(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative, data)
 	}
 	//good ;-)
-	return
+	return v
 }
 
 //SetCreative add into the list of Creative
-func (v *VAST) SetCreative(creative *Creative) (req *VAST) {
-	//minimal config
+func (v *VAST) SetCreative(creative *Creative) *VAST {
+	//min config
 	if v == nil {
-		req = v.SetAd(VastXMLVer2, "", "", "")
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
 	}
-	//check flag
-	if req == nil || len(req.Ad) <= 0 {
-		req = v.SetAd(VastXMLVer2, "", "", "")
-	}
+	//set 1
 	data := creative
 	//check which type
-	if req.Ad[0].Wrapper != nil {
-		if req.Ad[0].Wrapper.InLineWrapperData.Creatives == nil {
-			req.Ad[0].Wrapper.InLineWrapperData.Creatives = &Creatives{}
+	if v.Ad[0].Wrapper != nil {
+		if v.Ad[0].Wrapper.InLineWrapperData.Creatives == nil {
+			v.Ad[0].Wrapper.InLineWrapperData.Creatives = &Creatives{}
 		}
-		req.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative = append(req.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative, data)
-	} else if req.Ad[0].InLine != nil {
-		if req.Ad[0].InLine.InLineWrapperData.Creatives == nil {
-			req.Ad[0].InLine.InLineWrapperData.Creatives = &Creatives{}
+		v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative = append(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative, data)
+	} else if v.Ad[0].InLine != nil {
+		if v.Ad[0].InLine.InLineWrapperData.Creatives == nil {
+			v.Ad[0].InLine.InLineWrapperData.Creatives = &Creatives{}
 		}
-		req.Ad[0].InLine.InLineWrapperData.Creatives.Creative = append(req.Ad[0].InLine.InLineWrapperData.Creatives.Creative, data)
+		v.Ad[0].InLine.InLineWrapperData.Creatives.Creative = append(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative, data)
 	}
 	//good ;-)
-	return
+	return v
 }
