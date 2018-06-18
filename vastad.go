@@ -184,16 +184,16 @@ func (v *VAST) SetAd(adVersion, adID, adSequence, adConditional string) (req *VA
 func (v *VAST) SetInLineAd(inlineID string) (req *VAST) {
 	//minimal config
 	if v == nil {
-		req = v.SetAd(VastXMLVer2, adID, "", "")
+		req = v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//check flag
 	if req == nil || len(req.Ad) <= 0 {
-		req = v.SetAd(VastXMLVer2, adID, "", "")
+		req = v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//add the inline
 	req.Ad[0].InLine = &InLine{
 		ID:                inlineID,
-		InLineWrapperData: &InLineWrapperData{},
+		InLineWrapperData: InLineWrapperData{},
 	}
 	//good ;-)
 	return
@@ -203,11 +203,11 @@ func (v *VAST) SetInLineAd(inlineID string) (req *VAST) {
 func (v *VAST) SetWrapperAd(wrapperID, followAdditionalWrappers, allowMultipleAds, fallbackOnNoAd string) (req *VAST) {
 	//minimal config
 	if v == nil {
-		req = v.SetAd(VastXMLVer2, wrapperID, "", "")
+		req = v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//check flag
 	if req == nil || len(req.Ad) <= 0 {
-		req = v.SetAd(VastXMLVer2, wrapperID, "", "")
+		req = v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//add the wrapper
 	req.Ad[0].Wrapper = &Wrapper{
@@ -215,14 +215,14 @@ func (v *VAST) SetWrapperAd(wrapperID, followAdditionalWrappers, allowMultipleAd
 		FollowAdditionalWrappers: followAdditionalWrappers,
 		AllowMultipleAds:         allowMultipleAds,
 		FallbackOnNoAd:           fallbackOnNoAd,
-		InLineWrapperData:        &InLineWrapperData{},
+		InLineWrapperData:        InLineWrapperData{},
 	}
 	//good ;-)
 	return
 }
 
 //SetAdSystem set the AdSystem
-func (v *VAST) SetAdSystem(systemID, systemValue string) (req *VAST) {
+func (v *VAST) SetAdSystem(s string) (req *VAST) {
 	//minimal config
 	if v == nil {
 		req = v.SetAd(VastXMLVer2, "", "", "")
@@ -233,11 +233,7 @@ func (v *VAST) SetAdSystem(systemID, systemValue string) (req *VAST) {
 	}
 	//set 1
 	data := &AdSystem{
-		Value: systemValue,
-	}
-	//optional maybe ;-)
-	if systemID != "" {
-		data.ID = systemID
+		Value: s,
 	}
 	//check which type
 	if req.Ad[0].Wrapper != nil {
