@@ -628,3 +628,63 @@ func (v *VAST) SetExtension(sType, sValue string, total *TotalAvailable, adverif
 	//good ;-)
 	return
 }
+
+//SetCreative add into the list of Creative
+func (v *VAST) SetCreative(sID, sAdID, sSequence, sFramework string, linear *Linear, nonLinear *NonLinearAds, companion *CompanionAds, universal *UniversalAdID) (req *VAST) {
+	//minimal config
+	if v == nil {
+		req = v.SetAd(VastXMLVer2, "", "", "")
+	}
+	//check flag
+	if req == nil || len(req.Ad) <= 0 {
+		req = v.SetAd(VastXMLVer2, "", "", "")
+	}
+	//set 1
+	data := &Creative{}
+	//optional maybe ;-)
+	if sID != "" {
+		data.ID = sID
+	}
+	//optional maybe ;-)
+	if sAdID != "" {
+		data.AdID = sAdID
+	}
+	//optional maybe ;-)
+	if sSequence != "" {
+		data.Sequence = sSequence
+	}
+	//optional maybe ;-)
+	if sFramework != "" {
+		data.APIFramework = sFramework
+	}
+	//optional maybe ;-)
+	if linear != nil {
+		data.Linear = linear
+	}
+	//optional maybe ;-)
+	if nonLinear != nil {
+		data.NonLinearAds = nonLinear
+	}
+	//optional maybe ;-)
+	if companion != nil {
+		data.CompanionAds = companion
+	}
+	//optional maybe ;-)
+	if universal != nil {
+		data.UniversalAdID = universal
+	}
+	//check which type
+	if req.Ad[0].Wrapper != nil {
+		if req.Ad[0].Wrapper.InLineWrapperData.Creatives == nil {
+			req.Ad[0].Wrapper.InLineWrapperData.Creatives = &Creatives{}
+		}
+		req.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative = append(req.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative, data)
+	} else if req.Ad[0].InLine != nil {
+		if req.Ad[0].InLine.InLineWrapperData.Creatives == nil {
+			req.Ad[0].InLine.InLineWrapperData.Creatives = &Creatives{}
+		}
+		req.Ad[0].InLine.InLineWrapperData.Creatives.Creative = append(req.Ad[0].InLine.InLineWrapperData.Creatives.Creative, data)
+	}
+	//good ;-)
+	return
+}
