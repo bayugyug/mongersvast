@@ -158,27 +158,27 @@ func (v *VAST) VideoDuration(secs int) *Duration {
 }
 
 //SetAd set the minimum Ad
-func (v *VAST) SetAd(adVersion, adID, adSequence, adConditional string) (req *VAST) {
+func (v *VAST) SetAd(adVersion, adID, adSequence, adConditional string) *VAST {
 	//minimal config
-	req = &VAST{
+	v = &VAST{
 		Version: adVersion,
 	}
 	//add 1
-	req.Ad = append(req.Ad, &Ad{})
+	v.Ad = append(v.Ad, &Ad{})
 	//optional maybe ;-)
 	if adID != "" {
-		req.Ad[0].ID = adID
+		v.Ad[0].ID = adID
 	}
 	//optional maybe ;-)
 	if adSequence != "" {
-		req.Ad[0].Sequence = adSequence
+		v.Ad[0].Sequence = adSequence
 	}
 	//optional maybe ;-)
 	if adConditional != "" {
-		req.Ad[0].ConditionalAd = adConditional
+		v.Ad[0].ConditionalAd = adConditional
 	}
 	//good ;-)
-	return
+	return v
 }
 
 //SetInLineAd set the minimum InLineAd
