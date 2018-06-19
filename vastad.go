@@ -1326,7 +1326,7 @@ func (v *VAST) SetNonLinearClickThrough(sID, sValue string) *VAST {
 }
 
 //SetNonLinearClickTracking add into the  NonLinearAds.NonLinear.NonLinearClickTracking obj
-func (v *VAST) SetNonLinearClickThrough(sID, sValue string) *VAST {
+func (v *VAST) SetNonLinearClickTracking(sID, sValue string) *VAST {
 	//min config
 	if v == nil {
 		v = &VAST{
