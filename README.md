@@ -650,11 +650,7 @@ func main() {
 
 ```
 
-### -- Output
-
-[Download XML](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample08-simple-inline-linear-ad.xml)
-
-
+### -- [Output](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample08-simple-inline-linear-ad.xml)
 
 
 
