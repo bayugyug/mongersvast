@@ -1121,3 +1121,80 @@ func (v *VAST) SetLinearInteractiveCreativeFile(sID, sValue string) *VAST {
 	//good ;-)
 	return v
 }
+
+//SetNonLinear add into the  NonLinearAds obj
+func (v *VAST) SetNonLinear(row *NonLinearAds) *VAST {
+	//min config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
+	}
+	//set 1
+	data := row
+	if data == nil {
+		data = &NonLinearAds{}
+	}
+	//check which type
+	if v.Ad[0].Wrapper != nil {
+		if v.Ad[0].Wrapper.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative)
+			if idx > 0 {
+				v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds = data
+			}
+		}
+	} else if v.Ad[0].InLine != nil {
+		if v.Ad[0].InLine.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative)
+			if idx > 0 {
+				v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds = data
+			}
+		}
+	}
+	//good ;-)
+	return v
+}
+
+//SetNonLinearTracking add into the  NonLinearAds.TrackingEvents obj
+func (v *VAST) SetNonLinearTracking(sEvent, sOffset, sValue string) *VAST {
+	//min config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
+	}
+	//set 1
+	data := &Tracking{Event: sEvent, Value: sValue}
+	//optional maybe;-)
+	if sOffset != "" {
+		data.Offset = sOffset
+	}
+	//check which type
+	if v.Ad[0].Wrapper != nil {
+		if v.Ad[0].Wrapper.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative)
+			if idx > 0 {
+				if v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents == nil {
+					v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents = &TrackingEvents{}
+				}
+				//add to the list
+				v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents.Tracking = append(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents.Tracking, data)
+			}
+		}
+	} else if v.Ad[0].InLine != nil {
+		if v.Ad[0].InLine.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative)
+			if idx > 0 {
+				if v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents == nil {
+					v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents = &TrackingEvents{}
+				}
+				//add to the list
+				v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents.Tracking = append(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents.Tracking, data)
+			}
+		}
+	}
+	//good ;-)
+	return v
+}
