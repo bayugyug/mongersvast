@@ -42,9 +42,7 @@ func main() {
 
 ```
 
-### -- Output
-
-[Download XML](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample01-load-xml-from-string.xml)
+### -- [Output](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample01-load-xml-from-string.xml)
 
 
 
@@ -117,10 +115,8 @@ func main() {
 ```
 
 
-### -- Output
+### -- [Output](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample02-inline-linear-ad.xml)
 
-
-[Download XML](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample02-inline-linear-ad.xml)
 
 
 ### > Wrapper Linear Ad
@@ -183,9 +179,8 @@ func main() {
 ```
 
 
-### -- Output
+### -- [Output](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample03-wrapper-linear-ad.xml)
 
-[Download XML](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample03-wrapper-linear-ad.xml)
 
 
 ### > Load from an XML file
@@ -224,13 +219,10 @@ func main() {
 }
 ```
 
-[Input XML](https://github.com/bayugyug/mongersvast/blob/master/example/tsample.vast.xml)
+### -- [Input](https://github.com/bayugyug/mongersvast/blob/master/example/tsample.vast.xml)
 
 
-### -- Output
-
-[Download XML](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample04-load-from-an-xml-file.xml)
-
+### -- [Output](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample04-load-from-an-xml-file.xml)
 
 
 ### > Simple InLine Linear Ad
@@ -364,9 +356,7 @@ func main() {
 
 ```
 
-### -- Output
-
-[Download XML](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample05-simple-inline-linear-ad.xml)
+### -- [Output](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample05-simple-inline-linear-ad.xml)
 
 
 
@@ -463,9 +453,8 @@ func main() {
 
 ```
 
-### -- Output
+### -- [Output](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample06-simple-wrapper-tag-with-viewable-impression.xml)
 
-[Download XML](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample06-simple-wrapper-tag-with-viewable-impression.xml)
 
 
 ### > Simple Inline Tag With Non-Linear
@@ -578,9 +567,8 @@ func main() {
 
 ```
 
-### -- Output
+### -- [Output](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample07-simple-inline-tag-with-nonlinear.xml)
 
-[Download XML](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample07-simple-inline-tag-with-nonlinear.xml)
 
 
 
