@@ -60,7 +60,7 @@ func WrapperAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Des
 //fmtAdUUID make temp str
 func fmtAdUUID(pfx string) string {
 	if len(pfx) <= 0 {
-		pfx = "mv"
+		pfx = "070704"
 	}
 	return fmt.Sprintf("%s%05x%10x", pfx, rand.Intn(99999), time.Now().UTC().UnixNano())
 }
