@@ -1261,7 +1261,10 @@ func (v *VAST) SetNonLinearStaticResource(sType, sValue string) *VAST {
 			idx := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
 				//add to the list
-				v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear.StaticResource = data
+				idy := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+				if idy > 0 {
+					v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].StaticResource = data
+				}
 			}
 		}
 	} else if v.Ad[0].InLine != nil {
@@ -1269,7 +1272,10 @@ func (v *VAST) SetNonLinearStaticResource(sType, sValue string) *VAST {
 			idx := len(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
 				//add to the list
-				v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear.StaticResource = data
+				idy := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+				if idy > 0 {
+					v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].StaticResource = data
+				}
 			}
 		}
 	}
@@ -1297,7 +1303,10 @@ func (v *VAST) SetNonLinearClickThrough(sID, sValue string) *VAST {
 			idx := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
 				//add to the list
-				v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear.NonLinearClickThrough = data
+				idy := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+				if idy > 0 {
+					v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].NonLinearClickThrough = data
+				}
 			}
 		}
 	} else if v.Ad[0].InLine != nil {
@@ -1305,7 +1314,10 @@ func (v *VAST) SetNonLinearClickThrough(sID, sValue string) *VAST {
 			idx := len(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
 				//add to the list
-				v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear.NonLinearClickThrough = data
+				idy := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+				if idy > 0 {
+					v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].NonLinearClickThrough = data
+				}
 			}
 		}
 	}
@@ -1333,7 +1345,10 @@ func (v *VAST) SetNonLinearClickThrough(sID, sValue string) *VAST {
 			idx := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
 				//add to the list
-				v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear.NonLinearClickTracking = data
+				idy := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+				if idy > 0 {
+					v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].NonLinearClickTracking = data
+				}
 			}
 		}
 	} else if v.Ad[0].InLine != nil {
@@ -1341,7 +1356,10 @@ func (v *VAST) SetNonLinearClickThrough(sID, sValue string) *VAST {
 			idx := len(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
 				//add to the list
-				v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear.NonLinearClickTracking = data
+				idy := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+				if idy > 0 {
+					v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].NonLinearClickTracking = data
+				}
 			}
 		}
 	}
