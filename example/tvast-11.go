@@ -21,6 +21,9 @@ func main() {
 		SetDescription("Ad desc here ;-)").
 		SetErrorURL("http://mongers.vast.utils/error").
 		SetImpressionURL("imp1", "http://mongers.vast.utils/impression1").
+		SetCreative(nil).
+		SetLinear(nil).
+		SetLinearDuration("", "00:00:45").
 		SetPricing("1", "CPM", "USD", "1.58").
 		SetAdvertiser("Mongers-Adverts").
 		SetCategory("1", "http://www.iabtechlab.com/categoryauthority", "Mongers-Categ 1").

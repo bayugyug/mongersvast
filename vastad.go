@@ -676,7 +676,7 @@ func (v *VAST) SetCreativeRow(sID, sAdID, sSequence, sFramework string, linear *
 }
 
 //SetCreative add into the list of Creative
-func (v *VAST) SetCreative(creative *Creative) *VAST {
+func (v *VAST) SetCreative(sID, sAdID, sSequence, sFramework string) *VAST {
 	//min config
 	if v == nil {
 		v = &VAST{
@@ -685,9 +685,22 @@ func (v *VAST) SetCreative(creative *Creative) *VAST {
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
-	data := creative
-	if data == nil {
-		data = &Creative{}
+	data := &Creative{}
+	//optional maybe ;-)
+	if sID != "" {
+		data.ID = sID
+	}
+	//optional maybe ;-)
+	if sAdID != "" {
+		data.AdID = sAdID
+	}
+	//optional maybe ;-)
+	if sSequence != "" {
+		data.Sequence = sSequence
+	}
+	//optional maybe ;-)
+	if sFramework != "" {
+		data.APIFramework = sFramework
 	}
 	//check which type
 	if v.Ad[0].Wrapper != nil {
