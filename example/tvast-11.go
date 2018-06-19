@@ -32,19 +32,6 @@ func main() {
 		SetLinearClickThrough("1", "http://mongers.vast.utils/clickthrough").
 		SetLinearClickTracking("1", "http://mongers.vast.utils/clicktracking").
 		SetLinearMediaFile("media-01",
-			"https://d1fudb3kxhcy38.cloudfront.net/5xjr/829/4eee446d1897557db60a9d7b3632d294_0001_640x360_700k.mp4",
-			"progressive",
-			"video/mp4",
-			"640",
-			"360",
-			"784",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"").
-		SetLinearMediaFile("media-02",
 			"https://iabtechlab.com/wp-content/uploads/2017/12/VAST-4.0-Short-Intro-low-resolution.mp4",
 			"progressive",
 			"video/mp4",
