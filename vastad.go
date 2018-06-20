@@ -1406,3 +1406,82 @@ func (v *VAST) SetNonLinearClickTracking(sID, sValue string) *VAST {
 	//good ;-)
 	return v
 }
+
+//SetCompanionAd add into the CompanionAds obj
+func (v *VAST) SetCompanionAd(row *CompanionAds) *VAST {
+	//min config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
+	}
+	//set 1
+	data := row
+	if data == nil {
+		data = &CompanionAds{}
+	}
+	//check which type
+	if v.Ad[0].Wrapper != nil {
+		if v.Ad[0].Wrapper.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative)
+			if idx > 0 {
+				v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds = data
+			}
+		}
+	} else if v.Ad[0].InLine != nil {
+		if v.Ad[0].InLine.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative)
+			if idx > 0 {
+				v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds = data
+			}
+		}
+	}
+	//good ;-)
+	return v
+}
+
+//SetCompanion add into the CompanionAds.Companion obj
+func (v *VAST) SetCompanion(sID, sWidth, sHeight, sAltText, sAssetWidth, sAssetHeight, sExpandedWidth, sExpandedHeight, sAPIFramework, sAdSlotID, sPxRatio string) *VAST {
+	//min config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
+	}
+	//set 1
+	data := &Companion{
+		ID:             sID,
+		Width:          sWidth,
+		Height:         sHeight,
+		AltText:        sAltText,
+		AssetWidth:     sAssetWidth,
+		AssetHeight:    sAssetHeight,
+		ExpandedWidth:  sExpandedWidth,
+		ExpandedHeight: sExpandedHeight,
+		APIFramework:   sAPIFramework,
+		AdSlotID:       sAdSlotID,
+		PxRatio:        sPxRatio,
+	}
+	//check which type
+	if v.Ad[0].Wrapper != nil {
+		if v.Ad[0].Wrapper.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative)
+			if idx > 0 {
+				//add to the list
+				v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds.Companion = append(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds.Companion, data)
+			}
+		}
+	} else if v.Ad[0].InLine != nil {
+		if v.Ad[0].InLine.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative)
+			if idx > 0 {
+				//add to the list
+				v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds.Companion = append(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds.Companion, data)
+			}
+		}
+	}
+	//good ;-)
+	return v
+}
