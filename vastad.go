@@ -583,30 +583,31 @@ func (v *VAST) SetVerificationJavaScriptResource(sID, sValue string) *VAST {
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
-	data := &JavaScriptResource{}
-	//optional maybe ;-)
-	if jscript != nil {
-		data.JavaScriptResource = jscript
+	data := &JavaScriptResource{
+		Value: sValue,
 	}
-	//optional maybe ;-)
-	if verificationp != nil {
-		data.VerificationParameters = verificationp
-	}
-	//optional maybe ;-)
-	if trkevents != nil {
-		data.TrackingEvents = trkevents
+	//optional
+	if sID != "" {
+		data.ID = sID
 	}
 	//check which type
 	if v.Ad[0].Wrapper != nil {
 		if v.Ad[0].Wrapper.InLineWrapperData.AdVerifications == nil {
 			v.Ad[0].Wrapper.InLineWrapperData.AdVerifications = &AdVerifications{}
 		}
-		v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification = append(v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification, data)
+
+		idx := len(v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification)
+		if idx > 0 {
+			v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification[idx-1].JavaScriptResource = data
+		}
 	} else if v.Ad[0].InLine != nil {
 		if v.Ad[0].InLine.InLineWrapperData.AdVerifications == nil {
 			v.Ad[0].InLine.InLineWrapperData.AdVerifications = &AdVerifications{}
 		}
-		v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification = append(v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification, data)
+		idx := len(v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification)
+		if idx > 0 {
+			v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification[idx-1].JavaScriptResource = data
+		}
 	}
 	//good ;-)
 	return v
