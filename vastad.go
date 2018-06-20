@@ -1698,3 +1698,39 @@ func (v *VAST) SetCompanionTracking(sEvent, sOffset, sValue string) *VAST {
 	//good ;-)
 	return v
 }
+
+//SetUniversalAdID add into the UniversalAdID obj
+func (v *VAST) SetUniversalAdID(sID, sIDRegistry, sIDValue, sValue string) *VAST {
+	//min config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
+	}
+	//set 1
+	data := &UniversalAdID{
+		ID:         sID,
+		IDRegistry: sIDRegistry,
+		IDValue:    sIDValue,
+		Value:      sValue,
+	}
+	//check which type
+	if v.Ad[0].Wrapper != nil {
+		if v.Ad[0].Wrapper.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative)
+			if idx > 0 {
+				v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].UniversalAdID = data
+			}
+		}
+	} else if v.Ad[0].InLine != nil {
+		if v.Ad[0].InLine.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative)
+			if idx > 0 {
+				v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].UniversalAdID = data
+			}
+		}
+	}
+	//good ;-)
+	return v
+}
