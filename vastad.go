@@ -487,7 +487,7 @@ func (v *VAST) SetCategory(sID, sAuth, sValue string) *VAST {
 	}
 	//set 1
 	data := &Category{
-		ID:        ID,
+		ID:        sID,
 		Authority: sAuth,
 		Value:     sValue,
 	}
