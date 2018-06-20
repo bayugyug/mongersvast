@@ -21,7 +21,12 @@ func main() {
 		SetDescription("Ad desc here ;-)").
 		SetErrorURL("http://mongers.vast.utils/error").
 		SetImpressionURL("imp1", "http://mongers.vast.utils/impression1").
-		SetCreative("1", "", "", "").
+		SetCreative(
+			"1", //ID
+			"",  //AdID
+			"",  //Sequence
+			"",  //APIFramework
+		).
 		SetCompanionAd(nil).
 		SetCompanion(
 			"1232", //ID,
@@ -48,19 +53,21 @@ func main() {
 		SetLinearTracking(mvast.TrkEventComplete, "", "http://mongers.vast.utils/complete").
 		SetLinearClickThrough("1", "http://mongers.vast.utils/clickthrough").
 		SetLinearClickTracking("1", "http://mongers.vast.utils/clicktracking").
-		SetLinearMediaFile("media-01",
-			"https://iabtechlab.com/wp-content/uploads/2017/12/VAST-4.0-Short-Intro-low-resolution.mp4",
-			"progressive",
-			"video/mp4",
-			"640",
-			"360",
-			"600",
-			"500",
-			"700",
-			"1",
-			"1",
-			"0",
-			"").
+		SetLinearMediaFile(
+			"media-01", //ID
+			"https://iabtechlab.com/wp-content/uploads/2017/12/VAST-4.0-Short-Intro-low-resolution.mp4", //Value
+			"progressive", //Delivery
+			"video/mp4",   //Type
+			"640",         //Width
+			"360",         //Height
+			"600",         //Bitrate
+			"500",         //MinBitrate
+			"700",         //MaxBitrate
+			"1",           //Scalable
+			"1",           //MaintainAspectRatio
+			"0",           //Codec
+			"",            //APIFramework
+		).
 		SetPricing("1", "CPM", "USD", "1.58").
 		SetUniversalAdID("1", "", "", "univer id is here").
 		SetAdvertiser("Mongers-Adverts").
