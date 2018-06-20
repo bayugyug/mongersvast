@@ -1314,7 +1314,7 @@ func (v *VAST) SetNonLinearStaticResource(sType, sValue string) *VAST {
 			idx := len(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
 				//add to the list
-				idy := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+				idy := len(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
 				if idy > 0 {
 					v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].StaticResource = data
 				}
@@ -1356,7 +1356,7 @@ func (v *VAST) SetNonLinearClickThrough(sID, sValue string) *VAST {
 			idx := len(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
 				//add to the list
-				idy := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+				idy := len(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
 				if idy > 0 {
 					v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].NonLinearClickThrough = data
 				}
