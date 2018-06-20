@@ -712,6 +712,7 @@ func main() {
 	vst := &mvast.VAST{}
 
 	vst.
+		SetVersion("3.0").
 		SetAd("1", "id01", "1", "false").
 		SetInLineAd("in01").
 		SetAdSystem("VAST Inline Simple With Non-Linear").

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<VAST>
+<VAST version="3.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	<Ad id="id01" sequence="1" conditionalAd="false">
 		<InLine id="in01">
 			<AdSystem><![CDATA[VAST Inline Simple With Non-Linear]]></AdSystem>
