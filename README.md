@@ -688,7 +688,7 @@ func main() {
 
 ```
 
-### -- [Output](https://github.com/bayugyug/mongersvast/blob/master/example/sample09-simple-inline-nonlinear-ad.xml)
+### -- [Output](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample09-simple-inline-nonlinear-ad.xml)
 
 
 
@@ -780,7 +780,7 @@ func main() {
 
 ```
 
-### -- [Output](https://github.com/bayugyug/mongersvast/blob/master/example/sample10-simple-inline-companion-tag-ad.xml)
+### -- [Output](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample10-simple-inline-companion-tag-ad.xml)
 
 
 
