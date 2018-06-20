@@ -1571,7 +1571,7 @@ func (v *VAST) SetCompanionIFrameResource(sID, sValue string) *VAST {
 }
 
 //SetCompanionStaticResource add into the CompanionAds.Companion.StaticResource obj
-func (v *VAST) SetCompanionStaticResource(sID, sValue string) *VAST {
+func (v *VAST) SetCompanionStaticResource(sType, sValue string) *VAST {
 	//min config
 	if v == nil {
 		v = &VAST{
@@ -1581,8 +1581,8 @@ func (v *VAST) SetCompanionStaticResource(sID, sValue string) *VAST {
 	}
 	//set 1
 	data := &StaticResource{
-		ID:    sID,
-		Value: sValue,
+		CreativeType: sType,
+		Value:        sValue,
 	}
 	//check which type
 	if v.Ad[0].Wrapper != nil {
