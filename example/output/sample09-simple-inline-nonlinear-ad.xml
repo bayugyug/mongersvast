@@ -3,30 +3,21 @@
 	<Ad id="id01" sequence="1" conditionalAd="false">
 		<InLine id="in01">
 			<AdSystem><![CDATA[VAST Inline Simple With Non-Linear]]></AdSystem>
-			<AdTitle><![CDATA[Ad title here]]></AdTitle>
+			<AdTitle><![CDATA[NonLinear Image]]></AdTitle>
 			<AdServingId><![CDATA[ADID_INnonLINEARTEST_ABC123]]></AdServingId>
-			<Description><![CDATA[Ad desc here ;-)]]></Description>
+			<Description><![CDATA[VAST 3.0 sample tag for Non Linear ad (i.e Overlay ad). Change the StaticResources to have a tag with your own content. Change NonLinear tag's parameters accordingly to view desired results.]]></Description>
 			<Error><![CDATA[http://mongers.vast.utils/error]]></Error>
 			<Impression id="imp1"><![CDATA[http://mongers.vast.utils/impression1]]></Impression>
 			<Creatives>
 				<Creative id="1">
-					<Linear>
-						<Duration>00:00:45</Duration>
-						<TrackingEvents>
-							<Tracking event="start"><![CDATA[http://mongers.vast.utils/start]]></Tracking>
-							<Tracking event="firstQuartile"><![CDATA[http://mongers.vast.utils/firstq]]></Tracking>
-							<Tracking event="midpoint"><![CDATA[http://mongers.vast.utils/midpoint]]></Tracking>
-							<Tracking event="thirdQuartile"><![CDATA[http://mongers.vast.utils/thirdq]]></Tracking>
-							<Tracking event="complete"><![CDATA[http://mongers.vast.utils/complete]]></Tracking>
-						</TrackingEvents>
-						<VideoClicks>
-							<ClickThrough id="1"><![CDATA[http://mongers.vast.utils/clickthrough]]></ClickThrough>
-							<ClickTracking id="1"><![CDATA[http://mongers.vast.utils/clicktracking]]></ClickTracking>
-						</VideoClicks>
-						<MediaFiles>
-							<MediaFile id="media-01" delivery="progressive" type="video/mp4" width="640" height="360" bitrate="600" minBitrate="500" maxBitrate="700" scalable="1" maintainAspectRatio="1" codec="0"><![CDATA[https://iabtechlab.com/wp-content/uploads/2017/12/VAST-4.0-Short-Intro-low-resolution.mp4]]></MediaFile>
-						</MediaFiles>
-					</Linear>
+					<NonLinearAds>
+						<NonLinear id="1" height="150" width="480" minSuggestedDuration="00:00:05">
+							<StaticResource creativeType="image/png"><![CDATA[http://mms.businesswire.com/media/20150623005446/en/473787/21/iab_tech_lab.jpg]]></StaticResource>
+							<NonLinearClickThrough><![CDATA[http://iabtechlab.com]]></NonLinearClickThrough>
+							<NonLinearClickTracking><![CDATA[http://example.com/trackingurl/clickTracking]]></NonLinearClickTracking>
+						</NonLinear>
+					</NonLinearAds>
+					<UniversalAdId id="1"><![CDATA[univer id is here]]></UniversalAdId>
 				</Creative>
 			</Creatives>
 			<Extensions>

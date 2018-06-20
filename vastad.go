@@ -166,19 +166,11 @@ func (v *VAST) SetAd(adVersion, adID, adSequence, adConditional string) *VAST {
 		}
 	}
 	//add 1
-	v.Ad = append(v.Ad, &Ad{})
-	//optional maybe ;-)
-	if adID != "" {
-		v.Ad[0].ID = adID
-	}
-	//optional maybe ;-)
-	if adSequence != "" {
-		v.Ad[0].Sequence = adSequence
-	}
-	//optional maybe ;-)
-	if adConditional != "" {
-		v.Ad[0].ConditionalAd = adConditional
-	}
+	v.Ad = append(v.Ad, &Ad{
+		ID:            adID,
+		Sequence:      adSequence,
+		ConditionalAd: adConditional,
+	})
 	//good ;-)
 	return v
 }
@@ -325,11 +317,8 @@ func (v *VAST) SetImpressionURL(impID, impURL string) *VAST {
 	}
 	//set 1
 	data := &Impression{
+		ID:    impID,
 		Value: impURL,
-	}
-	//optional maybe ;-)
-	if impID != "" {
-		data.ID = impID
 	}
 	//check which type
 	if v.Ad[0].Wrapper != nil {
@@ -352,13 +341,9 @@ func (v *VAST) SetAdServingID(adID, adValue string) *VAST {
 	}
 	//set 1
 	data := &AdServingID{
+		ID:    adID,
 		Value: adValue,
 	}
-	//optional maybe ;-)
-	if adID != "" {
-		data.ID = adID
-	}
-
 	//check which type
 	if v.Ad[0].Wrapper != nil {
 		v.Ad[0].Wrapper.InLineWrapperData.AdServingID = data
@@ -403,19 +388,10 @@ func (v *VAST) SetViewableImpression(sID string, viewable *Viewable, notviewable
 	}
 	//set 1
 	data := &ViewableImpression{
-		ID: sID,
-	}
-	//optional maybe ;-)
-	if viewable != nil {
-		data.Viewable = viewable
-	}
-	//optional maybe ;-)
-	if notviewable != nil {
-		data.NotViewable = notviewable
-	}
-	//optional maybe ;-)
-	if undetermined != nil {
-		data.ViewUndetermined = undetermined
+		ID:               sID,
+		Viewable:         viewable,
+		NotViewable:      notviewable,
+		ViewUndetermined: undetermined,
 	}
 	//check which type
 	if v.Ad[0].Wrapper != nil {
@@ -438,11 +414,8 @@ func (v *VAST) SetVASTAdTagURI(adID, adValue string) *VAST {
 	}
 	//set 1
 	data := &VASTAdTagURI{
+		ID:    adID,
 		Value: adValue,
-	}
-	//optional maybe ;-)
-	if adID != "" {
-		data.ID = adID
 	}
 	//check which type
 	if v.Ad[0].Wrapper != nil {
@@ -514,15 +487,9 @@ func (v *VAST) SetCategory(sID, sAuth, sValue string) *VAST {
 	}
 	//set 1
 	data := &Category{
-		Value: sValue,
-	}
-	//optional maybe ;-)
-	if sID != "" {
-		data.ID = sID
-	}
-	//optional maybe ;-)
-	if sAuth != "" {
-		data.Authority = sAuth
+		ID:        ID,
+		Authority: sAuth,
+		Value:     sValue,
 	}
 	//check which type
 	if v.Ad[0].Wrapper != nil {
@@ -544,18 +511,10 @@ func (v *VAST) SetVerification(jscript *JavaScriptResource, verificationp *Verif
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
-	data := &Verification{}
-	//optional maybe ;-)
-	if jscript != nil {
-		data.JavaScriptResource = jscript
-	}
-	//optional maybe ;-)
-	if verificationp != nil {
-		data.VerificationParameters = verificationp
-	}
-	//optional maybe ;-)
-	if trkevents != nil {
-		data.TrackingEvents = trkevents
+	data := &Verification{
+		JavaScriptResource:     jscript,
+		VerificationParameters: verificationp,
+		TrackingEvents:         trkevents,
 	}
 	//check which type
 	if v.Ad[0].Wrapper != nil {
@@ -584,11 +543,8 @@ func (v *VAST) SetVerificationJavaScriptResource(sID, sValue string) *VAST {
 	}
 	//set 1
 	data := &JavaScriptResource{
+		ID:    sID,
 		Value: sValue,
-	}
-	//optional
-	if sID != "" {
-		data.ID = sID
 	}
 	//check which type
 	if v.Ad[0].Wrapper != nil {
@@ -623,22 +579,11 @@ func (v *VAST) SetExtension(sType, sValue string, total *TotalAvailable, adverif
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
-	data := &Extension{}
-	//optional maybe ;-)
-	if sType != "" {
-		data.Type = sType
-	}
-	//optional maybe ;-)
-	if sValue != "" {
-		data.Value = sValue
-	}
-	//optional maybe ;-)
-	if total != nil {
-		data.TotalAvailable = total
-	}
-	//optional maybe ;-)
-	if adverifications != nil {
-		data.AdVerifications = adverifications
+	data := &Extension{
+		Type:            sType,
+		Value:           sValue,
+		TotalAvailable:  total,
+		AdVerifications: adverifications,
 	}
 	//check which type
 	if v.Ad[0].Wrapper != nil {
@@ -666,38 +611,15 @@ func (v *VAST) SetCreativeRow(sID, sAdID, sSequence, sFramework string, linear *
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
-	data := &Creative{}
-	//optional maybe ;-)
-	if sID != "" {
-		data.ID = sID
-	}
-	//optional maybe ;-)
-	if sAdID != "" {
-		data.AdID = sAdID
-	}
-	//optional maybe ;-)
-	if sSequence != "" {
-		data.Sequence = sSequence
-	}
-	//optional maybe ;-)
-	if sFramework != "" {
-		data.APIFramework = sFramework
-	}
-	//optional maybe ;-)
-	if linear != nil {
-		data.Linear = linear
-	}
-	//optional maybe ;-)
-	if nonLinear != nil {
-		data.NonLinearAds = nonLinear
-	}
-	//optional maybe ;-)
-	if companion != nil {
-		data.CompanionAds = companion
-	}
-	//optional maybe ;-)
-	if universal != nil {
-		data.UniversalAdID = universal
+	data := &Creative{
+		ID:            sID,
+		AdID:          sAdID,
+		Sequence:      sSequence,
+		APIFramework:  sFramework,
+		Linear:        linear,
+		NonLinearAds:  nonLinear,
+		CompanionAds:  companion,
+		UniversalAdID: universal,
 	}
 	//check which type
 	if v.Ad[0].Wrapper != nil {
@@ -725,22 +647,11 @@ func (v *VAST) SetCreative(sID, sAdID, sSequence, sFramework string) *VAST {
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
-	data := &Creative{}
-	//optional maybe ;-)
-	if sID != "" {
-		data.ID = sID
-	}
-	//optional maybe ;-)
-	if sAdID != "" {
-		data.AdID = sAdID
-	}
-	//optional maybe ;-)
-	if sSequence != "" {
-		data.Sequence = sSequence
-	}
-	//optional maybe ;-)
-	if sFramework != "" {
-		data.APIFramework = sFramework
+	data := &Creative{
+		ID:           sID,
+		AdID:         sAdID,
+		Sequence:     sSequence,
+		APIFramework: sFramework,
 	}
 	//check which type
 	if v.Ad[0].Wrapper != nil {
@@ -836,10 +747,10 @@ func (v *VAST) SetLinearTracking(sEvent, sOffset, sValue string) *VAST {
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
-	data := &Tracking{Event: sEvent, Value: sValue}
-	//optional maybe;-)
-	if sOffset != "" {
-		data.Offset = sOffset
+	data := &Tracking{
+		Event:  sEvent,
+		Value:  sValue,
+		Offset: sOffset,
 	}
 	//check which type
 	if v.Ad[0].Wrapper != nil {
@@ -879,10 +790,9 @@ func (v *VAST) SetLinearClickThrough(sID, sValue string) *VAST {
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
-	data := &ClickThrough{Value: sValue}
-	//optional maybe;-)
-	if sID != "" {
-		data.ID = sID
+	data := &ClickThrough{
+		ID:    sID,
+		Value: sValue,
 	}
 	//check which type
 	if v.Ad[0].Wrapper != nil {
@@ -922,10 +832,9 @@ func (v *VAST) SetLinearClickTracking(sID, sValue string) *VAST {
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
-	data := &ClickTracking{Value: sValue}
-	//optional maybe;-)
-	if sID != "" {
-		data.ID = sID
+	data := &ClickTracking{
+		ID:    sID,
+		Value: sValue,
 	}
 	//check which type
 	if v.Ad[0].Wrapper != nil {
@@ -965,10 +874,9 @@ func (v *VAST) SetLinearCustomClick(sID, sValue string) *VAST {
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
-	data := &CustomClick{Value: sValue}
-	//optional maybe;-)
-	if sID != "" {
-		data.ID = sID
+	data := &CustomClick{
+		ID:    sID,
+		Value: sValue,
 	}
 	//check which type
 	if v.Ad[0].Wrapper != nil {
@@ -1009,40 +917,19 @@ func (v *VAST) SetLinearMediaFile(sID, sValue, sDelivery, sType, sWidth, sHeight
 	}
 	//set 1
 	data := &MediaFile{
-		Value:    sValue,
-		Delivery: sDelivery,
-		Type:     sType,
-		Width:    sWidth,
-		Height:   sHeight,
-		Bitrate:  sBitrate,
-	}
-	//optional maybe;-)
-	if sID != "" {
-		data.ID = sID
-	}
-	//optional maybe;-)
-	if sMinBitrate != "" {
-		data.MinBitrate = sMinBitrate
-	}
-	//optional maybe;-)
-	if sMaxBitrate != "" {
-		data.MaxBitrate = sMaxBitrate
-	}
-	//optional maybe;-)
-	if sScalable != "" {
-		data.Scalable = sScalable
-	}
-	//optional maybe;-)
-	if sMaintainAspectRatio != "" {
-		data.MaintainAspectRatio = sMaintainAspectRatio
-	}
-	//optional maybe;-)
-	if sCodec != "" {
-		data.Codec = sCodec
-	}
-	//optional maybe;-)
-	if sAPIFramework != "" {
-		data.APIFramework = sAPIFramework
+		Value:               sValue,
+		Delivery:            sDelivery,
+		Type:                sType,
+		Width:               sWidth,
+		Height:              sHeight,
+		Bitrate:             sBitrate,
+		ID:                  sID,
+		MinBitrate:          sMinBitrate,
+		MaxBitrate:          sMaxBitrate,
+		Scalable:            sScalable,
+		MaintainAspectRatio: sMaintainAspectRatio,
+		Codec:               sCodec,
+		APIFramework:        sAPIFramework,
 	}
 	//check which type
 	if v.Ad[0].Wrapper != nil {
@@ -1083,11 +970,8 @@ func (v *VAST) SetLinearMezzanine(sID, sValue string) *VAST {
 	}
 	//set 1
 	data := &Mezzanine{
+		ID:    sID,
 		Value: sValue,
-	}
-	//optional maybe;-)
-	if sID != "" {
-		data.ID = sID
 	}
 	//check which type
 	if v.Ad[0].Wrapper != nil {
@@ -1128,11 +1012,8 @@ func (v *VAST) SetLinearInteractiveCreativeFile(sID, sValue string) *VAST {
 	}
 	//set 1
 	data := &InteractiveCreativeFile{
+		ID:    sID,
 		Value: sValue,
-	}
-	//optional maybe;-)
-	if sID != "" {
-		data.ID = sID
 	}
 	//check which type
 	if v.Ad[0].Wrapper != nil {
@@ -1206,10 +1087,10 @@ func (v *VAST) SetNonLinearTracking(sEvent, sOffset, sValue string) *VAST {
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
 	//set 1
-	data := &Tracking{Event: sEvent, Value: sValue}
-	//optional maybe;-)
-	if sOffset != "" {
-		data.Offset = sOffset
+	data := &Tracking{
+		Event:  sEvent,
+		Value:  sValue,
+		Offset: sOffset,
 	}
 	//check which type
 	if v.Ad[0].Wrapper != nil {
@@ -1250,16 +1131,13 @@ func (v *VAST) SetNonLinearAd(sID, sAPIFramework, sWidth, sHeight, sMinSuggested
 	}
 	//set 1
 	data := &NonLinear{
-		ID:                  sID,
-		APIFramework:        sAPIFramework,
-		Width:               sWidth,
-		Height:              sHeight,
-		Scalable:            sScalable,
-		MaintainAspectRatio: sMaintainAspectRatio,
-	}
-	//optional maybe;-)
-	if sMinSuggestedDuration != "" {
-		data.MinSuggestedDuration = sMinSuggestedDuration
+		ID:                   sID,
+		APIFramework:         sAPIFramework,
+		Width:                sWidth,
+		Height:               sHeight,
+		Scalable:             sScalable,
+		MaintainAspectRatio:  sMaintainAspectRatio,
+		MinSuggestedDuration: sMinSuggestedDuration,
 	}
 	//check which type
 	if v.Ad[0].Wrapper != nil {
