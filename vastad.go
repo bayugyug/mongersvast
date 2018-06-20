@@ -573,6 +573,45 @@ func (v *VAST) SetVerification(jscript *JavaScriptResource, verificationp *Verif
 	return v
 }
 
+//SetVerificationJavaScriptResource add into the list of Verification.JavaScriptResource
+func (v *VAST) SetVerificationJavaScriptResource(sID, sValue string) *VAST {
+	//min config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
+	}
+	//set 1
+	data := &JavaScriptResource{}
+	//optional maybe ;-)
+	if jscript != nil {
+		data.JavaScriptResource = jscript
+	}
+	//optional maybe ;-)
+	if verificationp != nil {
+		data.VerificationParameters = verificationp
+	}
+	//optional maybe ;-)
+	if trkevents != nil {
+		data.TrackingEvents = trkevents
+	}
+	//check which type
+	if v.Ad[0].Wrapper != nil {
+		if v.Ad[0].Wrapper.InLineWrapperData.AdVerifications == nil {
+			v.Ad[0].Wrapper.InLineWrapperData.AdVerifications = &AdVerifications{}
+		}
+		v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification = append(v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification, data)
+	} else if v.Ad[0].InLine != nil {
+		if v.Ad[0].InLine.InLineWrapperData.AdVerifications == nil {
+			v.Ad[0].InLine.InLineWrapperData.AdVerifications = &AdVerifications{}
+		}
+		v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification = append(v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification, data)
+	}
+	//good ;-)
+	return v
+}
+
 //SetExtension add into the list of Extension
 func (v *VAST) SetExtension(sType, sValue string, total *TotalAvailable, adverifications *AdVerifications) *VAST {
 	//min config
