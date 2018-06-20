@@ -157,6 +157,21 @@ func (v *VAST) VideoDuration(secs int) *Duration {
 	return &Duration{Value: tm}
 }
 
+//SetVersion set the VAST version
+func (v *VAST) SetVersion(version string) *VAST {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: version,
+		}
+	}
+	//options
+	opts := AdAttributes{"Version": version}
+	v.FormatAdAttrs(opts)
+	//good ;-)
+	return v
+}
+
 //SetAd set the minimum Ad
 func (v *VAST) SetAd(adVersion, adID, adSequence, adConditional string) *VAST {
 	//minimal config
