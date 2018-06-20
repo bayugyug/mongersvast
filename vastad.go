@@ -1240,7 +1240,7 @@ func (v *VAST) SetNonLinearTracking(sEvent, sOffset, sValue string) *VAST {
 }
 
 //SetNonLinearAd add into the  NonLinearAds.NonLinear obj
-func (v *VAST) SetNonLinearAd(sID, sAPIFramework, sWidth, sHeight, sMinSuggestedDuration string) *VAST {
+func (v *VAST) SetNonLinearAd(sID, sAPIFramework, sWidth, sHeight, sMinSuggestedDuration, sScalable, sMaintainAspectRatio string) *VAST {
 	//min config
 	if v == nil {
 		v = &VAST{
@@ -1250,10 +1250,12 @@ func (v *VAST) SetNonLinearAd(sID, sAPIFramework, sWidth, sHeight, sMinSuggested
 	}
 	//set 1
 	data := &NonLinear{
-		ID:           sID,
-		APIFramework: sAPIFramework,
-		Width:        sWidth,
-		Height:       sHeight,
+		ID:                  sID,
+		APIFramework:        sAPIFramework,
+		Width:               sWidth,
+		Height:              sHeight,
+		Scalable:            sScalable,
+		MaintainAspectRatio: sMaintainAspectRatio,
 	}
 	//optional maybe;-)
 	if sMinSuggestedDuration != "" {

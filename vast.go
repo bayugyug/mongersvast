@@ -256,6 +256,8 @@ type NonLinear struct {
 	Height                 string                  `xml:"height,attr,omitempty"`
 	Width                  string                  `xml:"width,attr,omitempty"`
 	MinSuggestedDuration   string                  `xml:"minSuggestedDuration,attr,omitempty"`
+	Scalable               string                  `xml:"scalable,attr,omitempty"`
+	MaintainAspectRatio    string                  `xml:"maintainAspectRatio,attr,omitempty"`
 	StaticResource         *StaticResource         `xml:",omitempty"`
 	NonLinearClickThrough  *NonLinearClickThrough  `xml:",omitempty"`
 	NonLinearClickTracking *NonLinearClickTracking `xml:",omitempty"`
