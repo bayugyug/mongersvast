@@ -166,8 +166,17 @@ func (v *VAST) SetVersion(version string) *VAST {
 		}
 	}
 	//options
-	opts := AdAttributes{"Version": version}
-	v.FormatAdAttrs(opts)
+	switch version {
+	case VastXMLVer3:
+		v.Version = VastXMLVer3
+		v.XMLNsXs = VastXMLNsXs
+	case VastXMLVer4:
+		v.Version = VastXMLVer4
+		v.XMLNsXs = VastXMLNsXs
+		v.XMLNs = VastXMLNs
+	default:
+		v.Version = VastXMLVer2
+	}
 	//good ;-)
 	return v
 }
