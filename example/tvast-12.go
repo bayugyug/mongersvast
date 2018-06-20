@@ -23,6 +23,10 @@ func main() {
 		SetImpressionURL("imp1", "http://mongers.vast.utils/impression1").
 		SetCreative("1", "", "", "").
 		SetNonLinear(nil).
+		SetNonLinearAd("1", "", "480", "150", "00:00:05", "", "").
+		SetNonLinearStaticResource("image/png", "http://mms.businesswire.com/media/20150623005446/en/473787/21/iab_tech_lab.jpg").
+		SetNonLinearClickTracking("", "http://example.com/trackingurl/clickTracking").
+		SetNonLinearClickThrough("", "http://iabtechlab.com").
 		SetPricing("1", "CPM", "USD", "1.58").
 		SetUniversalAdID("1", "", "", "univer id is here").
 		SetAdvertiser("Mongers-Adverts").
