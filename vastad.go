@@ -181,6 +181,22 @@ func (v *VAST) SetVersion(version string) *VAST {
 	return v
 }
 
+//FormatAd set the minimum Ad
+func (v *VAST) FormatAd() *VAST {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: adVersion,
+		}
+	}
+	//just in case
+	if len(v.Ad) <= 0 {
+		v.SetAd(VastXMLVer2, "", "", "")
+	}
+	//good ;-)
+	return v
+}
+
 //SetAd set the minimum Ad
 func (v *VAST) SetAd(adVersion, adID, adSequence, adConditional string) *VAST {
 	//minimal config
@@ -247,6 +263,7 @@ func (v *VAST) SetAdSystem(s string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &AdSystem{
 		Value: s,
@@ -270,6 +287,7 @@ func (v *VAST) SetAdTitle(s string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &AdTitle{
 		Value: s,
@@ -293,6 +311,7 @@ func (v *VAST) SetDescription(s string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &Description{
 		Value: s,
@@ -316,6 +335,7 @@ func (v *VAST) SetErrorURL(s string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &VASTError{
 		Value: s,
@@ -339,6 +359,7 @@ func (v *VAST) SetImpressionURL(impID, impURL string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &Impression{
 		ID:    impID,
@@ -363,6 +384,7 @@ func (v *VAST) SetAdServingID(adID, adValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &AdServingID{
 		ID:    adID,
@@ -387,6 +409,7 @@ func (v *VAST) SetSurvey(s string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &Survey{
 		Value: s,
@@ -410,6 +433,7 @@ func (v *VAST) SetViewableImpression(sID string, viewable *Viewable, notviewable
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &ViewableImpression{
 		ID:               sID,
@@ -436,6 +460,7 @@ func (v *VAST) SetVASTAdTagURI(adID, adValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &VASTAdTagURI{
 		ID:    adID,
@@ -460,6 +485,7 @@ func (v *VAST) SetPricing(adID, adModel, adCurr, adValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &Pricing{
 		ID:       adID,
@@ -486,6 +512,7 @@ func (v *VAST) SetAdvertiser(s string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &Advertiser{
 		Value: s,
@@ -509,6 +536,7 @@ func (v *VAST) SetCategory(sID, sAuth, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &Category{
 		ID:        sID,
@@ -534,6 +562,7 @@ func (v *VAST) SetVerification(jscript *JavaScriptResource, verificationp *Verif
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &Verification{
 		JavaScriptResource:     jscript,
@@ -565,6 +594,7 @@ func (v *VAST) SetVerificationJavaScriptResource(sID, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &JavaScriptResource{
 		ID:    sID,
@@ -602,6 +632,7 @@ func (v *VAST) SetVerificationVerificationParameters(sID, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &VerificationParameters{
 		ID:    sID,
@@ -639,6 +670,7 @@ func (v *VAST) SetVerificationTracking(sEvent, sOffset, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &Tracking{
 		Event:  sEvent,
@@ -684,6 +716,7 @@ func (v *VAST) SetExtension(sType, sValue string, total *TotalAvailable, adverif
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &Extension{
 		Type:            sType,
@@ -716,6 +749,7 @@ func (v *VAST) SetCreativeRow(sID, sAdID, sSequence, sFramework string, linear *
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &Creative{
 		ID:            sID,
@@ -752,6 +786,7 @@ func (v *VAST) SetCreative(sID, sAdID, sSequence, sFramework string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &Creative{
 		ID:           sID,
@@ -784,6 +819,7 @@ func (v *VAST) SetLinear(row *Linear) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := row
 	if data == nil {
@@ -818,6 +854,7 @@ func (v *VAST) SetLinearDuration(sID, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &Duration{Value: sValue}
 	if sID != "" {
@@ -852,6 +889,7 @@ func (v *VAST) SetLinearTracking(sEvent, sOffset, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &Tracking{
 		Event:  sEvent,
@@ -895,6 +933,7 @@ func (v *VAST) SetLinearClickThrough(sID, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &ClickThrough{
 		ID:    sID,
@@ -937,6 +976,7 @@ func (v *VAST) SetLinearClickTracking(sID, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &ClickTracking{
 		ID:    sID,
@@ -979,6 +1019,7 @@ func (v *VAST) SetLinearCustomClick(sID, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &CustomClick{
 		ID:    sID,
@@ -1021,6 +1062,7 @@ func (v *VAST) SetLinearMediaFile(sID, sValue, sDelivery, sType, sWidth, sHeight
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &MediaFile{
 		Value:               sValue,
@@ -1074,6 +1116,7 @@ func (v *VAST) SetLinearMezzanine(sID, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &Mezzanine{
 		ID:    sID,
@@ -1116,6 +1159,7 @@ func (v *VAST) SetLinearInteractiveCreativeFile(sID, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &InteractiveCreativeFile{
 		ID:    sID,
@@ -1158,6 +1202,7 @@ func (v *VAST) SetNonLinear(row *NonLinearAds) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := row
 	if data == nil {
@@ -1192,6 +1237,7 @@ func (v *VAST) SetNonLinearTracking(sEvent, sOffset, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &Tracking{
 		Event:  sEvent,
@@ -1235,6 +1281,7 @@ func (v *VAST) SetNonLinearAd(sID, sAPIFramework, sWidth, sHeight, sMinSuggested
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &NonLinear{
 		ID:                   sID,
@@ -1276,6 +1323,7 @@ func (v *VAST) SetNonLinearStaticResource(sType, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &StaticResource{
 		CreativeType: sType,
@@ -1318,6 +1366,7 @@ func (v *VAST) SetNonLinearClickThrough(sID, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &NonLinearClickThrough{
 		ID:    sID,
@@ -1360,6 +1409,7 @@ func (v *VAST) SetNonLinearClickTracking(sID, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &NonLinearClickTracking{
 		ID:    sID,
@@ -1402,6 +1452,7 @@ func (v *VAST) SetCompanionAd(row *CompanionAds) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := row
 	if data == nil {
@@ -1436,6 +1487,7 @@ func (v *VAST) SetCompanion(sID, sWidth, sHeight, sAltText, sAssetWidth, sAssetH
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &Companion{
 		ID:             sID,
@@ -1481,6 +1533,7 @@ func (v *VAST) SetCompanionHTMLResource(sID, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &HTMLResource{
 		ID:    sID,
@@ -1523,6 +1576,7 @@ func (v *VAST) SetCompanionIFrameResource(sID, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &IFrameResource{
 		ID:    sID,
@@ -1565,6 +1619,7 @@ func (v *VAST) SetCompanionStaticResource(sType, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &StaticResource{
 		CreativeType: sType,
@@ -1607,6 +1662,7 @@ func (v *VAST) SetCompanionClickThrough(sID, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &CompanionClickThrough{
 		ID:    sID,
@@ -1649,6 +1705,7 @@ func (v *VAST) SetCompanionTracking(sEvent, sOffset, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &Tracking{Event: sEvent, Value: sValue, Offset: sOffset}
 	//check which type
@@ -1694,6 +1751,7 @@ func (v *VAST) SetUniversalAdID(sID, sIDRegistry, sIDValue, sValue string) *VAST
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &UniversalAdID{
 		ID:         sID,
@@ -1730,6 +1788,7 @@ func (v *VAST) SetExtensionTotalAvailable(sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &TotalAvailable{
 		Value: sValue,
@@ -1765,6 +1824,7 @@ func (v *VAST) SetExtensionAdVerification(js *JavaScriptResource, vp *Verificati
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &Verification{
 		JavaScriptResource:     js,
@@ -1808,6 +1868,7 @@ func (v *VAST) SetExtensionJavaScriptResource(sID, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &JavaScriptResource{
 		ID:    sID,
@@ -1856,6 +1917,7 @@ func (v *VAST) SetExtensionVerificationParameters(sID, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &VerificationParameters{
 		ID:    sID,
@@ -1904,6 +1966,7 @@ func (v *VAST) SetExtensionTracking(sEvent, sOffset, sValue string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//set 1
 	data := &Tracking{
 		Event:  sEvent,
