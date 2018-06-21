@@ -199,19 +199,21 @@ func main() {
    //Load the XML file from directory
    vastf := mvast.VAST{}
    vastf.FromFile("./tsample.vast.xml")
-   //INJECT additional vast element (Pricing)
-   vastf.Ad[0].InLine.Pricing = &mvast.Pricing{
-            Model:    "CPM",
-            Currency: "USD",
-            Value:    "0.99",
-    }
-   //INJECT additional vast element (Extensions)
-   vastf.Ad[0].InLine.Extensions = &mvast.Extensions{
-            Extension: []*mvast.Extension{
-                    {Type: "iab-Count",
-                            TotalAvailable: &mvast.TotalAvailable{Value: "2"}},
-            },
-    }
+   if len(vastf.Ad) > 0 {
+		//INJECT additional vast element (Pricing)
+		vastf.Ad[0].InLine.Pricing = &mvast.Pricing{
+			Model:    "CPM",
+			Currency: "USD",
+			Value:    "0.99",
+		}
+		//INJECT additional vast element (Extensions)
+		vastf.Ad[0].InLine.Extensions = &mvast.Extensions{
+			Extension: []*mvast.Extension{
+				{Type: "iab-Count",
+					TotalAvailable: &mvast.TotalAvailable{Value: "2"}},
+			},
+		}
+	}
    //stringify VAST obj
    xml, _ = vastf.ToString()
    fmt.Println(xml)
