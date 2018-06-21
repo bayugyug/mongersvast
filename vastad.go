@@ -224,6 +224,7 @@ func (v *VAST) SetInLineAd(inlineID string) *VAST {
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//add the inline
 	v.Ad[0].InLine = &InLine{
 		ID:                inlineID,
@@ -242,6 +243,7 @@ func (v *VAST) SetWrapperAd(wrapperID, followAdditionalWrappers, allowMultipleAd
 		}
 		v.SetAd(VastXMLVer2, "", "", "")
 	}
+	v.FormatAd()
 	//add the wrapper
 	v.Ad[0].Wrapper = &Wrapper{
 		ID: wrapperID,
