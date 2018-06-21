@@ -186,7 +186,7 @@ func (v *VAST) FormatAd() *VAST {
 	//minimal config
 	if v == nil {
 		v = &VAST{
-			Version: adVersion,
+			Version: VastXMLVer2,
 		}
 	}
 	//just in case
