@@ -593,6 +593,88 @@ func (v *VAST) SetVerificationJavaScriptResource(sID, sValue string) *VAST {
 	return v
 }
 
+//SetVerificationVerificationParameters add into the list of Verification.VerificationParameters
+func (v *VAST) SetVerificationVerificationParameters(sID, sValue string) *VAST {
+	//min config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
+	}
+	//set 1
+	data := &VerificationParameters{
+		ID:    sID,
+		Value: sValue,
+	}
+	//check which type
+	if v.Ad[0].Wrapper != nil {
+		if v.Ad[0].Wrapper.InLineWrapperData.AdVerifications == nil {
+			v.Ad[0].Wrapper.InLineWrapperData.AdVerifications = &AdVerifications{}
+		}
+
+		idx := len(v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification)
+		if idx > 0 {
+			v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification[idx-1].VerificationParameters = data
+		}
+	} else if v.Ad[0].InLine != nil {
+		if v.Ad[0].InLine.InLineWrapperData.AdVerifications == nil {
+			v.Ad[0].InLine.InLineWrapperData.AdVerifications = &AdVerifications{}
+		}
+		idx := len(v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification)
+		if idx > 0 {
+			v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification[idx-1].VerificationParameters = data
+		}
+	}
+	//good ;-)
+	return v
+}
+
+//SetVerificationTracking add into the list of Verification.TrackingEvents.Tracking
+func (v *VAST) SetVerificationTracking(sEvent, sOffset, sValue string) *VAST {
+	//min config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
+	}
+	//set 1
+	data := &Tracking{
+		Event:  sEvent,
+		Value:  sValue,
+		Offset: sOffset,
+	}
+
+	//check which type
+	if v.Ad[0].Wrapper != nil {
+		if v.Ad[0].Wrapper.InLineWrapperData.AdVerifications == nil {
+			v.Ad[0].Wrapper.InLineWrapperData.AdVerifications = &AdVerifications{}
+		}
+
+		idx := len(v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification)
+		if idx > 0 {
+			if nil == v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents {
+				v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents = &TrackingEvents{}
+			}
+			v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents.Tracking = append(v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents.Tracking, data)
+		}
+	} else if v.Ad[0].InLine != nil {
+		if v.Ad[0].InLine.InLineWrapperData.AdVerifications == nil {
+			v.Ad[0].InLine.InLineWrapperData.AdVerifications = &AdVerifications{}
+		}
+		idx := len(v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification)
+		if idx > 0 {
+			if nil == v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents {
+				v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents = &TrackingEvents{}
+			}
+			v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents.Tracking = append(v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents.Tracking, data)
+		}
+	}
+	//good ;-)
+	return v
+}
+
 //SetExtension add into the list of Extension
 func (v *VAST) SetExtension(sType, sValue string, total *TotalAvailable, adverifications *AdVerifications) *VAST {
 	//min config
