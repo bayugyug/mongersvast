@@ -1638,3 +1638,81 @@ func (v *VAST) SetUniversalAdID(sID, sIDRegistry, sIDValue, sValue string) *VAST
 	//good ;-)
 	return v
 }
+
+//SetExtensionTotalAvailable add into the list of Extension.TotalAvailable
+func (v *VAST) SetExtensionTotalAvailable(sValue string) *VAST {
+	//min config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
+	}
+	//set 1
+	data := &TotalAvailable{
+		Value: sValue,
+	}
+	//check which type
+	if v.Ad[0].Wrapper != nil {
+		if v.Ad[0].Wrapper.InLineWrapperData.Extensions == nil {
+			v.Ad[0].Wrapper.InLineWrapperData.Extensions = &Extensions{}
+		}
+		idx := len(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension)
+		if idx > 0 {
+			v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].TotalAvailable = data
+		}
+	} else if v.Ad[0].InLine != nil {
+		if v.Ad[0].InLine.InLineWrapperData.Extensions == nil {
+			v.Ad[0].InLine.InLineWrapperData.Extensions = &Extensions{}
+		}
+		idx := len(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension)
+		if idx > 0 {
+			v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].TotalAvailable = data
+		}
+	}
+	//good ;-)
+	return v
+}
+
+//SetExtensionAdVerification add into the list of Extension.AdVerifications.Verification
+func (v *VAST) SetExtensionAdVerification(js *JavaScriptResource, vp *VerificationParameters, tk *TrackingEvents) *VAST {
+	//min config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
+	}
+	//set 1
+	data := &Verification{
+		JavaScriptResource:     js,
+		VerificationParameters: vp,
+		TrackingEvents:         tk,
+	}
+	//check which type
+	if v.Ad[0].Wrapper != nil {
+		if v.Ad[0].Wrapper.InLineWrapperData.Extensions == nil {
+			v.Ad[0].Wrapper.InLineWrapperData.Extensions = &Extensions{}
+		}
+		idx := len(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension)
+		if idx > 0 {
+			if nil == v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
+				v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
+			}
+			v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification = append(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification, data)
+		}
+	} else if v.Ad[0].InLine != nil {
+		if v.Ad[0].InLine.InLineWrapperData.Extensions == nil {
+			v.Ad[0].InLine.InLineWrapperData.Extensions = &Extensions{}
+		}
+		idx := len(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension)
+		if idx > 0 {
+			if nil == v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
+				v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
+			}
+			v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification = append(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification, data)
+		}
+	}
+	//good ;-)
+	return v
+}
