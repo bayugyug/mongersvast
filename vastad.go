@@ -1716,3 +1716,154 @@ func (v *VAST) SetExtensionAdVerification(js *JavaScriptResource, vp *Verificati
 	//good ;-)
 	return v
 }
+
+//SetExtensionJavaScriptResource add into the list of Extension.AdVerifications.Verification.JavaScriptResource
+func (v *VAST) SetExtensionJavaScriptResource(sID, sValue string) *VAST {
+	//min config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
+	}
+	//set 1
+	data := &JavaScriptResource{
+		ID:    sID,
+		Value: sValue,
+	}
+	//check which type
+	if v.Ad[0].Wrapper != nil {
+		if v.Ad[0].Wrapper.InLineWrapperData.Extensions == nil {
+			v.Ad[0].Wrapper.InLineWrapperData.Extensions = &Extensions{}
+		}
+		idx := len(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension)
+		if idx > 0 {
+			if nil == v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
+				v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
+			}
+			idy := len(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification)
+			if idy > 0 {
+				v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].JavaScriptResource = data
+			}
+		}
+	} else if v.Ad[0].InLine != nil {
+		if v.Ad[0].InLine.InLineWrapperData.Extensions == nil {
+			v.Ad[0].InLine.InLineWrapperData.Extensions = &Extensions{}
+		}
+		idx := len(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension)
+		if idx > 0 {
+			if nil == v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
+				v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
+			}
+			idy := len(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification)
+			if idy > 0 {
+				v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].JavaScriptResource = data
+			}
+		}
+	}
+	//good ;-)
+	return v
+}
+
+//SetExtensionVerificationParameters add into the list of Extension.AdVerifications.Verification.VerificationParameters
+func (v *VAST) SetExtensionVerificationParameters(sID, sValue string) *VAST {
+	//min config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
+	}
+	//set 1
+	data := &VerificationParameters{
+		ID:    sID,
+		Value: sValue,
+	}
+	//check which type
+	if v.Ad[0].Wrapper != nil {
+		if v.Ad[0].Wrapper.InLineWrapperData.Extensions == nil {
+			v.Ad[0].Wrapper.InLineWrapperData.Extensions = &Extensions{}
+		}
+		idx := len(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension)
+		if idx > 0 {
+			if nil == v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
+				v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
+			}
+			idy := len(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification)
+			if idy > 0 {
+				v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].VerificationParameters = data
+			}
+		}
+	} else if v.Ad[0].InLine != nil {
+		if v.Ad[0].InLine.InLineWrapperData.Extensions == nil {
+			v.Ad[0].InLine.InLineWrapperData.Extensions = &Extensions{}
+		}
+		idx := len(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension)
+		if idx > 0 {
+			if nil == v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
+				v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
+			}
+			idy := len(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification)
+			if idy > 0 {
+				v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].VerificationParameters = data
+			}
+		}
+	}
+	//good ;-)
+	return v
+}
+
+//SetExtensionTracking add into the list of Extension.AdVerifications.Verification.TrackingEvents.Tracking
+func (v *VAST) SetExtensionTracking(sEvent, sOffset, sValue string) *VAST {
+	//min config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
+	}
+	//set 1
+	data := &Tracking{
+		Event:  sEvent,
+		Value:  sValue,
+		Offset: sOffset,
+	}
+	//check which type
+	if v.Ad[0].Wrapper != nil {
+		if v.Ad[0].Wrapper.InLineWrapperData.Extensions == nil {
+			v.Ad[0].Wrapper.InLineWrapperData.Extensions = &Extensions{}
+		}
+		idx := len(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension)
+		if idx > 0 {
+			if nil == v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
+				v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
+			}
+			idy := len(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification)
+			if idy > 0 {
+				if nil == v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents {
+					v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents = &TrackingEvents{}
+				}
+				v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents.Tracking = append(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents.Tracking, data)
+			}
+		}
+	} else if v.Ad[0].InLine != nil {
+		if v.Ad[0].InLine.InLineWrapperData.Extensions == nil {
+			v.Ad[0].InLine.InLineWrapperData.Extensions = &Extensions{}
+		}
+		idx := len(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension)
+		if idx > 0 {
+			if nil == v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
+				v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
+			}
+			idy := len(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification)
+			if idy > 0 {
+				if nil == v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents {
+					v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents = &TrackingEvents{}
+				}
+				v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents.Tracking = append(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents.Tracking, data)
+			}
+		}
+	}
+	//good ;-)
+	return v
+}
