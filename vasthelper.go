@@ -83,9 +83,6 @@ func SetXMLHeaders(w http.ResponseWriter) {
 //PushXML push content with proper xml hdrs
 func PushXML(w http.ResponseWriter, xml string) {
 	//just in case ;-)
-	if v == nil {
-		return
-	}
 	SetXMLHeaders(w)
 	io.WriteString(w, xml)
 }
