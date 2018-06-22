@@ -3,9 +3,7 @@ package mongersvast
 //NewVAST get instance on VAST object
 func (v *VAST) NewVAST(version string) *VAST {
 	//minimal config
-	v = &VAST{
-		Version: version,
-	}
+	v = &VAST{}
 	v.SetVersion(version)
 	//good ;-)
 	return v
