@@ -1,5 +1,16 @@
 package mongersvast
 
+//NewInstance
+func (v *VAST) NewVAST(version string) *VAST {
+	//minimal config
+	v = &VAST{
+		Version: version,
+	}
+	v.SetVersion(version)
+	//good ;-)
+	return v
+}
+
 //SetVersion set the VAST version
 func (v *VAST) SetVersion(version string) *VAST {
 	//minimal config
