@@ -34,24 +34,28 @@ func (v *VAST) ToString() (string, error) {
 	return strings.TrimSpace(VastXMLHeader + "\n" + w.String()), nil
 }
 
-//FromXML an alias to fromString
+//FromXML an alias to FromString
 func (v *VAST) FromXML(body string) {
 	v.FromString(body)
 }
 
-//ToXML an alias to toString
+//ToXML an alias to ToString
 func (v *VAST) ToXML() (string, error) {
 	return v.ToString()
 }
 
-//Stringify an alias to toString
+//Stringify an alias to ToString
 func (v *VAST) Stringify() (string, error) {
 	return v.ToString()
 }
 
 //FromFile load from file
 func (v *VAST) FromFile(filename string) {
-	content, _ := ioutil.ReadFile(filename) //make sure the xml is readable and exists
+	//make sure the xml is readable and exists
+	if _, err := os.Stat(filename); os.IsNotExist(err) {
+		return
+	}
+	content, _ := ioutil.ReadFile(filename)
 	v.FromString(strings.TrimSpace(string(content)))
 }
 
