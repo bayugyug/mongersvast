@@ -40,6 +40,55 @@ func (v *VAST) FormatAd() *VAST {
 	return v
 }
 
+//FormatAdAttrs sync all possible options/attrs
+func (v *VAST) FormatAdAttrs(attrs AdAttributes) {
+	//just in case ;-)
+	if v == nil {
+		return
+	}
+	if len(v.Ad) <= 0 {
+		return
+	}
+	//Ad attrs
+	if kk, _ := attrs["ID"]; kk != "" {
+		v.Ad[0].ID = kk
+	}
+	//Ad attrs
+	if kk, _ := attrs["Sequence"]; kk != "" {
+		v.Ad[0].Sequence = kk
+	}
+	//Ad attrs
+	if kk, _ := attrs["ConditionalAd"]; kk != "" {
+		v.Ad[0].ConditionalAd = kk
+	}
+	//Wrapper attrs
+	if kk, _ := attrs["FollowAdditionalWrappers"]; v.Ad[0].Wrapper != nil && kk != "" {
+		v.Ad[0].Wrapper.FollowAdditionalWrappers = kk
+	}
+	//Wrapper attrs
+	if kk, _ := attrs["AllowMultipleAds"]; v.Ad[0].Wrapper != nil && kk != "" {
+		v.Ad[0].Wrapper.AllowMultipleAds = kk
+	}
+	//Wrapper attrs
+	if kk, _ := attrs["FallbackOnNoAd"]; v.Ad[0].Wrapper != nil && kk != "" {
+		v.Ad[0].Wrapper.FallbackOnNoAd = kk
+	}
+	//VAST version
+	if kk, _ := attrs["Version"]; kk != "" {
+		switch kk {
+		case VastXMLVer3:
+			v.Version = VastXMLVer3
+			v.XMLNsXs = VastXMLNsXs
+		case VastXMLVer4:
+			v.Version = VastXMLVer4
+			v.XMLNsXs = VastXMLNsXs
+			v.XMLNs = VastXMLNs
+		default:
+			v.Version = VastXMLVer2
+		}
+	}
+}
+
 //SetAd set the minimum Ad
 func (v *VAST) SetAd(adVersion, adID, adSequence, adConditional string) *VAST {
 	//minimal config

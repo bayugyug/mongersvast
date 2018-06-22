@@ -4,10 +4,8 @@ import (
 	"bytes"
 	"encoding/xml"
 	"fmt"
-	"io"
 	"io/ioutil"
 	"math"
-	"net/http"
 	"os"
 	"strings"
 	"time"
@@ -73,35 +71,11 @@ func (v *VAST) ToFile(filename, body string) (bool, error) {
 	return true, nil
 }
 
-//SetXMLHeaders set the xml headers simply
-func (v *VAST) SetXMLHeaders(w http.ResponseWriter) {
-	w.Header().Set("Content-Type", "text/xml")
-	w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate") // HTTP 1.1.
-	w.Header().Set("Pragma", "no-cache")                                   // HTTP 1.0.
-	w.Header().Set("Expires", "0")
-	w.Header().Set("Access-Control-Allow-Origin", "*") //Google HTML5 SDK CORS Header
-	w.Header().Set("Access-Control-Allow-Credentials", "true")
-	w.Header().Set("Access-Control-Allow-Headers", "*")
-	w.Header().Set("Access-Control-Allow-Methods", "GET")
-	w.Header().Set("Access-Control-Max-Age", "10080")
-}
-
-//PushXML push content with proper xml hdrs
-func (v *VAST) PushXML(w http.ResponseWriter) {
-	//just in case ;-)
-	if v == nil {
-		return
-	}
-	xml, _ := v.Stringify()
-	v.SetXMLHeaders(w)
-	io.WriteString(w, xml)
-}
-
 //VideoDuration convert duration seconds
 func (v *VAST) VideoDuration(secs int) *Duration {
 	//just in case ;-)
 	if v == nil {
-		return nil
+		return &Duration{Value: "00:00:00"}
 	}
 	ts := time.Duration(secs) * time.Second
 	tm := strings.TrimSpace(fmt.Sprintf("%02d:%02d:%02d", int(math.Mod(ts.Hours(), 12)), int(math.Mod(ts.Minutes(), 60)), int(math.Mod(ts.Seconds(), 60))))
