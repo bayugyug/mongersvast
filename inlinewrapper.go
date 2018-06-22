@@ -1,6 +1,6 @@
 package mongersvast
 
-//NewInstance
+//NewVAST get instance on VAST object
 func (v *VAST) NewVAST(version string) *VAST {
 	//minimal config
 	v = &VAST{
