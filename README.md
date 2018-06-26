@@ -47,7 +47,7 @@ func main() {
 
 
 
-### > InLine Linear Ad
+* InLine Linear Ad
 
 ```go
 
@@ -119,7 +119,7 @@ func main() {
 
 
 
-### > Wrapper Linear Ad
+* Wrapper Linear Ad
 
 ```go
 
@@ -183,7 +183,7 @@ func main() {
 
 
 
-### > Load from an XML file
+* Load from an XML file
 
 ```go
 package main
@@ -227,7 +227,7 @@ func main() {
 ### -- [Output](https://github.com/bayugyug/mongersvast/blob/master/example/output/sample04-load-from-an-xml-file.xml)
 
 
-### > Simple InLine Linear Ad
+* Simple InLine Linear Ad
 
 ```go
 
@@ -363,7 +363,7 @@ func main() {
 
 
 
-### > Simple Wrapper Tag with Viewable Impression
+* Simple Wrapper Tag with Viewable Impression
 
 ```go
 
@@ -459,7 +459,7 @@ func main() {
 
 
 
-### > Simple Inline Tag With Non-Linear
+* Simple Inline Tag With Non-Linear
 
 ```go
 
@@ -574,7 +574,7 @@ func main() {
 
 
 
-### > Simple Inline Linear Tag via Cascade Methods
+* Simple Inline Linear Tag via Cascade Methods
 
 ```go
 
@@ -644,7 +644,7 @@ func main() {
 
 
 
-### > Simple Inline NonLinear Tag via Cascade Methods
+* Simple Inline NonLinear Tag via Cascade Methods
 
 ```go
 
@@ -695,7 +695,7 @@ func main() {
 
 
 
-### > Simple Inline Companion Tag via Cascade Methods
+** Simple Inline Companion Tag via Cascade Methods
 
 ```go
 
