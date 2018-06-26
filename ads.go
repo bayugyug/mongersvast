@@ -77,27 +77,27 @@ func (v *VAST) FormatAdAttrs(attrs AdAttributes) {
 	}
 	//Ad attrs
 	if kk, _ := attrs["ID"]; kk != "" {
-		v.Ad[0].ID = kk
+		v.Ad[v.GetAdPos()].ID = kk
 	}
 	//Ad attrs
 	if kk, _ := attrs["Sequence"]; kk != "" {
-		v.Ad[0].Sequence = kk
+		v.Ad[v.GetAdPos()].Sequence = kk
 	}
 	//Ad attrs
 	if kk, _ := attrs["ConditionalAd"]; kk != "" {
-		v.Ad[0].ConditionalAd = kk
+		v.Ad[v.GetAdPos()].ConditionalAd = kk
 	}
 	//Wrapper attrs
-	if kk, _ := attrs["FollowAdditionalWrappers"]; v.Ad[0].Wrapper != nil && kk != "" {
-		v.Ad[0].Wrapper.FollowAdditionalWrappers = kk
+	if kk, _ := attrs["FollowAdditionalWrappers"]; v.Ad[v.GetAdPos()].Wrapper != nil && kk != "" {
+		v.Ad[v.GetAdPos()].Wrapper.FollowAdditionalWrappers = kk
 	}
 	//Wrapper attrs
-	if kk, _ := attrs["AllowMultipleAds"]; v.Ad[0].Wrapper != nil && kk != "" {
-		v.Ad[0].Wrapper.AllowMultipleAds = kk
+	if kk, _ := attrs["AllowMultipleAds"]; v.Ad[v.GetAdPos()].Wrapper != nil && kk != "" {
+		v.Ad[v.GetAdPos()].Wrapper.AllowMultipleAds = kk
 	}
 	//Wrapper attrs
-	if kk, _ := attrs["FallbackOnNoAd"]; v.Ad[0].Wrapper != nil && kk != "" {
-		v.Ad[0].Wrapper.FallbackOnNoAd = kk
+	if kk, _ := attrs["FallbackOnNoAd"]; v.Ad[v.GetAdPos()].Wrapper != nil && kk != "" {
+		v.Ad[v.GetAdPos()].Wrapper.FallbackOnNoAd = kk
 	}
 	//VAST version
 	if kk, _ := attrs["Version"]; kk != "" {
