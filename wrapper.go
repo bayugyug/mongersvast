@@ -11,7 +11,7 @@ func (v *VAST) SetWrapperAd(wrapperID, followAdditionalWrappers, allowMultipleAd
 	}
 	v.FormatAd()
 	//add the wrapper
-	v.Ad[0].Wrapper = &Wrapper{
+	v.Ad[v.GetAdPos()].Wrapper = &Wrapper{
 		ID: wrapperID,
 		FollowAdditionalWrappers: followAdditionalWrappers,
 		AllowMultipleAds:         allowMultipleAds,
@@ -38,10 +38,10 @@ func (v *VAST) SetVASTAdTagURI(adID, adValue string) *VAST {
 		Value: adValue,
 	}
 	//check which type
-	if v.Ad[0].Wrapper != nil {
-		v.Ad[0].Wrapper.InLineWrapperData.VASTAdTagURI = data
-	} else if v.Ad[0].InLine != nil {
-		v.Ad[0].InLine.InLineWrapperData.VASTAdTagURI = data
+	if v.Ad[v.GetAdPos()].Wrapper != nil {
+		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.VASTAdTagURI = data
+	} else if v.Ad[v.GetAdPos()].InLine != nil {
+		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.VASTAdTagURI = data
 	}
 	//good ;-)
 	return v

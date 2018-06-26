@@ -16,18 +16,18 @@ func (v *VAST) SetNonLinear(row *NonLinearAds) *VAST {
 		data = &NonLinearAds{}
 	}
 	//check which type
-	if v.Ad[0].Wrapper != nil {
-		if v.Ad[0].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative)
+	if v.Ad[v.GetAdPos()].Wrapper != nil {
+		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
-				v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds = data
+				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds = data
 			}
 		}
-	} else if v.Ad[0].InLine != nil {
-		if v.Ad[0].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative)
+	} else if v.Ad[v.GetAdPos()].InLine != nil {
+		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
-				v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds = data
+				v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds = data
 			}
 		}
 	}
@@ -52,26 +52,26 @@ func (v *VAST) SetNonLinearTracking(sEvent, sOffset, sValue string) *VAST {
 		Offset: sOffset,
 	}
 	//check which type
-	if v.Ad[0].Wrapper != nil {
-		if v.Ad[0].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative)
+	if v.Ad[v.GetAdPos()].Wrapper != nil {
+		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
-				if v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents == nil {
-					v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents = &TrackingEvents{}
+				if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents == nil {
+					v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents = &TrackingEvents{}
 				}
 				//add to the list
-				v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents.Tracking = append(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents.Tracking, data)
+				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents.Tracking = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents.Tracking, data)
 			}
 		}
-	} else if v.Ad[0].InLine != nil {
-		if v.Ad[0].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative)
+	} else if v.Ad[v.GetAdPos()].InLine != nil {
+		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
-				if v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents == nil {
-					v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents = &TrackingEvents{}
+				if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents == nil {
+					v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents = &TrackingEvents{}
 				}
 				//add to the list
-				v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents.Tracking = append(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents.Tracking, data)
+				v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents.Tracking = append(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents.Tracking, data)
 			}
 		}
 	}
@@ -100,20 +100,20 @@ func (v *VAST) SetNonLinearAd(sID, sAPIFramework, sWidth, sHeight, sMinSuggested
 		MinSuggestedDuration: sMinSuggestedDuration,
 	}
 	//check which type
-	if v.Ad[0].Wrapper != nil {
-		if v.Ad[0].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative)
+	if v.Ad[v.GetAdPos()].Wrapper != nil {
+		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
 				//add to the list
-				v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear = append(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear, data)
+				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear, data)
 			}
 		}
-	} else if v.Ad[0].InLine != nil {
-		if v.Ad[0].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative)
+	} else if v.Ad[v.GetAdPos()].InLine != nil {
+		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
 				//add to the list
-				v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear = append(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear, data)
+				v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear = append(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear, data)
 			}
 		}
 	}
@@ -137,25 +137,25 @@ func (v *VAST) SetNonLinearStaticResource(sType, sValue string) *VAST {
 		Value:        sValue,
 	}
 	//check which type
-	if v.Ad[0].Wrapper != nil {
-		if v.Ad[0].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative)
+	if v.Ad[v.GetAdPos()].Wrapper != nil {
+		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
 				//add to the list
-				idy := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+				idy := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
 				if idy > 0 {
-					v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].StaticResource = data
+					v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].StaticResource = data
 				}
 			}
 		}
-	} else if v.Ad[0].InLine != nil {
-		if v.Ad[0].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative)
+	} else if v.Ad[v.GetAdPos()].InLine != nil {
+		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
 				//add to the list
-				idy := len(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+				idy := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
 				if idy > 0 {
-					v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].StaticResource = data
+					v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].StaticResource = data
 				}
 			}
 		}
@@ -180,25 +180,25 @@ func (v *VAST) SetNonLinearClickThrough(sID, sValue string) *VAST {
 		Value: sValue,
 	}
 	//check which type
-	if v.Ad[0].Wrapper != nil {
-		if v.Ad[0].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative)
+	if v.Ad[v.GetAdPos()].Wrapper != nil {
+		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
 				//add to the list
-				idy := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+				idy := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
 				if idy > 0 {
-					v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].NonLinearClickThrough = data
+					v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].NonLinearClickThrough = data
 				}
 			}
 		}
-	} else if v.Ad[0].InLine != nil {
-		if v.Ad[0].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative)
+	} else if v.Ad[v.GetAdPos()].InLine != nil {
+		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
 				//add to the list
-				idy := len(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+				idy := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
 				if idy > 0 {
-					v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].NonLinearClickThrough = data
+					v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].NonLinearClickThrough = data
 				}
 			}
 		}
@@ -223,25 +223,25 @@ func (v *VAST) SetNonLinearClickTracking(sID, sValue string) *VAST {
 		Value: sValue,
 	}
 	//check which type
-	if v.Ad[0].Wrapper != nil {
-		if v.Ad[0].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative)
+	if v.Ad[v.GetAdPos()].Wrapper != nil {
+		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
 				//add to the list
-				idy := len(v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+				idy := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
 				if idy > 0 {
-					v.Ad[0].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].NonLinearClickTracking = data
+					v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].NonLinearClickTracking = data
 				}
 			}
 		}
-	} else if v.Ad[0].InLine != nil {
-		if v.Ad[0].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative)
+	} else if v.Ad[v.GetAdPos()].InLine != nil {
+		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
+			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
 				//add to the list
-				idy := len(v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+				idy := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
 				if idy > 0 {
-					v.Ad[0].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].NonLinearClickTracking = data
+					v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].NonLinearClickTracking = data
 				}
 			}
 		}

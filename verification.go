@@ -17,16 +17,16 @@ func (v *VAST) SetVerification(jscript *JavaScriptResource, verificationp *Verif
 		TrackingEvents:         trkevents,
 	}
 	//check which type
-	if v.Ad[0].Wrapper != nil {
-		if v.Ad[0].Wrapper.InLineWrapperData.AdVerifications == nil {
-			v.Ad[0].Wrapper.InLineWrapperData.AdVerifications = &AdVerifications{}
+	if v.Ad[v.GetAdPos()].Wrapper != nil {
+		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdVerifications == nil {
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdVerifications = &AdVerifications{}
 		}
-		v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification = append(v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification, data)
-	} else if v.Ad[0].InLine != nil {
-		if v.Ad[0].InLine.InLineWrapperData.AdVerifications == nil {
-			v.Ad[0].InLine.InLineWrapperData.AdVerifications = &AdVerifications{}
+		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdVerifications.Verification = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdVerifications.Verification, data)
+	} else if v.Ad[v.GetAdPos()].InLine != nil {
+		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdVerifications == nil {
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdVerifications = &AdVerifications{}
 		}
-		v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification = append(v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification, data)
+		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdVerifications.Verification = append(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdVerifications.Verification, data)
 	}
 	//good ;-)
 	return v
@@ -48,22 +48,22 @@ func (v *VAST) SetVerificationJavaScriptResource(sID, sValue string) *VAST {
 		Value: sValue,
 	}
 	//check which type
-	if v.Ad[0].Wrapper != nil {
-		if v.Ad[0].Wrapper.InLineWrapperData.AdVerifications == nil {
-			v.Ad[0].Wrapper.InLineWrapperData.AdVerifications = &AdVerifications{}
+	if v.Ad[v.GetAdPos()].Wrapper != nil {
+		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdVerifications == nil {
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdVerifications = &AdVerifications{}
 		}
 
-		idx := len(v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification)
+		idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdVerifications.Verification)
 		if idx > 0 {
-			v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification[idx-1].JavaScriptResource = data
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdVerifications.Verification[idx-1].JavaScriptResource = data
 		}
-	} else if v.Ad[0].InLine != nil {
-		if v.Ad[0].InLine.InLineWrapperData.AdVerifications == nil {
-			v.Ad[0].InLine.InLineWrapperData.AdVerifications = &AdVerifications{}
+	} else if v.Ad[v.GetAdPos()].InLine != nil {
+		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdVerifications == nil {
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdVerifications = &AdVerifications{}
 		}
-		idx := len(v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification)
+		idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdVerifications.Verification)
 		if idx > 0 {
-			v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification[idx-1].JavaScriptResource = data
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdVerifications.Verification[idx-1].JavaScriptResource = data
 		}
 	}
 	//good ;-)
@@ -86,22 +86,22 @@ func (v *VAST) SetVerificationVerificationParameters(sID, sValue string) *VAST {
 		Value: sValue,
 	}
 	//check which type
-	if v.Ad[0].Wrapper != nil {
-		if v.Ad[0].Wrapper.InLineWrapperData.AdVerifications == nil {
-			v.Ad[0].Wrapper.InLineWrapperData.AdVerifications = &AdVerifications{}
+	if v.Ad[v.GetAdPos()].Wrapper != nil {
+		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdVerifications == nil {
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdVerifications = &AdVerifications{}
 		}
 
-		idx := len(v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification)
+		idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdVerifications.Verification)
 		if idx > 0 {
-			v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification[idx-1].VerificationParameters = data
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdVerifications.Verification[idx-1].VerificationParameters = data
 		}
-	} else if v.Ad[0].InLine != nil {
-		if v.Ad[0].InLine.InLineWrapperData.AdVerifications == nil {
-			v.Ad[0].InLine.InLineWrapperData.AdVerifications = &AdVerifications{}
+	} else if v.Ad[v.GetAdPos()].InLine != nil {
+		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdVerifications == nil {
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdVerifications = &AdVerifications{}
 		}
-		idx := len(v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification)
+		idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdVerifications.Verification)
 		if idx > 0 {
-			v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification[idx-1].VerificationParameters = data
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdVerifications.Verification[idx-1].VerificationParameters = data
 		}
 	}
 	//good ;-)
@@ -126,28 +126,28 @@ func (v *VAST) SetVerificationTracking(sEvent, sOffset, sValue string) *VAST {
 	}
 
 	//check which type
-	if v.Ad[0].Wrapper != nil {
-		if v.Ad[0].Wrapper.InLineWrapperData.AdVerifications == nil {
-			v.Ad[0].Wrapper.InLineWrapperData.AdVerifications = &AdVerifications{}
+	if v.Ad[v.GetAdPos()].Wrapper != nil {
+		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdVerifications == nil {
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdVerifications = &AdVerifications{}
 		}
 
-		idx := len(v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification)
+		idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdVerifications.Verification)
 		if idx > 0 {
-			if nil == v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents {
-				v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents = &TrackingEvents{}
+			if nil == v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents {
+				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents = &TrackingEvents{}
 			}
-			v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents.Tracking = append(v.Ad[0].Wrapper.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents.Tracking, data)
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents.Tracking = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents.Tracking, data)
 		}
-	} else if v.Ad[0].InLine != nil {
-		if v.Ad[0].InLine.InLineWrapperData.AdVerifications == nil {
-			v.Ad[0].InLine.InLineWrapperData.AdVerifications = &AdVerifications{}
+	} else if v.Ad[v.GetAdPos()].InLine != nil {
+		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdVerifications == nil {
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdVerifications = &AdVerifications{}
 		}
-		idx := len(v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification)
+		idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdVerifications.Verification)
 		if idx > 0 {
-			if nil == v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents {
-				v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents = &TrackingEvents{}
+			if nil == v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents {
+				v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents = &TrackingEvents{}
 			}
-			v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents.Tracking = append(v.Ad[0].InLine.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents.Tracking, data)
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents.Tracking = append(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdVerifications.Verification[idx-1].TrackingEvents.Tracking, data)
 		}
 	}
 	//good ;-)

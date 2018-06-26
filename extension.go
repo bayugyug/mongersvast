@@ -18,16 +18,16 @@ func (v *VAST) SetExtension(sType, sValue string, total *TotalAvailable, adverif
 		AdVerifications: adverifications,
 	}
 	//check which type
-	if v.Ad[0].Wrapper != nil {
-		if v.Ad[0].Wrapper.InLineWrapperData.Extensions == nil {
-			v.Ad[0].Wrapper.InLineWrapperData.Extensions = &Extensions{}
+	if v.Ad[v.GetAdPos()].Wrapper != nil {
+		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions == nil {
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions = &Extensions{}
 		}
-		v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension = append(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension, data)
-	} else if v.Ad[0].InLine != nil {
-		if v.Ad[0].InLine.InLineWrapperData.Extensions == nil {
-			v.Ad[0].InLine.InLineWrapperData.Extensions = &Extensions{}
+		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension, data)
+	} else if v.Ad[v.GetAdPos()].InLine != nil {
+		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions == nil {
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions = &Extensions{}
 		}
-		v.Ad[0].InLine.InLineWrapperData.Extensions.Extension = append(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension, data)
+		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension = append(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension, data)
 	}
 	//good ;-)
 	return v
@@ -48,21 +48,21 @@ func (v *VAST) SetExtensionTotalAvailable(sValue string) *VAST {
 		Value: sValue,
 	}
 	//check which type
-	if v.Ad[0].Wrapper != nil {
-		if v.Ad[0].Wrapper.InLineWrapperData.Extensions == nil {
-			v.Ad[0].Wrapper.InLineWrapperData.Extensions = &Extensions{}
+	if v.Ad[v.GetAdPos()].Wrapper != nil {
+		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions == nil {
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions = &Extensions{}
 		}
-		idx := len(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension)
+		idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension)
 		if idx > 0 {
-			v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].TotalAvailable = data
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].TotalAvailable = data
 		}
-	} else if v.Ad[0].InLine != nil {
-		if v.Ad[0].InLine.InLineWrapperData.Extensions == nil {
-			v.Ad[0].InLine.InLineWrapperData.Extensions = &Extensions{}
+	} else if v.Ad[v.GetAdPos()].InLine != nil {
+		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions == nil {
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions = &Extensions{}
 		}
-		idx := len(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension)
+		idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension)
 		if idx > 0 {
-			v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].TotalAvailable = data
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension[idx-1].TotalAvailable = data
 		}
 	}
 	//good ;-)
@@ -86,27 +86,27 @@ func (v *VAST) SetExtensionAdVerification(js *JavaScriptResource, vp *Verificati
 		TrackingEvents:         tk,
 	}
 	//check which type
-	if v.Ad[0].Wrapper != nil {
-		if v.Ad[0].Wrapper.InLineWrapperData.Extensions == nil {
-			v.Ad[0].Wrapper.InLineWrapperData.Extensions = &Extensions{}
+	if v.Ad[v.GetAdPos()].Wrapper != nil {
+		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions == nil {
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions = &Extensions{}
 		}
-		idx := len(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension)
+		idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension)
 		if idx > 0 {
-			if nil == v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
-				v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
+			if nil == v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
+				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
 			}
-			v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification = append(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification, data)
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification, data)
 		}
-	} else if v.Ad[0].InLine != nil {
-		if v.Ad[0].InLine.InLineWrapperData.Extensions == nil {
-			v.Ad[0].InLine.InLineWrapperData.Extensions = &Extensions{}
+	} else if v.Ad[v.GetAdPos()].InLine != nil {
+		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions == nil {
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions = &Extensions{}
 		}
-		idx := len(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension)
+		idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension)
 		if idx > 0 {
-			if nil == v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
-				v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
+			if nil == v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
+				v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
 			}
-			v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification = append(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification, data)
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification = append(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification, data)
 		}
 	}
 	//good ;-)
@@ -129,32 +129,32 @@ func (v *VAST) SetExtensionJavaScriptResource(sID, sValue string) *VAST {
 		Value: sValue,
 	}
 	//check which type
-	if v.Ad[0].Wrapper != nil {
-		if v.Ad[0].Wrapper.InLineWrapperData.Extensions == nil {
-			v.Ad[0].Wrapper.InLineWrapperData.Extensions = &Extensions{}
+	if v.Ad[v.GetAdPos()].Wrapper != nil {
+		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions == nil {
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions = &Extensions{}
 		}
-		idx := len(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension)
+		idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension)
 		if idx > 0 {
-			if nil == v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
-				v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
+			if nil == v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
+				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
 			}
-			idy := len(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification)
+			idy := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification)
 			if idy > 0 {
-				v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].JavaScriptResource = data
+				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].JavaScriptResource = data
 			}
 		}
-	} else if v.Ad[0].InLine != nil {
-		if v.Ad[0].InLine.InLineWrapperData.Extensions == nil {
-			v.Ad[0].InLine.InLineWrapperData.Extensions = &Extensions{}
+	} else if v.Ad[v.GetAdPos()].InLine != nil {
+		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions == nil {
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions = &Extensions{}
 		}
-		idx := len(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension)
+		idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension)
 		if idx > 0 {
-			if nil == v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
-				v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
+			if nil == v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
+				v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
 			}
-			idy := len(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification)
+			idy := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification)
 			if idy > 0 {
-				v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].JavaScriptResource = data
+				v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].JavaScriptResource = data
 			}
 		}
 	}
@@ -178,32 +178,32 @@ func (v *VAST) SetExtensionVerificationParameters(sID, sValue string) *VAST {
 		Value: sValue,
 	}
 	//check which type
-	if v.Ad[0].Wrapper != nil {
-		if v.Ad[0].Wrapper.InLineWrapperData.Extensions == nil {
-			v.Ad[0].Wrapper.InLineWrapperData.Extensions = &Extensions{}
+	if v.Ad[v.GetAdPos()].Wrapper != nil {
+		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions == nil {
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions = &Extensions{}
 		}
-		idx := len(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension)
+		idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension)
 		if idx > 0 {
-			if nil == v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
-				v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
+			if nil == v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
+				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
 			}
-			idy := len(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification)
+			idy := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification)
 			if idy > 0 {
-				v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].VerificationParameters = data
+				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].VerificationParameters = data
 			}
 		}
-	} else if v.Ad[0].InLine != nil {
-		if v.Ad[0].InLine.InLineWrapperData.Extensions == nil {
-			v.Ad[0].InLine.InLineWrapperData.Extensions = &Extensions{}
+	} else if v.Ad[v.GetAdPos()].InLine != nil {
+		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions == nil {
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions = &Extensions{}
 		}
-		idx := len(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension)
+		idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension)
 		if idx > 0 {
-			if nil == v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
-				v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
+			if nil == v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
+				v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
 			}
-			idy := len(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification)
+			idy := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification)
 			if idy > 0 {
-				v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].VerificationParameters = data
+				v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].VerificationParameters = data
 			}
 		}
 	}
@@ -228,38 +228,38 @@ func (v *VAST) SetExtensionTracking(sEvent, sOffset, sValue string) *VAST {
 		Offset: sOffset,
 	}
 	//check which type
-	if v.Ad[0].Wrapper != nil {
-		if v.Ad[0].Wrapper.InLineWrapperData.Extensions == nil {
-			v.Ad[0].Wrapper.InLineWrapperData.Extensions = &Extensions{}
+	if v.Ad[v.GetAdPos()].Wrapper != nil {
+		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions == nil {
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions = &Extensions{}
 		}
-		idx := len(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension)
+		idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension)
 		if idx > 0 {
-			if nil == v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
-				v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
+			if nil == v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
+				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
 			}
-			idy := len(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification)
+			idy := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification)
 			if idy > 0 {
-				if nil == v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents {
-					v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents = &TrackingEvents{}
+				if nil == v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents {
+					v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents = &TrackingEvents{}
 				}
-				v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents.Tracking = append(v.Ad[0].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents.Tracking, data)
+				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents.Tracking = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents.Tracking, data)
 			}
 		}
-	} else if v.Ad[0].InLine != nil {
-		if v.Ad[0].InLine.InLineWrapperData.Extensions == nil {
-			v.Ad[0].InLine.InLineWrapperData.Extensions = &Extensions{}
+	} else if v.Ad[v.GetAdPos()].InLine != nil {
+		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions == nil {
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions = &Extensions{}
 		}
-		idx := len(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension)
+		idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension)
 		if idx > 0 {
-			if nil == v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
-				v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
+			if nil == v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications {
+				v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications = &AdVerifications{}
 			}
-			idy := len(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification)
+			idy := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification)
 			if idy > 0 {
-				if nil == v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents {
-					v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents = &TrackingEvents{}
+				if nil == v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents {
+					v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents = &TrackingEvents{}
 				}
-				v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents.Tracking = append(v.Ad[0].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents.Tracking, data)
+				v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents.Tracking = append(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Extensions.Extension[idx-1].AdVerifications.Verification[idy-1].TrackingEvents.Tracking, data)
 			}
 		}
 	}
