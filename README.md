@@ -1,7 +1,7 @@
 ## mongersvast
 
-- [x] Simple golang utility library on formatting/manipulating of VAST XML
-- [x] Supports VAST 1.0, 2.0, 3.0
+* [x] Simple golang utility library on formatting/manipulating of VAST XML
+* [x] Supports VAST 1.0, 2.0, 3.0
 
 
 ### Install
