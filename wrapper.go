@@ -18,6 +18,7 @@ func (v *VAST) SetWrapperAd(wrapperID, followAdditionalWrappers, allowMultipleAd
 		FallbackOnNoAd:           fallbackOnNoAd,
 		InLineWrapperData:        InLineWrapperData{},
 	}
+	v.Ad[v.GetAdPos()].InLine = nil
 	//good ;-)
 	return v
 }

@@ -15,6 +15,7 @@ func (v *VAST) SetInLineAd(inlineID string) *VAST {
 		ID:                inlineID,
 		InLineWrapperData: InLineWrapperData{},
 	}
+	v.Ad[v.GetAdPos()].Wrapper = nil
 	//good ;-)
 	return v
 }
