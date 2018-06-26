@@ -194,9 +194,9 @@ func (v *VAST) LenCreative(s string) int {
 		}
 	}
 	//just in case
-	if v.IsAdHasCreatives(s) {
+	if strings.EqualFold(s, AdTypeIsWrapper) && v.IsAdHasCreatives(s) {
 		return len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
-	} else if v.IsAdHasCreatives(s) {
+	} else if strings.EqualFold(s, AdTypeIsInline) && v.IsAdHasCreatives(s) {
 		return len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
 	}
 	//good ;-)
