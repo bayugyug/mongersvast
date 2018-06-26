@@ -695,7 +695,7 @@ func main() {
 
 
 
-** Simple Inline Companion Tag via Cascade Methods
+* Simple Inline Companion Tag via Cascade Methods
 
 ```go
 
@@ -715,14 +715,22 @@ func main() {
 
 	vst.
 		SetVersion("3.0").
-		SetAd("1", "id01", "1", "false").
+		SetAd(
+            "1",    //version
+            "id01", //id
+            "1",    //sequence
+            "false",//adConditional
+        ).
 		SetInLineAd("in01").
 		SetAdSystem("VAST Inline Simple With Non-Linear").
 		SetAdTitle("Ad title here").
 		SetAdServingID("", "ADID_INnonLINEARTEST_ABC123").
 		SetDescription("Ad desc here ;-)").
 		SetErrorURL("http://mongers.vast.utils/error").
-		SetImpressionURL("imp1", "http://mongers.vast.utils/impression1").
+		SetImpressionURL(
+            "imp1",  //ID
+            "http://mongers.vast.utils/impression1", //URL
+        ).
 		SetCreative(
 			"1", //ID
 			"",  //AdID
