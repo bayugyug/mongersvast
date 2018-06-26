@@ -1,6 +1,7 @@
 package mongersvast
 
 import (
+	"crypto/md5"
 	"fmt"
 	"io"
 	"math/rand"
@@ -64,7 +65,8 @@ func fmtAdUUID(pfx string) string {
 	if len(pfx) <= 0 {
 		pfx = "070704"
 	}
-	return fmt.Sprintf("%s%05x%10x", pfx, rand.Intn(99999), time.Now().UTC().UnixNano())
+	t := fmt.Sprintf("%s%05x%10x", pfx, rand.Intn(99999), time.Now().UTC().UnixNano())
+	return fmt.Sprintf("%x", md5.Sum([]byte("070704"+t)))
 }
 
 //SetXMLHeaders set the xml headers simply
