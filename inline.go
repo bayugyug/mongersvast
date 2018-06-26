@@ -49,6 +49,23 @@ func (v *VAST) FormatAd() *VAST {
 	return v
 }
 
+//GetAdPos get the last index
+func (v *VAST) GetAdPos() int {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	//just in case
+	idx := len(v.Ad)
+	if idx > 0 {
+		return (idx - 1)
+	}
+	//good ;-)
+	return 0
+}
+
 //FormatAdAttrs sync all possible options/attrs
 func (v *VAST) FormatAdAttrs(attrs AdAttributes) {
 	//just in case ;-)
