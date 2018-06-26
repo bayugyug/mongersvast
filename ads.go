@@ -1,5 +1,7 @@
 package mongersvast
 
+import "strings"
+
 //NewVAST get instance on VAST object
 func (v *VAST) NewVAST(version string) *VAST {
 	//minimal config
@@ -163,4 +165,40 @@ func (v *VAST) IsAdInLine() bool {
 	}
 	//good ;-)
 	return false
+}
+
+//IsAdHasCreatives check if creative element is valid
+func (v *VAST) IsAdHasCreatives(s string) bool {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	//just in case
+	if strings.EqualFold(s, AdTypeIsWrapper) && v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
+		return true
+	} else if strings.EqualFold(s, AdTypeIsInline) && v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
+		return true
+	}
+	//good ;-)
+	return false
+}
+
+//LenCreative get total length of creatives.creative
+func (v *VAST) LenCreative(s string) int {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	//just in case
+	if v.IsAdHasCreatives(s) {
+		return len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+	} else if v.IsAdHasCreatives(s) {
+		return len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+	}
+	//good ;-)
+	return 0
 }

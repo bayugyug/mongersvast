@@ -15,6 +15,8 @@ var (
 	VastXMLVer3               = "3.0"
 	VastXMLVer4               = "4.0"
 	VastXMLHeader             = `<?xml version="1.0" encoding="UTF-8"?>`
+	AdTypeIsInline            = "inline"
+	AdTypeIsWrapper           = "wrapper"
 )
 
 //const for sample vast xmls
