@@ -132,3 +132,35 @@ func (v *VAST) SetAd(adVersion, adID, adSequence, adConditional string) *VAST {
 	//good ;-)
 	return v
 }
+
+//IsAdWrapper check ad type
+func (v *VAST) IsAdWrapper() bool {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	//just in case
+	if v.Ad[v.GetAdPos()].Wrapper != nil {
+		return true
+	}
+	//good ;-)
+	return false
+}
+
+//IsAdInLine check ad type
+func (v *VAST) IsAdInLine() bool {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	//just in case
+	if v.Ad[v.GetAdPos()].InLine != nil {
+		return true
+	}
+	//good ;-)
+	return false
+}
