@@ -16,14 +16,14 @@ func (v *VAST) SetNonLinear(row *NonLinearAds) *VAST {
 		data = &NonLinearAds{}
 	}
 	//check which type
-	if v.Ad[v.GetAdPos()].Wrapper != nil {
+	if v.IsAdWrapper() {
 		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
 			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
 				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds = data
 			}
 		}
-	} else if v.Ad[v.GetAdPos()].InLine != nil {
+	} else if v.IsAdInLine() {
 		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
 			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
@@ -52,7 +52,7 @@ func (v *VAST) SetNonLinearTracking(sEvent, sOffset, sValue string) *VAST {
 		Offset: sOffset,
 	}
 	//check which type
-	if v.Ad[v.GetAdPos()].Wrapper != nil {
+	if v.IsAdWrapper() {
 		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
 			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
@@ -63,7 +63,7 @@ func (v *VAST) SetNonLinearTracking(sEvent, sOffset, sValue string) *VAST {
 				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents.Tracking = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents.Tracking, data)
 			}
 		}
-	} else if v.Ad[v.GetAdPos()].InLine != nil {
+	} else if v.IsAdInLine() {
 		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
 			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
@@ -100,7 +100,7 @@ func (v *VAST) SetNonLinearAd(sID, sAPIFramework, sWidth, sHeight, sMinSuggested
 		MinSuggestedDuration: sMinSuggestedDuration,
 	}
 	//check which type
-	if v.Ad[v.GetAdPos()].Wrapper != nil {
+	if v.IsAdWrapper() {
 		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
 			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
@@ -108,7 +108,7 @@ func (v *VAST) SetNonLinearAd(sID, sAPIFramework, sWidth, sHeight, sMinSuggested
 				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear, data)
 			}
 		}
-	} else if v.Ad[v.GetAdPos()].InLine != nil {
+	} else if v.IsAdInLine() {
 		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
 			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
@@ -137,7 +137,7 @@ func (v *VAST) SetNonLinearStaticResource(sType, sValue string) *VAST {
 		Value:        sValue,
 	}
 	//check which type
-	if v.Ad[v.GetAdPos()].Wrapper != nil {
+	if v.IsAdWrapper() {
 		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
 			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
@@ -148,7 +148,7 @@ func (v *VAST) SetNonLinearStaticResource(sType, sValue string) *VAST {
 				}
 			}
 		}
-	} else if v.Ad[v.GetAdPos()].InLine != nil {
+	} else if v.IsAdInLine() {
 		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
 			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
@@ -180,7 +180,7 @@ func (v *VAST) SetNonLinearClickThrough(sID, sValue string) *VAST {
 		Value: sValue,
 	}
 	//check which type
-	if v.Ad[v.GetAdPos()].Wrapper != nil {
+	if v.IsAdWrapper() {
 		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
 			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
@@ -191,7 +191,7 @@ func (v *VAST) SetNonLinearClickThrough(sID, sValue string) *VAST {
 				}
 			}
 		}
-	} else if v.Ad[v.GetAdPos()].InLine != nil {
+	} else if v.IsAdInLine() {
 		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
 			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
@@ -223,7 +223,7 @@ func (v *VAST) SetNonLinearClickTracking(sID, sValue string) *VAST {
 		Value: sValue,
 	}
 	//check which type
-	if v.Ad[v.GetAdPos()].Wrapper != nil {
+	if v.IsAdWrapper() {
 		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
 			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
@@ -234,7 +234,7 @@ func (v *VAST) SetNonLinearClickTracking(sID, sValue string) *VAST {
 				}
 			}
 		}
-	} else if v.Ad[v.GetAdPos()].InLine != nil {
+	} else if v.IsAdInLine() {
 		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
 			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {

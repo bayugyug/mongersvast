@@ -38,9 +38,9 @@ func (v *VAST) SetVASTAdTagURI(adID, adValue string) *VAST {
 		Value: adValue,
 	}
 	//check which type
-	if v.Ad[v.GetAdPos()].Wrapper != nil {
+	if v.IsAdWrapper() {
 		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.VASTAdTagURI = data
-	} else if v.Ad[v.GetAdPos()].InLine != nil {
+	} else if v.IsAdInLine() {
 		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.VASTAdTagURI = data
 	}
 	//good ;-)

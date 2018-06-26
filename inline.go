@@ -34,9 +34,9 @@ func (v *VAST) SetAdSystem(s string) *VAST {
 		Value: s,
 	}
 	//check which type
-	if v.Ad[v.GetAdPos()].Wrapper != nil {
+	if v.IsAdWrapper() {
 		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdSystem = data
-	} else if v.Ad[v.GetAdPos()].InLine != nil {
+	} else if v.IsAdInLine() {
 		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdSystem = data
 	}
 	//good ;-)
@@ -58,9 +58,9 @@ func (v *VAST) SetAdTitle(s string) *VAST {
 		Value: s,
 	}
 	//check which type
-	if v.Ad[v.GetAdPos()].Wrapper != nil {
+	if v.IsAdWrapper() {
 		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdTitle = data
-	} else if v.Ad[v.GetAdPos()].InLine != nil {
+	} else if v.IsAdInLine() {
 		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdTitle = data
 	}
 	//good ;-)
@@ -82,9 +82,9 @@ func (v *VAST) SetDescription(s string) *VAST {
 		Value: s,
 	}
 	//check which type
-	if v.Ad[v.GetAdPos()].Wrapper != nil {
+	if v.IsAdWrapper() {
 		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Description = data
-	} else if v.Ad[v.GetAdPos()].InLine != nil {
+	} else if v.IsAdInLine() {
 		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Description = data
 	}
 	//good ;-)
@@ -106,9 +106,9 @@ func (v *VAST) SetErrorURL(s string) *VAST {
 		Value: s,
 	}
 	//check which type
-	if v.Ad[v.GetAdPos()].Wrapper != nil {
+	if v.IsAdWrapper() {
 		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Error = data
-	} else if v.Ad[v.GetAdPos()].InLine != nil {
+	} else if v.IsAdInLine() {
 		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Error = data
 	}
 	//good ;-)
@@ -131,9 +131,9 @@ func (v *VAST) SetImpressionURL(impID, impURL string) *VAST {
 		Value: impURL,
 	}
 	//check which type
-	if v.Ad[v.GetAdPos()].Wrapper != nil {
+	if v.IsAdWrapper() {
 		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Impression = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Impression, data)
-	} else if v.Ad[v.GetAdPos()].InLine != nil {
+	} else if v.IsAdInLine() {
 		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Impression = append(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Impression, data)
 	}
 	//good ;-)
@@ -156,9 +156,9 @@ func (v *VAST) SetAdServingID(adID, adValue string) *VAST {
 		Value: adValue,
 	}
 	//check which type
-	if v.Ad[v.GetAdPos()].Wrapper != nil {
+	if v.IsAdWrapper() {
 		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.AdServingID = data
-	} else if v.Ad[v.GetAdPos()].InLine != nil {
+	} else if v.IsAdInLine() {
 		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.AdServingID = data
 	}
 	//good ;-)
@@ -180,9 +180,9 @@ func (v *VAST) SetSurvey(s string) *VAST {
 		Value: s,
 	}
 	//check which type
-	if v.Ad[v.GetAdPos()].Wrapper != nil {
+	if v.IsAdWrapper() {
 		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Survey = data
-	} else if v.Ad[v.GetAdPos()].InLine != nil {
+	} else if v.IsAdInLine() {
 		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Survey = data
 	}
 	//good ;-)
@@ -207,9 +207,9 @@ func (v *VAST) SetViewableImpression(sID string, viewable *Viewable, notviewable
 		ViewUndetermined: undetermined,
 	}
 	//check which type
-	if v.Ad[v.GetAdPos()].Wrapper != nil {
+	if v.IsAdWrapper() {
 		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression, data)
-	} else if v.Ad[v.GetAdPos()].InLine != nil {
+	} else if v.IsAdInLine() {
 		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression = append(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression, data)
 	}
 	//good ;-)
@@ -234,9 +234,9 @@ func (v *VAST) SetPricing(adID, adModel, adCurr, adValue string) *VAST {
 		Value:    adValue,
 	}
 	//check which type
-	if v.Ad[v.GetAdPos()].Wrapper != nil {
+	if v.IsAdWrapper() {
 		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Pricing = data
-	} else if v.Ad[v.GetAdPos()].InLine != nil {
+	} else if v.IsAdInLine() {
 		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Pricing = data
 	}
 	//good ;-)
@@ -258,9 +258,9 @@ func (v *VAST) SetAdvertiser(s string) *VAST {
 		Value: s,
 	}
 	//check which type
-	if v.Ad[v.GetAdPos()].Wrapper != nil {
+	if v.IsAdWrapper() {
 		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Advertiser = data
-	} else if v.Ad[v.GetAdPos()].InLine != nil {
+	} else if v.IsAdInLine() {
 		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Advertiser = data
 	}
 	//good ;-)
@@ -284,9 +284,9 @@ func (v *VAST) SetCategory(sID, sAuth, sValue string) *VAST {
 		Value:     sValue,
 	}
 	//check which type
-	if v.Ad[v.GetAdPos()].Wrapper != nil {
+	if v.IsAdWrapper() {
 		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Category = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Category, data)
-	} else if v.Ad[v.GetAdPos()].InLine != nil {
+	} else if v.IsAdInLine() {
 		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Category = append(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Category, data)
 	}
 	//good ;-)
@@ -315,12 +315,12 @@ func (v *VAST) SetCreativeRow(sID, sAdID, sSequence, sFramework string, linear *
 		UniversalAdID: universal,
 	}
 	//check which type
-	if v.Ad[v.GetAdPos()].Wrapper != nil {
+	if v.IsAdWrapper() {
 		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives == nil {
 			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives = &Creatives{}
 		}
 		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative, data)
-	} else if v.Ad[v.GetAdPos()].InLine != nil {
+	} else if v.IsAdInLine() {
 		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives == nil {
 			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives = &Creatives{}
 		}
@@ -348,12 +348,12 @@ func (v *VAST) SetCreative(sID, sAdID, sSequence, sFramework string) *VAST {
 		APIFramework: sFramework,
 	}
 	//check which type
-	if v.Ad[v.GetAdPos()].Wrapper != nil {
+	if v.IsAdWrapper() {
 		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives == nil {
 			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives = &Creatives{}
 		}
 		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative, data)
-	} else if v.Ad[v.GetAdPos()].InLine != nil {
+	} else if v.IsAdInLine() {
 		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives == nil {
 			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives = &Creatives{}
 		}
@@ -381,14 +381,14 @@ func (v *VAST) SetUniversalAdID(sID, sIDRegistry, sIDValue, sValue string) *VAST
 		Value:      sValue,
 	}
 	//check which type
-	if v.Ad[v.GetAdPos()].Wrapper != nil {
+	if v.IsAdWrapper() {
 		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
 			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
 				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].UniversalAdID = data
 			}
 		}
-	} else if v.Ad[v.GetAdPos()].InLine != nil {
+	} else if v.IsAdInLine() {
 		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
 			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
