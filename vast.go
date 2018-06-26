@@ -44,6 +44,7 @@ const (
 	TrkEventMute             = "mute"
 	TrkEventUnMute           = "unmute"
 	TrkEventFullscreen       = "fullscreen"
+	TrkEventSkip             = "skip"
 	VastXMLNs                = "http://www.iab.com/VAST"
 	VastXMLNsXs              = "http://www.w3.org/2001/XMLSchema"
 )
@@ -65,6 +66,7 @@ var TrackingEventTypes = map[string]string{
 	"Mute":             TrkEventMute,
 	"UnMute":           TrkEventUnMute,
 	"Fullscreen":       TrkEventFullscreen,
+	"Skip":             TrkEventSkip,
 }
 
 //VastOptions attrs generic
@@ -178,6 +180,7 @@ type Companion struct {
 	StaticResource        *StaticResource        `xml:",omitempty"`
 	CompanionClickThrough *CompanionClickThrough `xml:",omitempty"`
 	TrackingEvents        *TrackingEvents        `xml:",omitempty"`
+	AdParameters          *AdParameters          `xml:",omitempty"`
 }
 
 //MediaFiles is an element list
@@ -226,10 +229,12 @@ type TrackingEvents struct {
 
 //Linear is an element of the VAST structure
 type Linear struct {
+	SkipOffset     string          `xml:"skipoffset,attr,omitempty"`
 	Duration       *Duration       `xml:",omitempty"`
 	TrackingEvents *TrackingEvents `xml:",omitempty"`
 	VideoClicks    *VideoClicks    `xml:",omitempty"`
 	MediaFiles     *MediaFiles     `xml:",omitempty"`
+	Icons          *Icons          `xml:",omitempty"`
 }
 
 //Creative is an element of the VAST structure
@@ -479,6 +484,74 @@ type ViewableImpression struct {
 type Code struct {
 	ID    string `xml:"id,attr,omitempty"`
 	Value string `xml:",cdata"`
+}
+
+//AdParameters vast ad params
+type AdParameters struct {
+	ID    string `xml:"id,attr,omitempty"`
+	Value string `xml:",cdata"`
+}
+
+//AltText vast ad params
+type AltText struct {
+	ID    string `xml:"id,attr,omitempty"`
+	Value string `xml:",cdata"`
+}
+
+//CustomXML ext custom
+type CustomXML struct {
+	ID    string `xml:"id,attr,omitempty"`
+	Value string `xml:",cdata"`
+}
+
+//Icons is an element list
+type Icons struct {
+	Icon []*Icon `xml:",omitempty"`
+}
+
+//Icon is an element of the VAST structure
+type Icon struct {
+	ID               string            `xml:"id,attr,omitempty"`
+	Program          string            `xml:"program,attr,omitempty"`
+	Width            string            `xml:"width,attr,omitempty"`
+	Height           string            `xml:"height,attr,omitempty"`
+	XPosition        string            `xml:"xPosition,attr,omitempty"`
+	YPosition        string            `xml:"yPosition,attr,omitempty"`
+	Duration         string            `xml:"duration,attr,omitempty"`
+	Offset           string            `xml:"offset,attr,omitempty"`
+	APIFramework     string            `xml:"apiFramework,attr,omitempty"`
+	HTMLResource     *HTMLResource     `xml:",omitempty"`
+	IFrameResource   *IFrameResource   `xml:",omitempty"`
+	StaticResource   *StaticResource   `xml:",omitempty"`
+	IconClicks       *IconClicks       `xml:",omitempty"`
+	IconViewTracking *IconViewTracking `xml:",omitempty"`
+}
+
+//IconClicks is an element of the VAST structure
+type IconClicks struct {
+	IconClickThrough  *IconClickThrough  `xml:",omitempty"`
+	IconClickTracking *IconClickTracking `xml:",omitempty"`
+}
+
+//IconViewTracking vast url
+type IconViewTracking struct {
+	ID    string `xml:"id,attr,omitempty"`
+	Value string `xml:",cdata"`
+	URL   []*URL `xml:",omitempty"`
+}
+
+//IconClickThrough vast url
+type IconClickThrough struct {
+	ID    string `xml:"id,attr,omitempty"`
+	Value string `xml:",cdata"`
+	URL   []*URL `xml:",omitempty"`
+}
+
+//IconClickTracking vast url
+type IconClickTracking struct {
+	ID    string `xml:"id,attr,omitempty"`
+	Value string `xml:",cdata"`
+	URL   []*URL `xml:",omitempty"`
 }
 
 // xml members that are for CDATA
