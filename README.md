@@ -15,7 +15,7 @@ go get -u -v github.com/bayugyug/mongersvast
 ### Mini-How-To
 
 
-### * Load XML from string
+* Load XML from string
 
 ```go
 
