@@ -45,6 +45,7 @@ const (
 	TrkEventUnMute           = "unmute"
 	TrkEventFullscreen       = "fullscreen"
 	TrkEventSkip             = "skip"
+	TrkEventProgress         = "progress"
 	VastXMLNs                = "http://www.iab.com/VAST"
 	VastXMLNsXs              = "http://www.w3.org/2001/XMLSchema"
 )
@@ -67,6 +68,7 @@ var TrackingEventTypes = map[string]string{
 	"UnMute":           TrkEventUnMute,
 	"Fullscreen":       TrkEventFullscreen,
 	"Skip":             TrkEventSkip,
+	"Progress":         TrkEventProgress,
 }
 
 //VastOptions attrs generic
