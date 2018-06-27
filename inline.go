@@ -317,12 +317,12 @@ func (v *VAST) SetCreativeRow(sID, sAdID, sSequence, sFramework string, linear *
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives == nil {
+		if !v.IsAdHasCreatives(AdTypeIsWrapper) {
 			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives = &Creatives{}
 		}
 		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative, data)
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives == nil {
+		if !v.IsAdHasCreatives(AdTypeIsInline) {
 			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives = &Creatives{}
 		}
 		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative = append(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative, data)
@@ -350,12 +350,12 @@ func (v *VAST) SetCreative(sID, sAdID, sSequence, sFramework string) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives == nil {
+		if !v.IsAdHasCreatives(AdTypeIsWrapper) {
 			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives = &Creatives{}
 		}
 		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative, data)
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives == nil {
+		if !v.IsAdHasCreatives(AdTypeIsInline) {
 			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives = &Creatives{}
 		}
 		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative = append(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative, data)
@@ -383,14 +383,14 @@ func (v *VAST) SetUniversalAdID(sID, sIDRegistry, sIDValue, sValue string) *VAST
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
 			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
 				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].UniversalAdID = data
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
+		if v.IsAdHasCreatives(AdTypeIsInline) {
 			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
 			if idx > 0 {
 				v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].UniversalAdID = data

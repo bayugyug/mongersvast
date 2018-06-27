@@ -17,15 +17,15 @@ func (v *VAST) SetLinear(row *Linear) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].Linear = data
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].Linear = data
 			}
@@ -52,15 +52,15 @@ func (v *VAST) SetLinearDuration(sID, sValue string) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].Linear.Duration = data
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].Linear.Duration = data
 			}
@@ -88,8 +88,8 @@ func (v *VAST) SetLinearTracking(sEvent, sOffset, sValue string) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].Linear.TrackingEvents == nil {
 					v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].Linear.TrackingEvents = &TrackingEvents{}
@@ -99,8 +99,8 @@ func (v *VAST) SetLinearTracking(sEvent, sOffset, sValue string) *VAST {
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].Linear.TrackingEvents == nil {
 					v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].Linear.TrackingEvents = &TrackingEvents{}
@@ -131,8 +131,8 @@ func (v *VAST) SetLinearClickThrough(sID, sValue string) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].Linear.VideoClicks == nil {
 					v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].Linear.VideoClicks = &VideoClicks{}
@@ -142,8 +142,8 @@ func (v *VAST) SetLinearClickThrough(sID, sValue string) *VAST {
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].Linear.VideoClicks == nil {
 					v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].Linear.VideoClicks = &VideoClicks{}
@@ -174,8 +174,8 @@ func (v *VAST) SetLinearClickTracking(sID, sValue string) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].Linear.VideoClicks == nil {
 					v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].Linear.VideoClicks = &VideoClicks{}
@@ -185,8 +185,8 @@ func (v *VAST) SetLinearClickTracking(sID, sValue string) *VAST {
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].Linear.VideoClicks == nil {
 					v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].Linear.VideoClicks = &VideoClicks{}
@@ -217,8 +217,8 @@ func (v *VAST) SetLinearCustomClick(sID, sValue string) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].Linear.VideoClicks == nil {
 					v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].Linear.VideoClicks = &VideoClicks{}
@@ -228,8 +228,8 @@ func (v *VAST) SetLinearCustomClick(sID, sValue string) *VAST {
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].Linear.VideoClicks == nil {
 					v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].Linear.VideoClicks = &VideoClicks{}
@@ -271,8 +271,8 @@ func (v *VAST) SetLinearMediaFile(sID, sValue, sDelivery, sType, sWidth, sHeight
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].Linear.MediaFiles == nil {
 					v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].Linear.MediaFiles = &MediaFiles{}
@@ -282,8 +282,8 @@ func (v *VAST) SetLinearMediaFile(sID, sValue, sDelivery, sType, sWidth, sHeight
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].Linear.MediaFiles == nil {
 					v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].Linear.MediaFiles = &MediaFiles{}
@@ -314,8 +314,8 @@ func (v *VAST) SetLinearMezzanine(sID, sValue string) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].Linear.MediaFiles == nil {
 					v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].Linear.MediaFiles = &MediaFiles{}
@@ -325,8 +325,8 @@ func (v *VAST) SetLinearMezzanine(sID, sValue string) *VAST {
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].Linear.MediaFiles == nil {
 					v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].Linear.MediaFiles = &MediaFiles{}
@@ -357,8 +357,8 @@ func (v *VAST) SetLinearInteractiveCreativeFile(sID, sValue string) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].Linear.MediaFiles == nil {
 					v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].Linear.MediaFiles = &MediaFiles{}
@@ -368,8 +368,8 @@ func (v *VAST) SetLinearInteractiveCreativeFile(sID, sValue string) *VAST {
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].Linear.MediaFiles == nil {
 					v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].Linear.MediaFiles = &MediaFiles{}

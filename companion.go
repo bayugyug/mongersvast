@@ -17,15 +17,15 @@ func (v *VAST) SetCompanionAd(row *CompanionAds) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds = data
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds = data
 			}
@@ -61,16 +61,16 @@ func (v *VAST) SetCompanion(sID, sWidth, sHeight, sAltText, sAssetWidth, sAssetH
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				//add to the list
 				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds.Companion = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds.Companion, data)
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				//add to the list
 				v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds.Companion = append(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds.Companion, data)
@@ -98,8 +98,8 @@ func (v *VAST) SetCompanionHTMLResource(sID, sValue string) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				//add to the list
 				idy := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds.Companion)
@@ -109,8 +109,8 @@ func (v *VAST) SetCompanionHTMLResource(sID, sValue string) *VAST {
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				//add to the list
 				idy := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds.Companion)
@@ -141,8 +141,8 @@ func (v *VAST) SetCompanionIFrameResource(sID, sValue string) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				//add to the list
 				idy := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds.Companion)
@@ -152,8 +152,8 @@ func (v *VAST) SetCompanionIFrameResource(sID, sValue string) *VAST {
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				//add to the list
 				idy := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds.Companion)
@@ -184,8 +184,8 @@ func (v *VAST) SetCompanionStaticResource(sType, sValue string) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				//add to the list
 				idy := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds.Companion)
@@ -195,8 +195,8 @@ func (v *VAST) SetCompanionStaticResource(sType, sValue string) *VAST {
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				//add to the list
 				idy := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds.Companion)
@@ -227,8 +227,8 @@ func (v *VAST) SetCompanionClickThrough(sID, sValue string) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				//add to the list
 				idy := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds.Companion)
@@ -238,8 +238,8 @@ func (v *VAST) SetCompanionClickThrough(sID, sValue string) *VAST {
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				//add to the list
 				idy := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds.Companion)
@@ -267,8 +267,8 @@ func (v *VAST) SetCompanionTracking(sEvent, sOffset, sValue string) *VAST {
 	data := &Tracking{Event: sEvent, Value: sValue, Offset: sOffset}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				//add to the list
 				idy := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds.Companion)
@@ -281,8 +281,8 @@ func (v *VAST) SetCompanionTracking(sEvent, sOffset, sValue string) *VAST {
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				//add to the list
 				idy := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].CompanionAds.Companion)

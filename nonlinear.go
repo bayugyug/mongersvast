@@ -17,15 +17,15 @@ func (v *VAST) SetNonLinear(row *NonLinearAds) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds = data
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds = data
 			}
@@ -53,8 +53,8 @@ func (v *VAST) SetNonLinearTracking(sEvent, sOffset, sValue string) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents == nil {
 					v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents = &TrackingEvents{}
@@ -64,8 +64,8 @@ func (v *VAST) SetNonLinearTracking(sEvent, sOffset, sValue string) *VAST {
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents == nil {
 					v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents = &TrackingEvents{}
@@ -101,16 +101,16 @@ func (v *VAST) SetNonLinearAd(sID, sAPIFramework, sWidth, sHeight, sMinSuggested
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				//add to the list
 				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear, data)
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				//add to the list
 				v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear = append(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear, data)
@@ -138,8 +138,8 @@ func (v *VAST) SetNonLinearStaticResource(sType, sValue string) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				//add to the list
 				idy := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
@@ -149,8 +149,8 @@ func (v *VAST) SetNonLinearStaticResource(sType, sValue string) *VAST {
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				//add to the list
 				idy := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
@@ -181,8 +181,8 @@ func (v *VAST) SetNonLinearClickThrough(sID, sValue string) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				//add to the list
 				idy := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
@@ -192,8 +192,8 @@ func (v *VAST) SetNonLinearClickThrough(sID, sValue string) *VAST {
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				//add to the list
 				idy := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
@@ -224,8 +224,8 @@ func (v *VAST) SetNonLinearClickTracking(sID, sValue string) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsWrapper) {
+			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				//add to the list
 				idy := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
@@ -235,8 +235,8 @@ func (v *VAST) SetNonLinearClickTracking(sID, sValue string) *VAST {
 			}
 		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives != nil {
-			idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative)
+		if v.IsAdHasCreatives(AdTypeIsInline) {
+			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				//add to the list
 				idy := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
