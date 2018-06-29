@@ -455,10 +455,11 @@ type Advertiser struct {
 
 //JavaScriptResource vast url for javascript res
 type JavaScriptResource struct {
-	ID           string `xml:"id,attr,omitempty"`
-	APIFramework string `xml:"apiFramework,attr,omitempty"`
-	Browser      string `xml:"browser,attr,omitempty"`
-	Value        string `xml:",cdata"`
+	ID              string `xml:"id,attr,omitempty"`
+	APIFramework    string `xml:"apiFramework,attr,omitempty"`
+	BrowserOptional string `xml:"browserOptional,attr,omitempty"`
+	Browser         string `xml:"browser,attr,omitempty"`
+	Value           string `xml:",cdata"`
 }
 
 //ExecutableResource vast url for javascript res
