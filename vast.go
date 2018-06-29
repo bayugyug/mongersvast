@@ -54,7 +54,6 @@ const (
 	TrkEventMinimize               = "minimize"
 	TrkEventClose                  = "close"
 	TrkEventOverlayViewDuration    = "overlayViewDuration"
-	TrkEventOtherAdInteraction     = "otherAdInteraction"
 	TrkEventCreativeView           = "creativeView"
 	VastXMLNs                      = "http://www.iab.com/VAST"
 	VastXMLNsXs                    = "http://www.w3.org/2001/XMLSchema"
@@ -73,7 +72,6 @@ var TrackingEventTypes = map[string]string{
 	"Midpoint":               TrkEventMidpoint,
 	"Minimize":               TrkEventMinimize,
 	"Mute":                   TrkEventMute,
-	"OtherAdInteraction":     TrkEventOtherAdInteraction,
 	"OtherAdInteraction":     TrkEventOtherAdInteraction,
 	"OverlayViewDuration":    TrkEventOverlayViewDuration,
 	"Pause":                  TrkEventPause,
