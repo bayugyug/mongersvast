@@ -218,7 +218,7 @@ func (v *VAST) FormatCreativeWithNonLinearAds(s string) *VAST {
 			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds = &NonLinearAds{}
 		}
 	} else if strings.EqualFold(s, AdTypeIsInline) && v.IsAdHasCreatives(s) {
-		idx := v.LenCreative(AdTypeIsWrapper)
+		idx := v.LenCreative(AdTypeIsInline)
 		if idx > 0 && nil == v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds {
 			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds = &NonLinearAds{}
 		}
