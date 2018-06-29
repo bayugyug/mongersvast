@@ -30,3 +30,57 @@ var VASTErrorCodes = map[string]string{
 	"900": "Undefined Error",
 	"901": "General VPAID error",
 }
+
+//Generic Macros
+const (
+	ErrMacroUnknown     = -1
+	ErrMacroUnavailable = -2
+	AdsPreRoll          = 1
+	AdsMidRoll          = 2
+	AdsPostRoll         = 3
+)
+
+//VastMacros generic macros for VAST
+var VastMacros = map[string]string{
+	"Timestamp":           `[TIMESTAMP]`,           //string  ,  Unencoded: 2016-01-17T8:15:07.127-05
+	"CacheBusting":        `[CACHEBUSTING]`,        //integer ,  12345678
+	"ContentplayHead":     `[CONTENTPLAYHEAD]`,     //timecode,  Unencoded: 00:05:21.123
+	"MediaplayHead":       `[MEDIAPLAYHEAD]`,       //timecode,  Unencoded: 00:05:21.123
+	"BreakPosition":       `[BREAKPOSITION]`,       //integer ,  1 for pre-roll, 2 for mid-roll, 3 for post-roll
+	"BlockedAdCategories": `[BLOCKEDADCATEGORIES]`, //list<string>, IAB1-6,IAB1-7
+	"AdCategories":        `[ADCATEGORIES]`,        //list<string>, IAB1-6,IAB1-7
+	"AdCount":             `[ADCOUNT]`,             //integer ,  1
+	"TransactionID":       `[TRANSACTIONID]`,       //string  ,  123e4567-e89b-12d3-a456-426655440000
+	"PlacementType":       `[PLACEMENTTYPE]`,       //integer ,  1
+	"AdType":              `[ADTYPE]`,              //string  ,  video,display,banner
+	"UniversalAdID":       `[UNIVERSALADID]`,       //string  ,  Unencoded: ad-id.org CNPA0484000H
+	"IFA":                 `[IFA]`,                 //string  ,  123e4567-e89b-12d3-a456-426655440000
+	"IFAtype":             `[IFATYPE]`,             //string  ,  rida
+	"ClientUA":            `[CLIENTUA]`,            //string  ,  Unencoded: MyPlayer/7.1 MyPlayerVastPlugin/1.1.2
+	"ServerUA":            `[SERVERUA]`,            //string  ,  Unencoded: AdsBot-Google (+http:, //www.google.com/adsbot.html)
+	"DeviceUA":            `[DEVICEUA]`,            //string  ,  Unencoded: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36
+	"DeviceIP":            `[DEVICEIP]`,            //string  ,  Unencoded: IPv4: 8.8.8.8
+	"LatLong":             `[LATLONG]`,             //number  ,  51.004703,3.754806
+	"Domain":              `[DOMAIN]`,              //string  ,  Unencoded: mydomain.com
+	"PageURL":             `[PAGEURL]`,             //string  ,  Unencoded: https:, //www.mydomain.com/article/page
+	"AppName":             `[APPNAME]`,             //string  ,  Unencoded: com.example.myapp
+	"VastVersions":        `[VASTVERSIONS]`,        //list<integer>, 2,3,5,6,7,8,310  #310 for VAST 4.1 #311 for VAST 4.1 Wrapper
+	"ApiFrameworks":       `[APIFRAMEWORKS]`,       //list<integer>, 2,3
+	"Extensions":          `[EXTENSIONS]`,          //list<string> , AdVerifications,extensionA,extensionB
+	"VerificationVendors": `[VERIFICATIONVENDORS]`, //list<string> , moat.com-omid,ias.com-omid,doubleverify.com-omid
+	"MediaMime":           `[MEDIAMIME]`,           //list<string> , Unencoded: video/mp4,application/x-mpegURL
+	"PlayerCapabilities":  `[PLAYERCAPABILITIES]`,  //list<string> , mautoplay,fullscreen,icon
+	"ClickType":           `[CLICKTYPE]`,           //integer      , 1 #0: not clickable, 1: clickable on full area of video, 2: clickable only on associated button/link, 3: clickable with confirmation dialog
+	"PlayerState":         `[PLAYERSTATE]`,         //list<string> , autoplayed,fullscreen
+	"PlayerSize":          `[PLAYERSIZE]`,          //integer      , 640,360
+	"AdPlayHead":          `[ADPLAYHEAD]`,          //timecode     , Unencoded: 00:05:21.123
+	"AssetURI":            `[ASSETURI]`,            //string       , Unencoded:  https:, //myadserver.com/video.mp4
+	"PodSequence":         `[PODSEQUENCE]`,         //integer      , 1
+	"AdServingID":         `[ADSERVINGID]`,         //string       , ServerName-47ed3bac-1768-4b9a-9d0e-0b92422ab066
+	"ClickPos":            `[CLICKPOS]`,            //integer      , 315,204
+	"ErrorCode":           `[ERRORCODE]`,           //integer      , 900
+	"Reason":              `[REASON]`,              //integer      , 1
+	"LimitAdTracking":     `[LIMITADTRACKING]`,     //integer      , 1
+	"Regulations":         `[REGULATIONS]`,         //list<string> , gdpr,coppa
+	"GdprConsent":         `[GDPRCONSENT]`,         //string       , BOLqFHuOLqFHuAABAENAAAAAAAAoAAA
+}
