@@ -470,6 +470,7 @@ type Verification struct {
 	TrackingEvents         *TrackingEvents         `xml:",omitempty"`
 	ExecutableResource     *ExecutableResource     `xml:",omitempty"`
 	FlashResource          *FlashResource          `xml:",omitempty"`
+	ViewableImpression     *ViewableImpression     `xml:",omitempty"`
 }
 
 //AdVerifications list of Verification
