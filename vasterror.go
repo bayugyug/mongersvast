@@ -1,5 +1,6 @@
 package mongersvast
 
+//VASTErrorCodes list of standard vast errror codes
 var VASTErrorCodes = map[string]string{
 	"100": "XML parsing error",
 	"101": "VAST schema validation error",

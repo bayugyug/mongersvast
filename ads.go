@@ -203,7 +203,7 @@ func (v *VAST) LenCreative(s string) int {
 	return 0
 }
 
-//FormatCreativeHasNonLinearAds prep if no nonlinearads
+//FormatCreativeWithNonLinearAds prep if no nonlinearads
 func (v *VAST) FormatCreativeWithNonLinearAds(s string) *VAST {
 	//minimal config
 	if v == nil {
