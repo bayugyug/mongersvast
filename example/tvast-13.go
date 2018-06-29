@@ -74,7 +74,11 @@ func main() {
 		SetAdvertiser("Mongers-Adverts").
 		SetCategory("1", "http://www.iabtechlab.com/categoryauthority", "Mongers-Categ 1").
 		SetExtension("iab-Count", "", &mvast.TotalAvailable{Value: "2"}, nil)
-	xml, _ = vst.ToString()
+	var err error
+	xml, err = vst.ToString()
+	if err != nil {
+		fmt.Println("ERROR: ", err)
+	}
 	fmt.Println(xml)
 
 }
