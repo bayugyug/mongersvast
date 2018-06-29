@@ -454,6 +454,13 @@ type ExecutableResource struct {
 	Value        string `xml:",cdata"`
 }
 
+//FlashResource vast url for javascript res
+type FlashResource struct {
+	ID           string `xml:"id,attr,omitempty"`
+	APIFramework string `xml:"apiFramework,attr,omitempty"`
+	Value        string `xml:",cdata"`
+}
+
 //Verification is a JavaScriptResource
 type Verification struct {
 	ID                     string                  `xml:"id,attr,omitempty"`
@@ -462,6 +469,7 @@ type Verification struct {
 	VerificationParameters *VerificationParameters `xml:",omitempty"`
 	TrackingEvents         *TrackingEvents         `xml:",omitempty"`
 	ExecutableResource     *ExecutableResource     `xml:",omitempty"`
+	FlashResource          *FlashResource          `xml:",omitempty"`
 }
 
 //AdVerifications list of Verification
