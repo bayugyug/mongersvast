@@ -192,6 +192,7 @@ type MediaFiles struct {
 	MediaFile               []*MediaFile             `xml:",omitempty"`
 	Mezzanine               *Mezzanine               `xml:",omitempty"`
 	InteractiveCreativeFile *InteractiveCreativeFile `xml:",omitempty"`
+	ClosedCaptionFiles      *ClosedCaptionFiles      `xml:",omitempty"`
 }
 
 //MediaFile is an element of the VAST structure
@@ -556,6 +557,20 @@ type IconClickTracking struct {
 	ID    string `xml:"id,attr,omitempty"`
 	Value string `xml:",cdata"`
 	URL   []*URL `xml:",omitempty"`
+}
+
+//ClosedCaptionFile vast element
+type ClosedCaptionFile struct {
+	ID       string `xml:"id,attr,omitempty"`
+	Type     string `xml:"type,attr,omitempty"`
+	Language string `xml:"language,attr,omitempty"`
+	Value    string `xml:",cdata"`
+	URL      []*URL `xml:",omitempty"`
+}
+
+//ClosedCaptionFiles is an element list
+type ClosedCaptionFiles struct {
+	ClosedCaptionFile []*ClosedCaptionFile `xml:",omitempty"`
 }
 
 // xml members that are for CDATA
