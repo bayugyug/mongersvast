@@ -6,6 +6,7 @@ import (
 	"io"
 	"math/rand"
 	"net/http"
+	"strings"
 	"time"
 )
 
@@ -62,11 +63,7 @@ func WrapperAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Des
 
 //fmtAdUUID make temp str
 func fmtAdUUID(pfx string) string {
-	if len(pfx) <= 0 {
-		pfx = "070704"
-	}
-	t := fmt.Sprintf("%s%05x%10x", pfx, rand.Intn(99999), time.Now().UTC().UnixNano())
-	return fmt.Sprintf("%x", md5.Sum([]byte("070704"+t)))
+	return fmt.Sprintf("%x", md5.Sum([]byte("070704"+strings.TrimSpace(fmt.Sprintf("%s%05x%10x", pfx, rand.Intn(99999), time.Now().UTC().UnixNano())))))
 }
 
 //SetXMLHeaders set the xml headers simply

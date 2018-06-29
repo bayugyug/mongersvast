@@ -2,6 +2,7 @@ package mongersvast
 
 import (
 	"bytes"
+	"encoding/json"
 	"encoding/xml"
 	"fmt"
 	"io/ioutil"
@@ -84,4 +85,17 @@ func (v *VAST) VideoDuration(secs int) *Duration {
 	ts := time.Duration(secs) * time.Second
 	tm := strings.TrimSpace(fmt.Sprintf("%02d:%02d:%02d", int(math.Mod(ts.Hours(), 12)), int(math.Mod(ts.Minutes(), 60)), int(math.Mod(ts.Seconds(), 60))))
 	return &Duration{Value: tm}
+}
+
+//ToJSON convert to string
+func (v *VAST) ToJSON() (string, error) {
+	//sanity check
+	if v == nil {
+		return "", ErrFailedToStringNilValue
+	}
+	result, err := json.MarshalIndent(v, "", "\t")
+	if nil != err {
+		return "", fmt.Errorf("%s , %s", ErrFailedToString.Error(), err.Error())
+	}
+	return strings.TrimSpace(result), nil
 }
