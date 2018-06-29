@@ -50,7 +50,6 @@ func (v *VAST) SetCompanion(sID, sWidth, sHeight, sAltText, sAssetWidth, sAssetH
 		ID:             sID,
 		Width:          sWidth,
 		Height:         sHeight,
-		AltText:        sAltText,
 		AssetWidth:     sAssetWidth,
 		AssetHeight:    sAssetHeight,
 		ExpandedWidth:  sExpandedWidth,
@@ -59,6 +58,7 @@ func (v *VAST) SetCompanion(sID, sWidth, sHeight, sAltText, sAssetWidth, sAssetH
 		AdSlotID:       sAdSlotID,
 		PxRatio:        sPxRatio,
 	}
+	data.AltText = &AltText{Value: sAltText}
 	//check which type
 	if v.IsAdWrapper() {
 		if v.IsAdHasCreatives(AdTypeIsWrapper) {

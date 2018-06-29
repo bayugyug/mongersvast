@@ -140,6 +140,7 @@ type InLineWrapperData struct {
 	AdVerifications    *AdVerifications      `xml:",omitempty"`
 	Advertiser         *Advertiser           `xml:",omitempty"`
 	Category           []*Category           `xml:",omitempty"`
+	Expires            *Expires              `xml:",omitempty"`
 }
 
 //Extensions is an element list
@@ -150,9 +151,11 @@ type Extensions struct {
 //Extension is an element of the VAST structure
 type Extension struct {
 	Type            string           `xml:"type,attr,omitempty"`
+	FallbackIndex   string           `xml:"fallback_index,attr,omitempty"`
 	TotalAvailable  *TotalAvailable  `xml:"total_available,omitempty"`
 	Value           string           `xml:",cdata"`
 	AdVerifications *AdVerifications `xml:",omitempty"`
+	CustomTracking  *CustomTracking  `xml:",omitempty"`
 }
 
 //StaticResource is an element of the VAST structure
@@ -163,6 +166,7 @@ type StaticResource struct {
 
 //CompanionAds is an element list
 type CompanionAds struct {
+	Required  string       `xml:"required,attr,omitempty"`
 	Companion []*Companion `xml:",omitempty"`
 }
 
@@ -171,7 +175,6 @@ type Companion struct {
 	ID                    string                 `xml:"id,attr,omitempty"`
 	Width                 string                 `xml:"width,attr,omitempty"`
 	Height                string                 `xml:"height,attr,omitempty"`
-	AltText               string                 `xml:"altText,attr,omitempty"`
 	AssetWidth            string                 `xml:"assetWidth,attr,omitempty"`
 	AssetHeight           string                 `xml:"assetHeight,attr,omitempty"`
 	ExpandedWidth         string                 `xml:"expandedWidth,attr,omitempty"`
@@ -179,12 +182,17 @@ type Companion struct {
 	APIFramework          string                 `xml:"apiFramework,attr,omitempty"`
 	AdSlotID              string                 `xml:"adSlotID,attr,omitempty"`
 	PxRatio               string                 `xml:"pxratio,attr,omitempty"`
+	RenderingMode         string                 `xml:"renderingMode,attr,omitempty"`
+	LogoTile              string                 `xml:"logoTile,attr,omitempty"`
+	LogoTitle             string                 `xml:"logoTitle,attr,omitempty"`
+	LogoURL               string                 `xml:"logoURL,attr,omitempty"`
 	HTMLResource          *HTMLResource          `xml:",omitempty"`
 	IFrameResource        *IFrameResource        `xml:",omitempty"`
 	StaticResource        *StaticResource        `xml:",omitempty"`
 	CompanionClickThrough *CompanionClickThrough `xml:",omitempty"`
 	TrackingEvents        *TrackingEvents        `xml:",omitempty"`
 	AdParameters          *AdParameters          `xml:",omitempty"`
+	AltText               *AltText               `xml:",omitempty"`
 }
 
 //MediaFiles is an element list
@@ -209,6 +217,7 @@ type MediaFile struct {
 	MaintainAspectRatio string `xml:"maintainAspectRatio,attr,omitempty"`
 	Codec               string `xml:"codec,attr,omitempty"`
 	APIFramework        string `xml:"apiFramework,attr,omitempty"`
+	MediaType           string `xml:"mediaType,attr,omitempty"`
 	Value               string `xml:",cdata"`
 }
 
@@ -244,14 +253,15 @@ type Linear struct {
 
 //Creative is an element of the VAST structure
 type Creative struct {
-	ID            string         `xml:"id,attr,omitempty"`
-	AdID          string         `xml:"adId,attr,omitempty"`
-	Sequence      string         `xml:"sequence,attr,omitempty"`
-	APIFramework  string         `xml:"apiFramework,attr,omitempty"`
-	Linear        *Linear        `xml:",omitempty"`
-	NonLinearAds  *NonLinearAds  `xml:",omitempty"`
-	CompanionAds  *CompanionAds  `xml:",omitempty"`
-	UniversalAdID *UniversalAdID `xml:"UniversalAdId,omitempty"`
+	ID                 string              `xml:"id,attr,omitempty"`
+	AdID               string              `xml:"adId,attr,omitempty"`
+	Sequence           string              `xml:"sequence,attr,omitempty"`
+	APIFramework       string              `xml:"apiFramework,attr,omitempty"`
+	Linear             *Linear             `xml:",omitempty"`
+	NonLinearAds       *NonLinearAds       `xml:",omitempty"`
+	CompanionAds       *CompanionAds       `xml:",omitempty"`
+	UniversalAdID      *UniversalAdID      `xml:"UniversalAdId,omitempty"`
+	CreativeExtensions *CreativeExtensions `xml:"UniversalAdId,omitempty"`
 }
 
 //Creatives is an element of the VAST structure
@@ -302,6 +312,12 @@ type VASTAdTagURI struct {
 
 //VASTError  error url
 type VASTError struct {
+	ID    string `xml:"id,attr,omitempty"`
+	Value string `xml:",cdata"`
+}
+
+//Expires expiry in seconds
+type Expires struct {
 	ID    string `xml:"id,attr,omitempty"`
 	Value string `xml:",cdata"`
 }
@@ -425,15 +441,27 @@ type Advertiser struct {
 
 //JavaScriptResource vast url for javascript res
 type JavaScriptResource struct {
-	ID    string `xml:"id,attr,omitempty"`
-	Value string `xml:",cdata"`
+	ID           string `xml:"id,attr,omitempty"`
+	APIFramework string `xml:"apiFramework,attr,omitempty"`
+	Browser      string `xml:"browser,attr,omitempty"`
+	Value        string `xml:",cdata"`
+}
+
+//ExecutableResource vast url for javascript res
+type ExecutableResource struct {
+	ID           string `xml:"id,attr,omitempty"`
+	APIFramework string `xml:"apiFramework,attr,omitempty"`
+	Value        string `xml:",cdata"`
 }
 
 //Verification is a JavaScriptResource
 type Verification struct {
+	ID                     string                  `xml:"id,attr,omitempty"`
+	Vendor                 string                  `xml:"vendor,attr,omitempty"`
 	JavaScriptResource     *JavaScriptResource     `xml:",omitempty"`
 	VerificationParameters *VerificationParameters `xml:",omitempty"`
 	TrackingEvents         *TrackingEvents         `xml:",omitempty"`
+	ExecutableResource     *ExecutableResource     `xml:",omitempty"`
 }
 
 //AdVerifications list of Verification
@@ -449,14 +477,23 @@ type VerificationParameters struct {
 
 //Mezzanine vast url
 type Mezzanine struct {
-	ID    string `xml:"id,attr,omitempty"`
-	Value string `xml:",cdata"`
+	ID        string `xml:"id,attr,omitempty"`
+	Delivery  string `xml:"delivery,attr,omitempty"`
+	Type      string `xml:"type,attr,omitempty"`
+	Width     string `xml:"width,attr,omitempty"`
+	Height    string `xml:"height,attr,omitempty"`
+	Codec     string `xml:"codec,attr,omitempty"`
+	FileSize  string `xml:"fileSize,attr,omitempty"`
+	MediaType string `xml:"mediaType,attr,omitempty"`
+	Value     string `xml:",cdata"`
 }
 
 //InteractiveCreativeFile creative is interactive
 type InteractiveCreativeFile struct {
-	ID    string `xml:"id,attr,omitempty"`
-	Value string `xml:",cdata"`
+	ID               string `xml:"id,attr,omitempty"`
+	APIFramework     string `xml:"apiFramework,attr,omitempty"`
+	VariableDuration string `xml:"variableDuration,attr,omitempty"`
+	Value            string `xml:",cdata"`
 }
 
 //Viewable creative can be viewed
@@ -493,8 +530,9 @@ type Code struct {
 
 //AdParameters vast ad params
 type AdParameters struct {
-	ID    string `xml:"id,attr,omitempty"`
-	Value string `xml:",cdata"`
+	ID         string `xml:"id,attr,omitempty"`
+	XMLEncoded string `xml:"xmlEncoded,attr,omitempty"`
+	Value      string `xml:",cdata"`
 }
 
 //AltText vast ad params
@@ -524,6 +562,7 @@ type Icon struct {
 	YPosition        string            `xml:"yPosition,attr,omitempty"`
 	Duration         string            `xml:"duration,attr,omitempty"`
 	Offset           string            `xml:"offset,attr,omitempty"`
+	PxRatio          string            `xml:"pxratio,attr,omitempty"`
 	APIFramework     string            `xml:"apiFramework,attr,omitempty"`
 	HTMLResource     *HTMLResource     `xml:",omitempty"`
 	IFrameResource   *IFrameResource   `xml:",omitempty"`
@@ -571,6 +610,22 @@ type ClosedCaptionFile struct {
 //ClosedCaptionFiles is an element list
 type ClosedCaptionFiles struct {
 	ClosedCaptionFile []*ClosedCaptionFile `xml:",omitempty"`
+}
+
+//CustomTracking is an element of the VAST structure
+type CustomTracking struct {
+	Tracking []*Tracking `xml:",omitempty"`
+}
+
+//CreativeExtensions is an element list
+type CreativeExtensions struct {
+	CreativeExtension []*CreativeExtension `xml:",omitempty"`
+}
+
+//CreativeExtension is an element
+type CreativeExtension struct {
+	Type  string `xml:"type,attr,omitempty"`
+	Value string `xml:",cdata"`
 }
 
 // xml members that are for CDATA
