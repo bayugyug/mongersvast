@@ -202,3 +202,51 @@ func (v *VAST) LenCreative(s string) int {
 	//good ;-)
 	return 0
 }
+
+//FormatCreativeHasNonLinearAds prep if no nonlinearads
+func (v *VAST) FormatCreativeWithNonLinearAds(s string) *VAST {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	//just in case
+	if strings.EqualFold(s, AdTypeIsWrapper) && v.IsAdHasCreatives(s) {
+		idx := v.LenCreative(AdTypeIsWrapper)
+		if idx > 0 && nil == v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds {
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds = &NonLinearAds{}
+		}
+	} else if strings.EqualFold(s, AdTypeIsInline) && v.IsAdHasCreatives(s) {
+		idx := v.LenCreative(AdTypeIsWrapper)
+		if idx > 0 && nil == v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds {
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds = &NonLinearAds{}
+		}
+	}
+	//good ;-)
+	return v
+}
+
+//LenCreativeNonLinear prep if no nonlinearads
+func (v *VAST) LenCreativeNonLinear(s string) int {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var idx int
+	if strings.EqualFold(s, AdTypeIsWrapper) && v.IsAdHasCreatives(s) {
+		idx = v.LenCreative(AdTypeIsWrapper)
+		if idx > 0 {
+			return len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+		}
+	} else if strings.EqualFold(s, AdTypeIsInline) && v.IsAdHasCreatives(s) {
+		idx = v.LenCreative(AdTypeIsInline)
+		if idx > 0 {
+			return len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+		}
+	}
+	//good ;-)
+	return 0
+}

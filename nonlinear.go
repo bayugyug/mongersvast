@@ -56,6 +56,7 @@ func (v *VAST) SetNonLinearTracking(sEvent, sOffset, sValue string) *VAST {
 		if v.IsAdHasCreatives(AdTypeIsWrapper) {
 			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
+				v.FormatCreativeWithNonLinearAds(AdTypeIsWrapper)
 				if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents == nil {
 					v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents = &TrackingEvents{}
 				}
@@ -67,6 +68,7 @@ func (v *VAST) SetNonLinearTracking(sEvent, sOffset, sValue string) *VAST {
 		if v.IsAdHasCreatives(AdTypeIsInline) {
 			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
+				v.FormatCreativeWithNonLinearAds(AdTypeIsInline)
 				if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents == nil {
 					v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.TrackingEvents = &TrackingEvents{}
 				}
@@ -105,6 +107,7 @@ func (v *VAST) SetNonLinearAd(sID, sAPIFramework, sWidth, sHeight, sMinSuggested
 			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				//add to the list
+				v.FormatCreativeWithNonLinearAds(AdTypeIsWrapper)
 				v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear, data)
 			}
 		}
@@ -113,6 +116,7 @@ func (v *VAST) SetNonLinearAd(sID, sAPIFramework, sWidth, sHeight, sMinSuggested
 			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				//add to the list
+				v.FormatCreativeWithNonLinearAds(AdTypeIsInline)
 				v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear = append(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear, data)
 			}
 		}
@@ -142,7 +146,7 @@ func (v *VAST) SetNonLinearStaticResource(sType, sValue string) *VAST {
 			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				//add to the list
-				idy := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+				idy := v.LenCreativeNonLinear(AdTypeIsWrapper)
 				if idy > 0 {
 					v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].StaticResource = data
 				}
@@ -153,7 +157,7 @@ func (v *VAST) SetNonLinearStaticResource(sType, sValue string) *VAST {
 			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				//add to the list
-				idy := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+				idy := v.LenCreativeNonLinear(AdTypeIsInline)
 				if idy > 0 {
 					v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].StaticResource = data
 				}
@@ -185,7 +189,7 @@ func (v *VAST) SetNonLinearClickThrough(sID, sValue string) *VAST {
 			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				//add to the list
-				idy := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+				idy := v.LenCreativeNonLinear(AdTypeIsWrapper)
 				if idy > 0 {
 					v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].NonLinearClickThrough = data
 				}
@@ -196,7 +200,7 @@ func (v *VAST) SetNonLinearClickThrough(sID, sValue string) *VAST {
 			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				//add to the list
-				idy := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+				idy := v.LenCreativeNonLinear(AdTypeIsInline)
 				if idy > 0 {
 					v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].NonLinearClickThrough = data
 				}
@@ -228,7 +232,7 @@ func (v *VAST) SetNonLinearClickTracking(sID, sValue string) *VAST {
 			idx := v.LenCreative(AdTypeIsWrapper)
 			if idx > 0 {
 				//add to the list
-				idy := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+				idy := v.LenCreativeNonLinear(AdTypeIsWrapper)
 				if idy > 0 {
 					v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].NonLinearClickTracking = data
 				}
@@ -239,7 +243,7 @@ func (v *VAST) SetNonLinearClickTracking(sID, sValue string) *VAST {
 			idx := v.LenCreative(AdTypeIsInline)
 			if idx > 0 {
 				//add to the list
-				idy := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear)
+				idy := v.LenCreativeNonLinear(AdTypeIsInline)
 				if idy > 0 {
 					v.Ad[v.GetAdPos()].InLine.InLineWrapperData.Creatives.Creative[idx-1].NonLinearAds.NonLinear[idy-1].NonLinearClickTracking = data
 				}
