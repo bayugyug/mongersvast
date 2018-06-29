@@ -31,46 +31,62 @@ const (
 
 //const more
 const (
-	TrkEventCreativeView     = "creativeView"
-	TrkEventExpand           = "expand"
-	TrkEventCollapse         = "collapse"
-	TrkEventAcceptInvitation = "acceptInvitation"
-	TrkEventClose            = "close"
-	TrkEventStart            = "start"
-	TrkEventFirstQuartile    = "firstQuartile"
-	TrkEventMidpoint         = "midpoint"
-	TrkEventThirdQuartile    = "thirdQuartile"
-	TrkEventComplete         = "complete"
-	TrkEventPause            = "pause"
-	TrkEventResume           = "resume"
-	TrkEventMute             = "mute"
-	TrkEventUnMute           = "unmute"
-	TrkEventFullscreen       = "fullscreen"
-	TrkEventSkip             = "skip"
-	TrkEventProgress         = "progress"
-	VastXMLNs                = "http://www.iab.com/VAST"
-	VastXMLNsXs              = "http://www.w3.org/2001/XMLSchema"
+	TrkEventMute                   = "mute"
+	TrkEventUnmute                 = "unmute"
+	TrkEventPause                  = "pause"
+	TrkEventResume                 = "resume"
+	TrkEventRewind                 = "rewind"
+	TrkEventSkip                   = "skip"
+	TrkEventPlayerExpand           = "playerExpand"
+	TrkEventPlayerCollapse         = "playerCollapse"
+	TrkEventStart                  = "start"
+	TrkEventFirstQuartile          = "firstQuartile"
+	TrkEventMidpoint               = "midpoint"
+	TrkEventThirdQuartile          = "thirdQuartile"
+	TrkEventComplete               = "complete"
+	TrkEventAcceptInvitationLinear = "acceptInvitationLinear"
+	TrkEventTimeSpentViewing       = "timeSpentViewing"
+	TrkEventOtherAdInteraction     = "otherAdInteraction"
+	TrkEventProgress               = "progress"
+	TrkEventAcceptInvitation       = "acceptInvitation"
+	TrkEventAdExpand               = "adExpand"
+	TrkEventAdCollapse             = "adCollapse"
+	TrkEventMinimize               = "minimize"
+	TrkEventClose                  = "close"
+	TrkEventOverlayViewDuration    = "overlayViewDuration"
+	TrkEventOtherAdInteraction     = "otherAdInteraction"
+	TrkEventCreativeView           = "creativeView"
+	VastXMLNs                      = "http://www.iab.com/VAST"
+	VastXMLNsXs                    = "http://www.w3.org/2001/XMLSchema"
 )
 
 //TrackingEventTypes list of known event types of Tracking
 var TrackingEventTypes = map[string]string{
-	"CreativeView":     TrkEventCreativeView,
-	"Expand":           TrkEventExpand,
-	"Collapse":         TrkEventCollapse,
-	"AcceptInvitation": TrkEventAcceptInvitation,
-	"Close":            TrkEventClose,
-	"Start":            TrkEventStart,
-	"FirstQuartile":    TrkEventFirstQuartile,
-	"Midpoint":         TrkEventMidpoint,
-	"ThirdQuartile":    TrkEventThirdQuartile,
-	"Complete":         TrkEventComplete,
-	"Pause":            TrkEventPause,
-	"Resume":           TrkEventResume,
-	"Mute":             TrkEventMute,
-	"UnMute":           TrkEventUnMute,
-	"Fullscreen":       TrkEventFullscreen,
-	"Skip":             TrkEventSkip,
-	"Progress":         TrkEventProgress,
+	"AcceptInvitationLinear": TrkEventAcceptInvitationLinear,
+	"AcceptInvitation":       TrkEventAcceptInvitation,
+	"AdCollapse":             TrkEventAdCollapse,
+	"AdExpand":               TrkEventAdExpand,
+	"Close":                  TrkEventClose,
+	"Complete":               TrkEventComplete,
+	"CreativeView":           TrkEventCreativeView,
+	"FirstQuartile":          TrkEventFirstQuartile,
+	"Midpoint":               TrkEventMidpoint,
+	"Minimize":               TrkEventMinimize,
+	"Mute":                   TrkEventMute,
+	"OtherAdInteraction":     TrkEventOtherAdInteraction,
+	"OtherAdInteraction":     TrkEventOtherAdInteraction,
+	"OverlayViewDuration":    TrkEventOverlayViewDuration,
+	"Pause":                  TrkEventPause,
+	"PlayerCollapse":         TrkEventPlayerCollapse,
+	"PlayerExpand":           TrkEventPlayerExpand,
+	"Progress":               TrkEventProgress,
+	"Resume":                 TrkEventResume,
+	"Rewind":                 TrkEventRewind,
+	"Skip":                   TrkEventSkip,
+	"Start":                  TrkEventStart,
+	"ThirdQuartile":          TrkEventThirdQuartile,
+	"TimeSpentViewing":       TrkEventTimeSpentViewing,
+	"Unmute":                 TrkEventUnmute,
 }
 
 //VastOptions attrs generic
@@ -470,7 +486,7 @@ type Verification struct {
 	TrackingEvents         *TrackingEvents         `xml:",omitempty"`
 	ExecutableResource     *ExecutableResource     `xml:",omitempty"`
 	FlashResource          *FlashResource          `xml:",omitempty"`
-	ViewableImpression     *ViewableImpression     `xml:",omitempty"`
+	ViewableImpression     []*ViewableImpression   `xml:",omitempty"`
 }
 
 //AdVerifications list of Verification
