@@ -31,17 +31,17 @@ var VASTErrorCodes = map[string]string{
 	"901": "General VPAID error",
 }
 
-//Generic Macros
+//constant Generic Macros
 const (
-	ErrMacroUnknown     = -1
-	ErrMacroUnavailable = -2
-	AdsPreRoll          = 1
-	AdsMidRoll          = 2
-	AdsPostRoll         = 3
+	MacroUnknown     = -1
+	MacroUnavailable = -2
+	AdsPreRoll       = 1
+	AdsMidRoll       = 2
+	AdsPostRoll      = 3
 )
 
-//VastMacros generic macros for VAST
-var VastMacros = map[string]string{
+//VASTMacros generic macros for VAST
+var VASTMacros = map[string]string{
 	"Timestamp":           `[TIMESTAMP]`,           //string  ,  Unencoded: 2016-01-17T8:15:07.127-05
 	"CacheBusting":        `[CACHEBUSTING]`,        //integer ,  12345678
 	"ContentplayHead":     `[CONTENTPLAYHEAD]`,     //timecode,  Unencoded: 00:05:21.123
