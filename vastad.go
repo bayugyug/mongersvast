@@ -97,5 +97,5 @@ func (v *VAST) ToJSON() (string, error) {
 	if nil != err {
 		return "", fmt.Errorf("%s , %s", ErrFailedToString.Error(), err.Error())
 	}
-	return strings.TrimSpace(result), nil
+	return string(result), nil
 }
