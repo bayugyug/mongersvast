@@ -521,6 +521,141 @@ func (v *VAST) GetAdsCreativeLinear() map[string][]*Linear {
 	return all
 }
 
+//GetAdsCreativeLinearDuration get the list of all Creative.Linear.Duration
+func (v *VAST) GetAdsCreativeLinearDuration() map[string][]*Duration {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*Duration
+	all = make(map[string][]*Duration)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.Linear.Duration)
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.Linear.Duration)
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsCreativeLinearTrackingEvents get the list of all Creative.Linear.TrackingEvents
+func (v *VAST) GetAdsCreativeLinearTrackingEvents() map[string][]*TrackingEvents {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*TrackingEvents
+	all = make(map[string][]*TrackingEvents)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.Linear.TrackingEvents)
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.Linear.TrackingEvents)
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsCreativeLinearVideoClicks get the list of all Creative.Linear.VideoClicks
+func (v *VAST) GetAdsCreativeLinearVideoClicks() map[string][]*VideoClicks {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*VideoClicks
+	all = make(map[string][]*VideoClicks)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.Linear.VideoClicks)
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.Linear.VideoClicks)
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsCreativeLinearMediaFiles get the list of all Creative.Linear.MediaFiles
+func (v *VAST) GetAdsCreativeLinearMediaFiles() map[string][]*MediaFiles {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*MediaFiles
+	all = make(map[string][]*MediaFiles)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.Linear.MediaFiles)
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.Linear.MediaFiles)
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsCreativeLinearIcons get the list of all Creative.Linear.Icons
+func (v *VAST) GetAdsCreativeLinearIcons() map[string][]*Icons {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*Icons
+	all = make(map[string][]*Icons)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.Linear.Icons)
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.Linear.Icons)
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
 //GetAdsCreativeNonLinearAds get the list of all Creative.NonLinearAds
 func (v *VAST) GetAdsCreativeNonLinearAds() map[string][]*NonLinearAds {
 	//minimal config
