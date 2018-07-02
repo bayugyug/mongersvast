@@ -64,20 +64,21 @@ func (v *VAST) GetAdsWrapper() []*Wrapper {
 }
 
 //GetAdsAdSystem get the list of all AdSystem
-func (v *VAST) GetAdsAdSystem() []*AdSystem {
+func (v *VAST) GetAdsAdSystem() map[string][]*AdSystem {
 	//minimal config
 	if v == nil {
 		v = &VAST{
 			Version: VastXMLVer2,
 		}
 	}
-	var all []*AdSystem
+	var all map[string][]*AdSystem
+	all = make(map[string][]*AdSystem)
 	//just in case
 	for _, vv := range v.Ad {
 		if vv.InLine != nil && vv.InLine.AdSystem != nil {
-			all = append(all, vv.InLine.AdSystem)
+			all[AdTypeIsInline] = append(all[AdTypeIsInline], vv.InLine.AdSystem)
 		} else if vv.Wrapper != nil && vv.Wrapper.AdSystem != nil {
-			all = append(all, vv.Wrapper.AdSystem)
+			all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], vv.Wrapper.AdSystem)
 		}
 	}
 	//good ;-)
