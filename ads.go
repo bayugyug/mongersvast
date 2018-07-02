@@ -6,9 +6,8 @@ import "strings"
 func (v *VAST) NewVAST(version string) *VAST {
 	//minimal config
 	v = &VAST{}
-	v.SetVersion(version)
 	//good ;-)
-	return v
+	return v.SetVersion(version)
 }
 
 //SetVersion set the VAST version
