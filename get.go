@@ -702,11 +702,15 @@ func (v *VAST) GetAdsCreativeNonLinearAds() map[string][]*NonLinearAds {
 	for _, vv := range v.Ad {
 		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
 			for _, kk := range vv.InLine.Creatives.Creative {
-				all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.NonLinearAds)
+				if kk.NonLinearAds != nil {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.NonLinearAds)
+				}
 			}
 		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
 			for _, kk := range vv.Wrapper.Creatives.Creative {
-				all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.NonLinearAds)
+				if kk.NonLinearAds != nil {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.NonLinearAds)
+				}
 			}
 		}
 	}
@@ -729,11 +733,15 @@ func (v *VAST) GetAdsCreativeCompanionAds() map[string][]*CompanionAds {
 	for _, vv := range v.Ad {
 		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
 			for _, kk := range vv.InLine.Creatives.Creative {
-				all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.CompanionAds)
+				if kk.CompanionAds != nil {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.CompanionAds)
+				}
 			}
 		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
 			for _, kk := range vv.Wrapper.Creatives.Creative {
-				all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.CompanionAds)
+				if kk.CompanionAds != nil {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.CompanionAds)
+				}
 			}
 		}
 	}
