@@ -416,3 +416,26 @@ func (v *VAST) GetAdsCreatives() map[string][]*Creatives {
 	//good ;-)
 	return all
 }
+
+//GetAdsCreative get the list of all Creative
+func (v *VAST) GetAdsCreative() map[string][]*Creative {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*Creative
+	all = make(map[string][]*Creative)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			all[AdTypeIsInline] = append(all[AdTypeIsInline], vv.InLine.Creatives.Creative...)
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], vv.Wrapper.Creatives.Creative...)
+		}
+	}
+
+	//good ;-)
+	return all
+}
