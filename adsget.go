@@ -28,3 +28,35 @@ func (v *VAST) GetAdPos() int {
 	//good ;-)
 	return 0
 }
+
+func (v *VAST) GetAdsInLine() []*InLine {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all []*InLine
+	//just in case
+	for _, vv := range v.Ad {
+		all = append(all, vv.InLine)
+	}
+	//good ;-)
+	return all
+}
+
+func (v *VAST) GetAdsWrapper() []*Wrapper {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all []*Wrapper
+	//just in case
+	for _, vv := range v.Ad {
+		all = append(all, vv.Wrapper)
+	}
+	//good ;-)
+	return all
+}
