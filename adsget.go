@@ -439,3 +439,57 @@ func (v *VAST) GetAdsCreative() map[string][]*Creative {
 	//good ;-)
 	return all
 }
+
+//GetAdsCreativeExtensions get the list of all Creative.CreativeExtensions
+func (v *VAST) GetAdsCreativeExtensions() map[string][]*CreativeExtensions {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*CreativeExtensions
+	all = make(map[string][]*CreativeExtensions)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.CreativeExtensions)
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.CreativeExtensions)
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsCreativeUniversalAdID get the list of all Creative.UniversalAdID
+func (v *VAST) GetAdsCreativeUniversalAdID() map[string][]*UniversalAdID {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*UniversalAdID
+	all = make(map[string][]*UniversalAdID)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.UniversalAdID)
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.UniversalAdID)
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
