@@ -493,3 +493,84 @@ func (v *VAST) GetAdsCreativeUniversalAdID() map[string][]*UniversalAdID {
 	//good ;-)
 	return all
 }
+
+//GetAdsCreativeLinear get the list of all Creative.Linear
+func (v *VAST) GetAdsCreativeLinear() map[string][]*Linear {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*Linear
+	all = make(map[string][]*Linear)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.Linear)
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.Linear)
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsCreativeNonLinearAds get the list of all Creative.NonLinearAds
+func (v *VAST) GetAdsCreativeNonLinearAds() map[string][]*NonLinearAds {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*NonLinearAds
+	all = make(map[string][]*NonLinearAds)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.NonLinearAds)
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.NonLinearAds)
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsCreativeCompanionAds get the list of all Creative.CompanionAds
+func (v *VAST) GetAdsCreativeCompanionAds() map[string][]*CompanionAds {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*CompanionAds
+	all = make(map[string][]*CompanionAds)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.CompanionAds)
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.CompanionAds)
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
