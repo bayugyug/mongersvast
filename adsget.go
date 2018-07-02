@@ -84,3 +84,69 @@ func (v *VAST) GetAdsAdSystem() map[string][]*AdSystem {
 	//good ;-)
 	return all
 }
+
+//GetAdsAdTitle get the list of all AdTitle
+func (v *VAST) GetAdsAdTitle() map[string][]*AdTitle {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*AdTitle
+	all = make(map[string][]*AdTitle)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.AdTitle != nil {
+			all[AdTypeIsInline] = append(all[AdTypeIsInline], vv.InLine.AdTitle)
+		} else if vv.Wrapper != nil && vv.Wrapper.AdTitle != nil {
+			all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], vv.Wrapper.AdTitle)
+		}
+	}
+	//good ;-)
+	return all
+}
+
+//GetAdsAdServingID get the list of all AdServingID
+func (v *VAST) GetAdsAdServingID() map[string][]*AdServingID {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*AdServingID
+	all = make(map[string][]*AdServingID)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.AdServingID != nil {
+			all[AdTypeIsInline] = append(all[AdTypeIsInline], vv.InLine.AdServingID)
+		} else if vv.Wrapper != nil && vv.Wrapper.AdServingID != nil {
+			all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], vv.Wrapper.AdServingID)
+		}
+	}
+	//good ;-)
+	return all
+}
+
+//GetAdsDescription get the list of all Description
+func (v *VAST) GetAdsDescription() map[string][]*Description {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*Description
+	all = make(map[string][]*Description)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Description != nil {
+			all[AdTypeIsInline] = append(all[AdTypeIsInline], vv.InLine.Description)
+		} else if vv.Wrapper != nil && vv.Wrapper.Description != nil {
+			all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], vv.Wrapper.Description)
+		}
+	}
+	//good ;-)
+	return all
+}
