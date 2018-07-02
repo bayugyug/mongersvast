@@ -10,6 +10,14 @@ import (
 	"time"
 )
 
+//NewVAST get instance on VAST object
+func NewVAST(version string) *VAST {
+	//minimal config
+	v := &VAST{}
+	//good ;-)
+	return v.SetVersion(version)
+}
+
 //InLineAd inline ad template
 func InLineAd(attrs AdAttributes, adSystem *AdSystem, title *AdTitle, desc *Description, verr *VASTError, imps []*Impression, creatives *Creatives) (req *VAST) {
 	//minimal config

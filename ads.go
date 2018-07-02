@@ -2,14 +2,6 @@ package mongersvast
 
 import "strings"
 
-//NewVAST get instance on VAST object
-func (v *VAST) NewVAST(version string) *VAST {
-	//minimal config
-	v = &VAST{}
-	//good ;-)
-	return v.SetVersion(version)
-}
-
 //SetVersion set the VAST version
 func (v *VAST) SetVersion(version string) *VAST {
 	//minimal config
