@@ -163,10 +163,10 @@ func (v *VAST) GetAdsErrorURL() map[string][]*VASTError {
 	all = make(map[string][]*VASTError)
 	//just in case
 	for _, vv := range v.Ad {
-		if vv.InLine != nil && vv.InLine.VASTError != nil {
-			all[AdTypeIsInline] = append(all[AdTypeIsInline], vv.InLine.VASTError)
-		} else if vv.Wrapper != nil && vv.Wrapper.VASTError != nil {
-			all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], vv.Wrapper.VASTError)
+		if vv.InLine != nil && vv.InLine.Error != nil {
+			all[AdTypeIsInline] = append(all[AdTypeIsInline], vv.InLine.Error)
+		} else if vv.Wrapper != nil && vv.Wrapper.Error != nil {
+			all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], vv.Wrapper.Error)
 		}
 	}
 	//good ;-)
@@ -229,10 +229,10 @@ func (v *VAST) GetAdsCategory() map[string][]*Category {
 	all = make(map[string][]*Category)
 	//just in case
 	for _, vv := range v.Ad {
-		if vv.InLine != nil && vv.InLine.Category != nil {
-			all[AdTypeIsInline] = append(all[AdTypeIsInline], vv.InLine.Category)
-		} else if vv.Wrapper != nil && vv.Wrapper.Category != nil {
-			all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], vv.Wrapper.Category)
+		if vv.InLine != nil && len(vv.InLine.Category) > 0 {
+			all[AdTypeIsInline] = append(all[AdTypeIsInline], vv.InLine.Category...)
+		} else if vv.Wrapper != nil && len(vv.Wrapper.Category) > 0 {
+			all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], vv.Wrapper.Category...)
 		}
 	}
 	//good ;-)
@@ -295,10 +295,10 @@ func (v *VAST) GetAdsImpression() map[string][]*Impression {
 	all = make(map[string][]*Impression)
 	//just in case
 	for _, vv := range v.Ad {
-		if vv.InLine != nil && vv.InLine.Impression != nil {
-			all[AdTypeIsInline] = append(all[AdTypeIsInline], vv.InLine.Impression)
-		} else if vv.Wrapper != nil && vv.Wrapper.Impression != nil {
-			all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], vv.Wrapper.Impression)
+		if vv.InLine != nil && len(vv.InLine.Impression) > 0 {
+			all[AdTypeIsInline] = append(all[AdTypeIsInline], vv.InLine.Impression...)
+		} else if vv.Wrapper != nil && len(vv.Wrapper.Impression) > 0 {
+			all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], vv.Wrapper.Impression...)
 		}
 	}
 	//good ;-)
@@ -383,10 +383,10 @@ func (v *VAST) GetAdsViewableImpression() map[string][]*ViewableImpression {
 	all = make(map[string][]*ViewableImpression)
 	//just in case
 	for _, vv := range v.Ad {
-		if vv.InLine != nil && vv.InLine.ViewableImpression != nil {
-			all[AdTypeIsInline] = append(all[AdTypeIsInline], vv.InLine.ViewableImpression)
-		} else if vv.Wrapper != nil && vv.Wrapper.ViewableImpression != nil {
-			all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], vv.Wrapper.ViewableImpression)
+		if vv.InLine != nil && len(vv.InLine.ViewableImpression) > 0 {
+			all[AdTypeIsInline] = append(all[AdTypeIsInline], vv.InLine.ViewableImpression...)
+		} else if vv.Wrapper != nil && len(vv.Wrapper.ViewableImpression) > 0 {
+			all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], vv.Wrapper.ViewableImpression...)
 		}
 	}
 
