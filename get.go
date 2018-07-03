@@ -812,6 +812,68 @@ func (v *VAST) GetAdsCreativeNonLinearAds() map[string][]*NonLinearAds {
 	return all
 }
 
+//GetAdsCreativeNonLinear get the list of all Creative.NonLinearAds.NonLinear
+func (v *VAST) GetAdsCreativeNonLinear() map[string][]*NonLinear {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*NonLinear
+	all = make(map[string][]*NonLinear)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				if kk.NonLinearAds != nil && len(kk.NonLinearAds.NonLinear) > 0 {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.NonLinearAds.NonLinear...)
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				if kk.NonLinearAds != nil && len(kk.NonLinearAds.NonLinear) > 0 {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.NonLinearAds.NonLinear...)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsCreativeNonLinearTracking get the list of all Creative.NonLinearAds.
+func (v *VAST) GetAdsCreativeNonLinearTracking() map[string][]*Tracking {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*Tracking
+	all = make(map[string][]*Tracking)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				if kk.NonLinearAds != nil && kk.NonLinearAds.TrackingEvents != nil && len(kk.NonLinearAds.TrackingEvents.Tracking) > 0 {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.NonLinearAds.TrackingEvents.Tracking...)
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				if kk.NonLinearAds != nil && kk.NonLinearAds.TrackingEvents != nil && len(kk.NonLinearAds.TrackingEvents.Tracking) > 0 {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.NonLinearAds.TrackingEvents.Tracking...)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
 //GetAdsCreativeCompanionAds get the list of all Creative.CompanionAds
 func (v *VAST) GetAdsCreativeCompanionAds() map[string][]*CompanionAds {
 	//minimal config
