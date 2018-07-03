@@ -1109,7 +1109,7 @@ func (v *VAST) GetAdsCreativeCompanionStaticResource() map[string][]*StaticResou
 }
 
 //GetAdsCreativeCompanionTracking get the list of all Creative.CompanionAds.Companion.TrackingEvents.Tracking
-func (v *VAST) GetAdsCreativeCompanionTracking() map[string][]*StaticResource {
+func (v *VAST) GetAdsCreativeCompanionTracking() map[string][]*Tracking {
 	//minimal config
 	if v == nil {
 		v = &VAST{
