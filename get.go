@@ -842,3 +842,73 @@ func (v *VAST) GetAdsCreativeCompanionAds() map[string][]*CompanionAds {
 	//good ;-)
 	return all
 }
+
+//GetAdsCreativeCompanion get the list of all Creative.CompanionAds.Companion
+func (v *VAST) GetAdsCreativeCompanion() map[string][]*Companion {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*Companion
+	all = make(map[string][]*Companion)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				if kk.CompanionAds != nil && len(kk.CompanionAds.Companion) > 0 {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.CompanionAds.Companion...)
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				if kk.CompanionAds != nil && len(kk.CompanionAds.Companion) > 0 {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.CompanionAds.Companion...)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsCreativeCompanionAltText get the list of all Creative.CompanionAds.Companion.AltText
+func (v *VAST) GetAdsCreativeCompanionAltText() map[string][]*AltText {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*AltText
+	all = make(map[string][]*AltText)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				if kk.CompanionAds != nil && len(kk.CompanionAds.Companion) > 0 {
+					for _, va := range kk.CompanionAds.Companion {
+						if va.AltText != nil {
+							all[AdTypeIsInline] = append(all[AdTypeIsInline], va.AltText)
+						}
+					}
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				if kk.CompanionAds != nil && len(kk.CompanionAds.Companion) > 0 {
+					for _, va := range kk.CompanionAds.Companion {
+						if va.AltText != nil {
+							all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], va.AltText)
+						}
+					}
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
