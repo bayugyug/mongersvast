@@ -696,37 +696,6 @@ func (v *VAST) GetAdsCreativeLinearVideoClickTracking() map[string][]*ClickTrack
 			Version: VastXMLVer2,
 		}
 	}
-	var all map[string][]*ClickThrough
-	all = make(map[string][]*ClickThrough)
-	//just in case
-	for _, vv := range v.Ad {
-		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
-			for _, kk := range vv.InLine.Creatives.Creative {
-				if kk.Linear != nil && kk.Linear.VideoClicks != nil && kk.Linear.VideoClicks.ClickThrough != nil {
-					all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.Linear.VideoClicks.ClickThrough)
-				}
-			}
-		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
-			for _, kk := range vv.Wrapper.Creatives.Creative {
-				if kk.Linear != nil && kk.Linear.VideoClicks != nil && kk.Linear.VideoClicks.ClickThrough != nil {
-					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.Linear.VideoClicks.ClickThrough)
-				}
-			}
-		}
-	}
-
-	//good ;-)
-	return all
-}
-
-//GetAdsCreativeLinearVideoClickTracking get the list of all Creative.Linear.VideoClicks.ClickTracking
-func (v *VAST) GetAdsCreativeLinearVideoClickTracking() map[string][]*ClickTracking {
-	//minimal config
-	if v == nil {
-		v = &VAST{
-			Version: VastXMLVer2,
-		}
-	}
 	var all map[string][]*ClickTracking
 	all = make(map[string][]*ClickTracking)
 	//just in case
