@@ -912,3 +912,237 @@ func (v *VAST) GetAdsCreativeCompanionAltText() map[string][]*AltText {
 	//good ;-)
 	return all
 }
+
+//GetAdsCreativeCompanionAdParameters get the list of all Creative.CompanionAds.Companion.AdParameters
+func (v *VAST) GetAdsCreativeCompanionAdParameters() map[string][]*AdParameters {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*AdParameters
+	all = make(map[string][]*AdParameters)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				if kk.CompanionAds != nil && len(kk.CompanionAds.Companion) > 0 {
+					for _, va := range kk.CompanionAds.Companion {
+						if va.AdParameters != nil {
+							all[AdTypeIsInline] = append(all[AdTypeIsInline], va.AdParameters)
+						}
+					}
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				if kk.CompanionAds != nil && len(kk.CompanionAds.Companion) > 0 {
+					for _, va := range kk.CompanionAds.Companion {
+						if va.AdParameters != nil {
+							all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], va.AdParameters)
+						}
+					}
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsCreativeCompanionClickThrough get the list of all Creative.CompanionAds.Companion.CompanionClickThrough
+func (v *VAST) GetAdsCreativeCompanionClickThrough() map[string][]*CompanionClickThrough {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*CompanionClickThrough
+	all = make(map[string][]*CompanionClickThrough)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				if kk.CompanionAds != nil && len(kk.CompanionAds.Companion) > 0 {
+					for _, va := range kk.CompanionAds.Companion {
+						if va.CompanionClickThrough != nil {
+							all[AdTypeIsInline] = append(all[AdTypeIsInline], va.CompanionClickThrough)
+						}
+					}
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				if kk.CompanionAds != nil && len(kk.CompanionAds.Companion) > 0 {
+					for _, va := range kk.CompanionAds.Companion {
+						if va.CompanionClickThrough != nil {
+							all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], va.CompanionClickThrough)
+						}
+					}
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsCreativeCompanionHTMLResource get the list of all Creative.CompanionAds.Companion.HTMLResource
+func (v *VAST) GetAdsCreativeCompanionHTMLResource() map[string][]*HTMLResource {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*HTMLResource
+	all = make(map[string][]*HTMLResource)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				if kk.CompanionAds != nil && len(kk.CompanionAds.Companion) > 0 {
+					for _, va := range kk.CompanionAds.Companion {
+						if va.HTMLResource != nil {
+							all[AdTypeIsInline] = append(all[AdTypeIsInline], va.HTMLResource)
+						}
+					}
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				if kk.CompanionAds != nil && len(kk.CompanionAds.Companion) > 0 {
+					for _, va := range kk.CompanionAds.Companion {
+						if va.HTMLResource != nil {
+							all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], va.HTMLResource)
+						}
+					}
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsCreativeCompanionIFrameResource get the list of all Creative.CompanionAds.Companion.IFrameResource
+func (v *VAST) GetAdsCreativeCompanionIFrameResource() map[string][]*IFrameResource {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*IFrameResource
+	all = make(map[string][]*IFrameResource)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				if kk.CompanionAds != nil && len(kk.CompanionAds.Companion) > 0 {
+					for _, va := range kk.CompanionAds.Companion {
+						if va.IFrameResource != nil {
+							all[AdTypeIsInline] = append(all[AdTypeIsInline], va.IFrameResource)
+						}
+					}
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				if kk.CompanionAds != nil && len(kk.CompanionAds.Companion) > 0 {
+					for _, va := range kk.CompanionAds.Companion {
+						if va.IFrameResource != nil {
+							all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], va.IFrameResource)
+						}
+					}
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsCreativeCompanionStaticResource get the list of all Creative.CompanionAds.Companion.StaticResource
+func (v *VAST) GetAdsCreativeCompanionStaticResource() map[string][]*StaticResource {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*StaticResource
+	all = make(map[string][]*StaticResource)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				if kk.CompanionAds != nil && len(kk.CompanionAds.Companion) > 0 {
+					for _, va := range kk.CompanionAds.Companion {
+						if va.StaticResource != nil {
+							all[AdTypeIsInline] = append(all[AdTypeIsInline], va.StaticResource)
+						}
+					}
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				if kk.CompanionAds != nil && len(kk.CompanionAds.Companion) > 0 {
+					for _, va := range kk.CompanionAds.Companion {
+						if va.StaticResource != nil {
+							all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], va.StaticResource)
+						}
+					}
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsCreativeCompanionTracking get the list of all Creative.CompanionAds.Companion.TrackingEvents.Tracking
+func (v *VAST) GetAdsCreativeCompanionTracking() map[string][]*StaticResource {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*Tracking
+	all = make(map[string][]*Tracking)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				if kk.CompanionAds != nil && len(kk.CompanionAds.Companion) > 0 {
+					for _, va := range kk.CompanionAds.Companion {
+						if va.TrackingEvents != nil && len(va.TrackingEvents.Tracking) > 0 {
+							all[AdTypeIsInline] = append(all[AdTypeIsInline], va.TrackingEvents.Tracking...)
+						}
+					}
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				if kk.CompanionAds != nil && len(kk.CompanionAds.Companion) > 0 {
+					for _, va := range kk.CompanionAds.Companion {
+						if va.TrackingEvents != nil && len(va.TrackingEvents.Tracking) > 0 {
+							all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], va.TrackingEvents.Tracking...)
+						}
+					}
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
