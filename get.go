@@ -595,8 +595,8 @@ func (v *VAST) GetAdsCreativeLinearTrackingEvents() map[string][]*TrackingEvents
 	return all
 }
 
-//GetAdsCreativeLinearTrackingEvent get the list of all Creative.Linear.TrackingEvents.Tracking
-func (v *VAST) GetAdsCreativeLinearTrackingEvent() map[string][]*Tracking {
+//GetAdsCreativeLinearTracking get the list of all Creative.Linear.TrackingEvents.Tracking
+func (v *VAST) GetAdsCreativeLinearTracking() map[string][]*Tracking {
 	//minimal config
 	if v == nil {
 		v = &VAST{
