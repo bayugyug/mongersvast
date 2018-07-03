@@ -595,6 +595,37 @@ func (v *VAST) GetAdsCreativeLinearTrackingEvents() map[string][]*TrackingEvents
 	return all
 }
 
+//GetAdsCreativeLinearTrackingEvent get the list of all Creative.Linear.TrackingEvents.Tracking
+func (v *VAST) GetAdsCreativeLinearTrackingEvent() map[string][]*TrackingEvents {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*Tracking
+	all = make(map[string][]*Tracking)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				if kk.Linear != nil && kk.Linear.TrackingEvents != nil && len(kk.Linear.TrackingEvents.Tracking) > 0 {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.Linear.TrackingEvents.Tracking...)
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				if kk.Linear != nil && kk.Linear.TrackingEvents != nil && len(kk.Linear.TrackingEvents.Tracking) > 0 {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.Linear.TrackingEvents.Tracking...)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
 //GetAdsCreativeLinearVideoClicks get the list of all Creative.Linear.VideoClicks
 func (v *VAST) GetAdsCreativeLinearVideoClicks() map[string][]*VideoClicks {
 	//minimal config
@@ -648,6 +679,37 @@ func (v *VAST) GetAdsCreativeLinearMediaFiles() map[string][]*MediaFiles {
 			for _, kk := range vv.Wrapper.Creatives.Creative {
 				if kk.Linear != nil && kk.Linear.MediaFiles != nil {
 					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.Linear.MediaFiles)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsCreativeLinearMediaFile get the list of all Creative.Linear.MediaFiles.MediaFile
+func (v *VAST) GetAdsCreativeLinearMediaFile() map[string][]*MediaFile {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*MediaFile
+	all = make(map[string][]*MediaFile)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				if kk.Linear != nil && kk.Linear.MediaFiles != nil && len(kk.Linear.MediaFiles.MediaFile) > 0 {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.Linear.MediaFiles.MediaFile...)
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				if kk.Linear != nil && kk.Linear.MediaFiles != nil && len(kk.Linear.MediaFiles.MediaFile) > 0 {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.Linear.MediaFiles.MediaFile...)
 				}
 			}
 		}
