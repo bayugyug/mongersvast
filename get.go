@@ -371,6 +371,99 @@ func (v *VAST) GetAdsExtensions() map[string][]*Extensions {
 	return all
 }
 
+//GetAdsViewable get the list of all Viewable
+func (v *VAST) GetAdsViewable() map[string][]*Viewable {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*Viewable
+	all = make(map[string][]*Viewable)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && len(vv.InLine.ViewableImpression) > 0 {
+			for _, kk := range vv.InLine.ViewableImpression {
+				if kk.Viewable != nil {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.Viewable)
+				}
+			}
+		} else if vv.Wrapper != nil && len(vv.Wrapper.ViewableImpression) > 0 {
+			for _, kk := range vv.InLine.ViewableImpression {
+				if kk.Viewable != nil {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.Viewable)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsNotViewable get the list of all Viewable
+func (v *VAST) GetAdsNotViewable() map[string][]*NotViewable {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*NotViewable
+	all = make(map[string][]*NotViewable)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && len(vv.InLine.ViewableImpression) > 0 {
+			for _, kk := range vv.InLine.ViewableImpression {
+				if kk.NotViewable != nil {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.NotViewable)
+				}
+			}
+		} else if vv.Wrapper != nil && len(vv.Wrapper.ViewableImpression) > 0 {
+			for _, kk := range vv.InLine.ViewableImpression {
+				if kk.NotViewable != nil {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.NotViewable)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsViewUndetermined get the list of all Viewable
+func (v *VAST) GetAdsViewUndetermined() map[string][]*ViewUndetermined {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*ViewUndetermined
+	all = make(map[string][]*ViewUndetermined)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && len(vv.InLine.ViewableImpression) > 0 {
+			for _, kk := range vv.InLine.ViewableImpression {
+				if kk.ViewUndetermined != nil {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.ViewUndetermined)
+				}
+			}
+		} else if vv.Wrapper != nil && len(vv.Wrapper.ViewableImpression) > 0 {
+			for _, kk := range vv.InLine.ViewableImpression {
+				if kk.ViewUndetermined != nil {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.ViewUndetermined)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
 //GetAdsViewableImpression get the list of all ViewableImpression
 func (v *VAST) GetAdsViewableImpression() map[string][]*ViewableImpression {
 	//minimal config
