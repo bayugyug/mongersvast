@@ -781,6 +781,99 @@ func (v *VAST) GetAdsCreativeLinearMediaFiles() map[string][]*MediaFiles {
 	return all
 }
 
+//GetAdsCreativeLinearInteractiveCreativeFile get the list of all Creative.Linear.MediaFiles.InteractiveCreativeFile
+func (v *VAST) GetAdsCreativeLinearInteractiveCreativeFile() map[string][]*InteractiveCreativeFile {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*InteractiveCreativeFile
+	all = make(map[string][]*InteractiveCreativeFile)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				if kk.Linear != nil && kk.Linear.MediaFiles != nil && kk.Linear.MediaFiles.InteractiveCreativeFile != nil {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.Linear.MediaFiles.InteractiveCreativeFile)
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				if kk.Linear != nil && kk.Linear.MediaFiles != nil && kk.Linear.MediaFiles.InteractiveCreativeFile != nil {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.Linear.MediaFiles.InteractiveCreativeFile)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsCreativeLinearMezzanine get the list of all Creative.Linear.MediaFiles.Mezzanine
+func (v *VAST) GetAdsCreativeLinearMezzanine() map[string][]*Mezzanine {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*Mezzanine
+	all = make(map[string][]*Mezzanine)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				if kk.Linear != nil && kk.Linear.MediaFiles != nil && kk.Linear.MediaFiles.Mezzanine != nil {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.Linear.MediaFiles.Mezzanine)
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				if kk.Linear != nil && kk.Linear.MediaFiles != nil && kk.Linear.MediaFiles.Mezzanine != nil {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.Linear.MediaFiles.Mezzanine)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsCreativeLinearClosedCaptionFiles get the list of all Creative.Linear.MediaFiles.ClosedCaptionFiles
+func (v *VAST) GetAdsCreativeLinearClosedCaptionFiles() map[string][]*ClosedCaptionFiles {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*ClosedCaptionFiles
+	all = make(map[string][]*ClosedCaptionFiles)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				if kk.Linear != nil && kk.Linear.MediaFiles != nil && kk.Linear.MediaFiles.ClosedCaptionFiles != nil {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.Linear.MediaFiles.ClosedCaptionFiles)
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				if kk.Linear != nil && kk.Linear.MediaFiles != nil && kk.Linear.MediaFiles.ClosedCaptionFiles != nil {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.Linear.MediaFiles.ClosedCaptionFiles)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
 //GetAdsCreativeLinearMediaFile get the list of all Creative.Linear.MediaFiles.MediaFile
 func (v *VAST) GetAdsCreativeLinearMediaFile() map[string][]*MediaFile {
 	//minimal config
