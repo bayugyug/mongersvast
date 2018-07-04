@@ -874,6 +874,37 @@ func (v *VAST) GetAdsCreativeLinearClosedCaptionFiles() map[string][]*ClosedCapt
 	return all
 }
 
+//GetAdsCreativeLinearClosedCaptionFile get the list of all Creative.Linear.MediaFiles.ClosedCaptionFiles.ClosedCaptionFile
+func (v *VAST) GetAdsCreativeLinearClosedCaptionFile() map[string][]*ClosedCaptionFile {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*ClosedCaptionFile
+	all = make(map[string][]*ClosedCaptionFile)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				if kk.Linear != nil && kk.Linear.MediaFiles != nil && kk.Linear.MediaFiles.ClosedCaptionFiles != nil && len(kk.Linear.MediaFiles.ClosedCaptionFiles.ClosedCaptionFile) > 0 {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.Linear.MediaFiles.ClosedCaptionFiles.ClosedCaptionFile...)
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				if kk.Linear != nil && kk.Linear.MediaFiles != nil && kk.Linear.MediaFiles.ClosedCaptionFiles != nil && len(kk.Linear.MediaFiles.ClosedCaptionFiles.ClosedCaptionFile) > 0 {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.Linear.MediaFiles.ClosedCaptionFiles.ClosedCaptionFile...)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
 //GetAdsCreativeLinearMediaFile get the list of all Creative.Linear.MediaFiles.MediaFile
 func (v *VAST) GetAdsCreativeLinearMediaFile() map[string][]*MediaFile {
 	//minimal config
