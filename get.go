@@ -390,7 +390,7 @@ func (v *VAST) GetAdsViewable() map[string][]*Viewable {
 				}
 			}
 		} else if vv.Wrapper != nil && len(vv.Wrapper.ViewableImpression) > 0 {
-			for _, kk := range vv.InLine.ViewableImpression {
+			for _, kk := range vv.Wrapper.ViewableImpression {
 				if kk.Viewable != nil {
 					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.Viewable)
 				}
@@ -421,7 +421,7 @@ func (v *VAST) GetAdsNotViewable() map[string][]*NotViewable {
 				}
 			}
 		} else if vv.Wrapper != nil && len(vv.Wrapper.ViewableImpression) > 0 {
-			for _, kk := range vv.InLine.ViewableImpression {
+			for _, kk := range vv.Wrapper.ViewableImpression {
 				if kk.NotViewable != nil {
 					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.NotViewable)
 				}
@@ -452,7 +452,7 @@ func (v *VAST) GetAdsViewUndetermined() map[string][]*ViewUndetermined {
 				}
 			}
 		} else if vv.Wrapper != nil && len(vv.Wrapper.ViewableImpression) > 0 {
-			for _, kk := range vv.InLine.ViewableImpression {
+			for _, kk := range vv.Wrapper.ViewableImpression {
 				if kk.ViewUndetermined != nil {
 					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.ViewUndetermined)
 				}
