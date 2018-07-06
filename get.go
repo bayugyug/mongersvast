@@ -371,6 +371,122 @@ func (v *VAST) GetAdsExtensions() map[string][]*Extensions {
 	return all
 }
 
+//GetAdsExtension get the list of all Extensions.Extension
+func (v *VAST) GetAdsExtension() map[string][]*Extension {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*Extension
+	all = make(map[string][]*Extension)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Extensions != nil && len(vv.InLine.Extensions.Extension) > 0 {
+			all[AdTypeIsInline] = append(all[AdTypeIsInline], vv.InLine.Extensions.Extension...)
+		} else if vv.Wrapper != nil && vv.Wrapper.Extensions != nil && len(vv.Wrapper.Extensions.Extension) > 0 {
+			all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], vv.Wrapper.Extensions.Extension...)
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsExtensionTotalAvailable get the list of all Extensions.Extension.TotalAvailable
+func (v *VAST) GetAdsExtensionTotalAvailable() map[string][]*TotalAvailable {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*TotalAvailable
+	all = make(map[string][]*TotalAvailable)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Extensions != nil && len(vv.InLine.Extensions.Extension) > 0 {
+			for _, kv := range vv.InLine.Extensions.Extension {
+				if kv.TotalAvailable != nil {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kv.TotalAvailable)
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Extensions != nil && len(vv.Wrapper.Extensions.Extension) > 0 {
+			for _, kv := range vv.Wrapper.Extensions.Extension {
+				if kv.TotalAvailable != nil {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kv.TotalAvailable)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsExtensionCustomTracking get the list of all Extensions.Extension.CustomTracking.Tracking
+func (v *VAST) GetAdsExtensionCustomTracking() map[string][]*Tracking {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*Tracking
+	all = make(map[string][]*Tracking)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Extensions != nil && len(vv.InLine.Extensions.Extension) > 0 {
+			for _, kv := range vv.InLine.Extensions.Extension {
+				if kv.CustomTracking != nil && len(kv.CustomTracking.Tracking) > 0 {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kv.CustomTracking.Tracking...)
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Extensions != nil && len(vv.Wrapper.Extensions.Extension) > 0 {
+			for _, kv := range vv.Wrapper.Extensions.Extension {
+				if kv.CustomTracking != nil && len(kv.CustomTracking.Tracking) > 0 {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kv.CustomTracking.Tracking...)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsExtensionAdVerification get the list of all Extensions.Extension.AdVerifications.Verification
+func (v *VAST) GetAdsExtensionAdVerification() map[string][]*Verification {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*Verification
+	all = make(map[string][]*Verification)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Extensions != nil && len(vv.InLine.Extensions.Extension) > 0 {
+			for _, kv := range vv.InLine.Extensions.Extension {
+				if kv.AdVerifications != nil && len(kv.AdVerifications.Verification) > 0 {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kv.AdVerifications.Verification...)
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Extensions != nil && len(vv.Wrapper.Extensions.Extension) > 0 {
+			for _, kv := range vv.Wrapper.Extensions.Extension {
+				if kv.AdVerifications != nil && len(kv.AdVerifications.Verification) > 0 {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kv.AdVerifications.Verification...)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
 //GetAdsViewable get the list of all Viewable
 func (v *VAST) GetAdsViewable() map[string][]*Viewable {
 	//minimal config
