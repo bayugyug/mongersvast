@@ -348,6 +348,320 @@ func (v *VAST) GetAdsAdVerifications() map[string][]*AdVerifications {
 	return all
 }
 
+//GetAdsAdVerification get the list of all AdVerifications.Verification
+func (v *VAST) GetAdsAdVerification() map[string][]*Verification {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*Verification
+	all = make(map[string][]*Verification)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.AdVerifications != nil && len(vv.InLine.AdVerifications.Verification) > 0 {
+			all[AdTypeIsInline] = append(all[AdTypeIsInline], vv.InLine.AdVerifications.Verification...)
+		} else if vv.Wrapper != nil && vv.Wrapper.AdVerifications != nil && len(vv.Wrapper.AdVerifications.Verification) > 0 {
+			all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], vv.Wrapper.AdVerifications.Verification...)
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsAdVerificationJavaScriptResource get the list of all AdVerifications.Verification.JavaScriptResource
+func (v *VAST) GetAdsAdVerificationJavaScriptResource() map[string][]*JavaScriptResource {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*JavaScriptResource
+	all = make(map[string][]*JavaScriptResource)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.AdVerifications != nil && len(vv.InLine.AdVerifications.Verification) > 0 {
+			for _, kv := range vv.InLine.AdVerifications.Verification {
+				if kv.JavaScriptResource != nil {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kv.JavaScriptResource)
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.AdVerifications != nil && len(vv.Wrapper.AdVerifications.Verification) > 0 {
+			for _, kv := range vv.Wrapper.AdVerifications.Verification {
+				if kv.JavaScriptResource != nil {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kv.JavaScriptResource)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsAdVerificationFlashResource get the list of all AdVerifications.Verification.FlashResource
+func (v *VAST) GetAdsAdVerificationFlashResource() map[string][]*FlashResource {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*FlashResource
+	all = make(map[string][]*FlashResource)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.AdVerifications != nil && len(vv.InLine.AdVerifications.Verification) > 0 {
+			for _, kv := range vv.InLine.AdVerifications.Verification {
+				if kv.FlashResource != nil {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kv.FlashResource)
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.AdVerifications != nil && len(vv.Wrapper.AdVerifications.Verification) > 0 {
+			for _, kv := range vv.Wrapper.AdVerifications.Verification {
+				if kv.FlashResource != nil {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kv.FlashResource)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsAdVerificationExecutableResource get the list of all AdVerifications.Verification.ExecutableResource
+func (v *VAST) GetAdsAdVerificationExecutableResource() map[string][]*ExecutableResource {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*ExecutableResource
+	all = make(map[string][]*ExecutableResource)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.AdVerifications != nil && len(vv.InLine.AdVerifications.Verification) > 0 {
+			for _, kv := range vv.InLine.AdVerifications.Verification {
+				if kv.ExecutableResource != nil {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kv.ExecutableResource)
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.AdVerifications != nil && len(vv.Wrapper.AdVerifications.Verification) > 0 {
+			for _, kv := range vv.Wrapper.AdVerifications.Verification {
+				if kv.ExecutableResource != nil {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kv.ExecutableResource)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsAdVerificationVerificationParameters get the list of all AdVerifications.Verification.VerificationParameters
+func (v *VAST) GetAdsAdVerificationVerificationParameters() map[string][]*VerificationParameters {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*VerificationParameters
+	all = make(map[string][]*VerificationParameters)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.AdVerifications != nil && len(vv.InLine.AdVerifications.Verification) > 0 {
+			for _, kv := range vv.InLine.AdVerifications.Verification {
+				if kv.VerificationParameters != nil {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kv.VerificationParameters)
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.AdVerifications != nil && len(vv.Wrapper.AdVerifications.Verification) > 0 {
+			for _, kv := range vv.Wrapper.AdVerifications.Verification {
+				if kv.VerificationParameters != nil {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kv.VerificationParameters)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsAdVerificationTracking get the list of all AdVerifications.Verification.TrackingEvents.Tracking
+func (v *VAST) GetAdsAdVerificationTracking() map[string][]*Tracking {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*Tracking
+	all = make(map[string][]*Tracking)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.AdVerifications != nil && len(vv.InLine.AdVerifications.Verification) > 0 {
+			for _, kv := range vv.InLine.AdVerifications.Verification {
+				if kv.TrackingEvents != nil && len(kv.TrackingEvents.Tracking) > 0 {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kv.TrackingEvents.Tracking...)
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.AdVerifications != nil && len(vv.Wrapper.AdVerifications.Verification) > 0 {
+			for _, kv := range vv.Wrapper.AdVerifications.Verification {
+				if kv.TrackingEvents != nil && len(kv.TrackingEvents.Tracking) > 0 {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kv.TrackingEvents.Tracking...)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsAdVerificationViewableImpression get the list of all AdVerifications.Verification.ViewableImpression
+func (v *VAST) GetAdsAdVerificationViewableImpression() map[string][]*ViewableImpression {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*ViewableImpression
+	all = make(map[string][]*ViewableImpression)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.AdVerifications != nil && len(vv.InLine.AdVerifications.Verification) > 0 {
+			for _, kv := range vv.InLine.AdVerifications.Verification {
+				if len(kv.ViewableImpression) > 0 {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kv.ViewableImpression...)
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.AdVerifications != nil && len(vv.Wrapper.AdVerifications.Verification) > 0 {
+			for _, kv := range vv.Wrapper.AdVerifications.Verification {
+				if len(kv.ViewableImpression) > 0 {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kv.ViewableImpression...)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsAdVerificationViewable get the list of all AdVerifications.Verification.ViewableImpression.Viewable
+func (v *VAST) GetAdsAdVerificationViewable() map[string][]*Viewable {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*Viewable
+	all = make(map[string][]*Viewable)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.AdVerifications != nil && len(vv.InLine.AdVerifications.Verification) > 0 {
+			for _, kv := range vv.InLine.AdVerifications.Verification {
+				for _, sv := range kv.ViewableImpression {
+					if sv.Viewable != nil {
+						all[AdTypeIsInline] = append(all[AdTypeIsInline], sv.Viewable)
+					}
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.AdVerifications != nil && len(vv.Wrapper.AdVerifications.Verification) > 0 {
+			for _, kv := range vv.Wrapper.AdVerifications.Verification {
+				for _, sv := range kv.ViewableImpression {
+					if sv.Viewable != nil {
+						all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], sv.Viewable)
+					}
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsAdVerificationNotViewable get the list of all AdVerifications.Verification.ViewableImpression.NotViewable
+func (v *VAST) GetAdsAdVerificationNotViewable() map[string][]*NotViewable {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*NotViewable
+	all = make(map[string][]*NotViewable)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.AdVerifications != nil && len(vv.InLine.AdVerifications.Verification) > 0 {
+			for _, kv := range vv.InLine.AdVerifications.Verification {
+				for _, sv := range kv.ViewableImpression {
+					if sv.NotViewable != nil {
+						all[AdTypeIsInline] = append(all[AdTypeIsInline], sv.NotViewable)
+					}
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.AdVerifications != nil && len(vv.Wrapper.AdVerifications.Verification) > 0 {
+			for _, kv := range vv.Wrapper.AdVerifications.Verification {
+				for _, sv := range kv.ViewableImpression {
+					if sv.NotViewable != nil {
+						all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], sv.NotViewable)
+					}
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsAdVerificationViewUndetermined get the list of all AdVerifications.Verification.ViewableImpression.ViewUndetermined
+func (v *VAST) GetAdsAdVerificationViewUndetermined() map[string][]*ViewUndetermined {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*ViewUndetermined
+	all = make(map[string][]*ViewUndetermined)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.AdVerifications != nil && len(vv.InLine.AdVerifications.Verification) > 0 {
+			for _, kv := range vv.InLine.AdVerifications.Verification {
+				for _, sv := range kv.ViewableImpression {
+					if sv.ViewUndetermined != nil {
+						all[AdTypeIsInline] = append(all[AdTypeIsInline], sv.ViewUndetermined)
+					}
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.AdVerifications != nil && len(vv.Wrapper.AdVerifications.Verification) > 0 {
+			for _, kv := range vv.Wrapper.AdVerifications.Verification {
+				for _, sv := range kv.ViewableImpression {
+					if sv.ViewUndetermined != nil {
+						all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], sv.ViewUndetermined)
+					}
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
 //GetAdsExtensions get the list of all Extensions
 func (v *VAST) GetAdsExtensions() map[string][]*Extensions {
 	//minimal config
