@@ -1002,7 +1002,7 @@ func (v *VAST) GetAdsCreativeExtension() map[string][]*CreativeExtension {
 			Version: VastXMLVer2,
 		}
 	}
-	var all map[string][]*CreativeExtensions
+	var all map[string][]*CreativeExtension
 	all = make(map[string][]*CreativeExtension)
 	//just in case
 	for _, vv := range v.Ad {

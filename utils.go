@@ -75,7 +75,7 @@ func fmtAdUUID(pfx string) string {
 }
 
 //SetXMLHeaders set the xml headers simply
-func SetXMLHeaders(w http.ResponseWriter, r *http.Request) {
+func SetXMLHeaders(w http.ResponseWriter) {
 	w.Header().Set("Content-Type", "text/xml")
 	w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate") // HTTP 1.1.
 	w.Header().Set("Pragma", "no-cache")                                   // HTTP 1.0.
