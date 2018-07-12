@@ -994,6 +994,37 @@ func (v *VAST) GetAdsCreativeExtensions() map[string][]*CreativeExtensions {
 	return all
 }
 
+//GetAdsCreativeExtension get the list of all Creative.CreativeExtensions.CreativeExtension
+func (v *VAST) GetAdsCreativeExtension() map[string][]*CreativeExtension {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*CreativeExtensions
+	all = make(map[string][]*CreativeExtension)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && vv.InLine.Creatives != nil && len(vv.InLine.Creatives.Creative) > 0 {
+			for _, kk := range vv.InLine.Creatives.Creative {
+				if kk.CreativeExtensions != nil && len(kk.CreativeExtensions.CreativeExtension) > 0 {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kk.CreativeExtensions.CreativeExtension...)
+				}
+			}
+		} else if vv.Wrapper != nil && vv.Wrapper.Creatives != nil && len(vv.Wrapper.Creatives.Creative) > 0 {
+			for _, kk := range vv.Wrapper.Creatives.Creative {
+				if kk.CreativeExtensions != nil && len(kk.CreativeExtensions.CreativeExtension) > 0 {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kk.CreativeExtensions.CreativeExtension...)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
 //GetAdsCreativeUniversalAdID get the list of all Creative.UniversalAdID
 func (v *VAST) GetAdsCreativeUniversalAdID() map[string][]*UniversalAdID {
 	//minimal config
