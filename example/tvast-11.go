@@ -17,7 +17,7 @@ func main() {
 		SetInLineAd("in01").
 		SetAdSystem("VAST Inline Simple With Non-Linear").
 		SetAdTitle("Ad title here").
-		SetAdServingID("", "ADID_INnonLINEARTEST_ABC123").
+		SetAdServing("", "ADID_INnonLINEARTEST_ABC123").
 		SetDescription("Ad desc here ;-)").
 		SetErrorURL("http://mongers.vast.utils/error").
 		SetImpressionURL("imp1", "http://mongers.vast.utils/impression1").

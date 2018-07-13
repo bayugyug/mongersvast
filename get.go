@@ -107,8 +107,8 @@ func (v *VAST) GetAdsAdTitle() map[string][]*AdTitle {
 	return all
 }
 
-//GetAdsAdServingID get the list of all AdServingID
-func (v *VAST) GetAdsAdServingID() map[string][]*AdServingID {
+//GetAdsAdServing get the list of all AdServingID
+func (v *VAST) GetAdsAdServing() map[string][]*AdServingID {
 	//minimal config
 	if v == nil {
 		v = &VAST{

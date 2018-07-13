@@ -141,8 +141,8 @@ func (v *VAST) SetImpressionURL(impID, impURL string) *VAST {
 	return v
 }
 
-//SetAdServingID set the AdServingID
-func (v *VAST) SetAdServingID(adID, adValue string) *VAST {
+//SetAdServing set the AdServingID
+func (v *VAST) SetAdServing(adID, adValue string) *VAST {
 	//min config
 	if v == nil {
 		v = &VAST{
