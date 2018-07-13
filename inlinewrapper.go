@@ -217,6 +217,99 @@ func (v *VAST) SetViewableImpression(sID string, viewable *Viewable, notviewable
 	return v
 }
 
+//SetViewableImpressionViewable add into the list of ViewableImpression.Viewable
+func (v *VAST) SetViewableImpressionViewable(sID, sValue string) *VAST {
+	//min config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
+	}
+	v.FormatAd()
+	//set 1
+	data := &Viewable{
+		ID:    sID,
+		Value: sValue,
+	}
+	//check which type
+	if v.IsAdWrapper() {
+		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression == nil {
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression = &ViewableImpression{}
+		}
+		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression.Viewable = data
+	} else if v.IsAdInLine() {
+		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression == nil {
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression = &ViewableImpression{}
+		}
+		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression.Viewable = data
+	}
+	//good ;-)
+	return v
+}
+
+//SetViewableImpressionNotViewable add into the list of ViewableImpression.NotViewable
+func (v *VAST) SetViewableImpressionNotViewable(sID, sValue string) *VAST {
+	//min config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
+	}
+	v.FormatAd()
+	//set 1
+	data := &NotViewable{
+		ID:    sID,
+		Value: sValue,
+	}
+	//check which type
+	if v.IsAdWrapper() {
+		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression == nil {
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression = &ViewableImpression{}
+		}
+		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression.NotViewable = data
+	} else if v.IsAdInLine() {
+		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression == nil {
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression = &ViewableImpression{}
+		}
+		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression.NotViewable = data
+	}
+	//good ;-)
+	return v
+}
+
+//SetViewableImpressionViewUndetermined add into the list of ViewableImpression.ViewUndetermined
+func (v *VAST) SetViewableImpressionViewUndetermined(sID, sValue string) *VAST {
+	//min config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
+	}
+	v.FormatAd()
+	//set 1
+	data := &ViewUndetermined{
+		ID:    sID,
+		Value: sValue,
+	}
+	//check which type
+	if v.IsAdWrapper() {
+		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression == nil {
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression = &ViewableImpression{}
+		}
+		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression.ViewUndetermined = data
+	} else if v.IsAdInLine() {
+		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression == nil {
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression = &ViewableImpression{}
+		}
+		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression.ViewUndetermined = data
+	}
+	//good ;-)
+	return v
+}
+
 //SetPricing set the Pricing
 func (v *VAST) SetPricing(adID, adModel, adCurr, adValue string) *VAST {
 	//min config
