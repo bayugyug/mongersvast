@@ -173,6 +173,18 @@ func (v *VAST) GetAdsErrorURL() map[string][]*VASTError {
 	return all
 }
 
+//GetAdsError get the list of all VASTError
+func (v *VAST) GetAdsError() map[string][]*VASTError {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	//good ;-)
+	return v.GetAdsErrorURL()
+}
+
 //GetAdsSurvey get the list of all Survey
 func (v *VAST) GetAdsSurvey() map[string][]*Survey {
 	//minimal config
