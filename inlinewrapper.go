@@ -234,15 +234,23 @@ func (v *VAST) SetViewableImpressionViewable(sID, sValue string) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression == nil {
-			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression = &ViewableImpression{}
+		idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression)
+		if idx <= 0 {
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression, &ViewableImpression{})
 		}
-		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression.Viewable = data
+		idx = len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression)
+		if idx > 0 {
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression[idx-1].Viewable = data
+		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression == nil {
-			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression = &ViewableImpression{}
+		idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression)
+		if idx <= 0 {
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression = append(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression, &ViewableImpression{})
 		}
-		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression.Viewable = data
+		idx = len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression)
+		if idx > 0 {
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression[idx-1].Viewable = data
+		}
 	}
 	//good ;-)
 	return v
@@ -265,15 +273,23 @@ func (v *VAST) SetViewableImpressionNotViewable(sID, sValue string) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression == nil {
-			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression = &ViewableImpression{}
+		idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression)
+		if idx <= 0 {
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression, &ViewableImpression{})
 		}
-		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression.NotViewable = data
+		idx = len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression)
+		if idx > 0 {
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression[idx-1].NotViewable = data
+		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression == nil {
-			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression = &ViewableImpression{}
+		idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression)
+		if idx <= 0 {
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression = append(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression, &ViewableImpression{})
 		}
-		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression.NotViewable = data
+		idx = len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression)
+		if idx > 0 {
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression[idx-1].NotViewable = data
+		}
 	}
 	//good ;-)
 	return v
@@ -296,15 +312,23 @@ func (v *VAST) SetViewableImpressionViewUndetermined(sID, sValue string) *VAST {
 	}
 	//check which type
 	if v.IsAdWrapper() {
-		if v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression == nil {
-			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression = &ViewableImpression{}
+		idx := len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression)
+		if idx <= 0 {
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression = append(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression, &ViewableImpression{})
 		}
-		v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression.ViewUndetermined = data
+		idx = len(v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression)
+		if idx > 0 {
+			v.Ad[v.GetAdPos()].Wrapper.InLineWrapperData.ViewableImpression[idx-1].ViewUndetermined = data
+		}
 	} else if v.IsAdInLine() {
-		if v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression == nil {
-			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression = &ViewableImpression{}
+		idx := len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression)
+		if idx <= 0 {
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression = append(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression, &ViewableImpression{})
 		}
-		v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression.ViewUndetermined = data
+		idx = len(v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression)
+		if idx > 0 {
+			v.Ad[v.GetAdPos()].InLine.InLineWrapperData.ViewableImpression[idx-1].ViewUndetermined = data
+		}
 	}
 	//good ;-)
 	return v
