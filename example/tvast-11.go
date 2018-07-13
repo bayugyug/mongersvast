@@ -45,7 +45,7 @@ func main() {
 			"0",
 			"").
 		SetPricing("1", "CPM", "USD", "1.58").
-		SetUniversalAdID("1", "", "", "univer id is here").
+		SetUniversalAd("1", "", "", "univer id is here").
 		SetAdvertiser("Mongers-Adverts").
 		SetCategory("1", "http://www.iabtechlab.com/categoryauthority", "Mongers-Categ 1").
 		SetExtension("iab-Count", "", &mvast.TotalAvailable{Value: "2"}, nil)

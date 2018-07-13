@@ -364,8 +364,8 @@ func (v *VAST) SetCreative(sID, sAdID, sSequence, sFramework string) *VAST {
 	return v
 }
 
-//SetUniversalAdID add into the UniversalAdID obj
-func (v *VAST) SetUniversalAdID(sID, sIDRegistry, sIDValue, sValue string) *VAST {
+//SetUniversalAd add into the UniversalAdID obj
+func (v *VAST) SetUniversalAd(sID, sIDRegistry, sIDValue, sValue string) *VAST {
 	//min config
 	if v == nil {
 		v = &VAST{

@@ -1037,8 +1037,8 @@ func (v *VAST) GetAdsCreativeExtension() map[string][]*CreativeExtension {
 	return all
 }
 
-//GetAdsCreativeUniversalAdID get the list of all Creative.UniversalAdID
-func (v *VAST) GetAdsCreativeUniversalAdID() map[string][]*UniversalAdID {
+//GetAdsCreativeUniversalAd get the list of all Creative.UniversalAdID
+func (v *VAST) GetAdsCreativeUniversalAd() map[string][]*UniversalAdID {
 	//minimal config
 	if v == nil {
 		v = &VAST{
