@@ -141,6 +141,19 @@ func (v *VAST) SetImpressionURL(impID, impURL string) *VAST {
 	return v
 }
 
+//SetImpression set the Impression URL
+func (v *VAST) SetImpression(impID, impURL string) *VAST {
+	//min config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+		v.SetAd(VastXMLVer2, "", "", "")
+	}
+	//good ;-)
+	return v.SetImpressionURL(impID, impURL)
+}
+
 //SetAdServing set the AdServingID
 func (v *VAST) SetAdServing(adID, adValue string) *VAST {
 	//min config

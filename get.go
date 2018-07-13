@@ -929,6 +929,99 @@ func (v *VAST) GetAdsViewableImpression() map[string][]*ViewableImpression {
 	return all
 }
 
+//GetAdsViewableImpressionViewable get the list of all ViewableImpression.Viewable
+func (v *VAST) GetAdsViewableImpressionViewable() map[string][]*Viewable {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*Viewable
+	all = make(map[string][]*Viewable)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && len(vv.InLine.ViewableImpression) > 0 {
+			for _, kv := range vv.InLine.ViewableImpression {
+				if kv.Viewable != nil {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kv.Viewable)
+				}
+			}
+		} else if vv.Wrapper != nil && len(vv.Wrapper.ViewableImpression) > 0 {
+			for _, kv := range vv.Wrapper.ViewableImpression {
+				if kv.Viewable != nil {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kv.Viewable)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsViewableImpressionNotViewable get the list of all ViewableImpression.NotViewable
+func (v *VAST) GetAdsViewableImpressionNotViewable() map[string][]*NotViewable {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*NotViewable
+	all = make(map[string][]*NotViewable)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && len(vv.InLine.ViewableImpression) > 0 {
+			for _, kv := range vv.InLine.ViewableImpression {
+				if kv.NotViewable != nil {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kv.NotViewable)
+				}
+			}
+		} else if vv.Wrapper != nil && len(vv.Wrapper.ViewableImpression) > 0 {
+			for _, kv := range vv.Wrapper.ViewableImpression {
+				if kv.NotViewable != nil {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kv.NotViewable)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
+//GetAdsViewableImpressionViewUndetermined get the list of all ViewableImpression.ViewUndetermined
+func (v *VAST) GetAdsViewableImpressionViewUndetermined() map[string][]*ViewUndetermined {
+	//minimal config
+	if v == nil {
+		v = &VAST{
+			Version: VastXMLVer2,
+		}
+	}
+	var all map[string][]*ViewUndetermined
+	all = make(map[string][]*ViewUndetermined)
+	//just in case
+	for _, vv := range v.Ad {
+		if vv.InLine != nil && len(vv.InLine.ViewableImpression) > 0 {
+			for _, kv := range vv.InLine.ViewableImpression {
+				if kv.ViewUndetermined != nil {
+					all[AdTypeIsInline] = append(all[AdTypeIsInline], kv.ViewUndetermined)
+				}
+			}
+		} else if vv.Wrapper != nil && len(vv.Wrapper.ViewableImpression) > 0 {
+			for _, kv := range vv.Wrapper.ViewableImpression {
+				if kv.ViewUndetermined != nil {
+					all[AdTypeIsWrapper] = append(all[AdTypeIsWrapper], kv.ViewUndetermined)
+				}
+			}
+		}
+	}
+
+	//good ;-)
+	return all
+}
+
 //GetAdsCreatives get the list of all Creatives
 func (v *VAST) GetAdsCreatives() map[string][]*Creatives {
 	//minimal config
