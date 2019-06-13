@@ -258,6 +258,7 @@ type TrackingEvents struct {
 //Linear is an element of the VAST structure
 type Linear struct {
 	SkipOffset     string          `xml:"skipoffset,attr,omitempty"`
+	AdParameters   string          `xml:",omitempty"`
 	Duration       *Duration       `xml:",omitempty"`
 	TrackingEvents *TrackingEvents `xml:",omitempty"`
 	VideoClicks    *VideoClicks    `xml:",omitempty"`
